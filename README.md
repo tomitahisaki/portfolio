@@ -76,6 +76,8 @@
 
 旅行中に知らずに行ってしまったことで、トラブルに巻き込まれたことも有るので、早めの情報収集ができるサービスがほしいと一個人として思っています
 
+### ■画面遷移図
+[figma](https://www.figma.com/file/Bqv2jm6XStVIqhG6oithXs/Round-Planner?t=LDsPw9EsTTORywpQ-6)
 ### ■スケジュール
   企画〜技術調査：2/4 〆切
 
