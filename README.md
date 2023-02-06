@@ -78,6 +78,9 @@
 
 ### ■画面遷移図
 [figma](https://www.figma.com/file/Bqv2jm6XStVIqhG6oithXs/Round-Planner?t=LDsPw9EsTTORywpQ-6)
+
+### ■ER図
+[image](https://viewer.diagrams.net/index.html?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1#G1mfBEIY7S9P61U2OT_rONH6MOq239I9Ls)
 ### ■スケジュール
   企画〜技術調査：2/4 〆切
 
