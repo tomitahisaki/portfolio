@@ -80,7 +80,7 @@
 [figma](https://www.figma.com/file/Bqv2jm6XStVIqhG6oithXs/Round-Planner?t=LDsPw9EsTTORywpQ-6)
 
 ### ■ER図
-[image](https://viewer.diagrams.net/index.html?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1#G1mfBEIY7S9P61U2OT_rONH6MOq239I9Ls)
+[![Image from Gyazo](https://i.gyazo.com/39af7b77a0be1e69275cbe87c2fd373b.png)](https://gyazo.com/39af7b77a0be1e69275cbe87c2fd373b)
 ### ■スケジュール
   企画〜技術調査：2/4 〆切
 
