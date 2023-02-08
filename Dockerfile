@@ -19,7 +19,7 @@ ENV BUNDLE_WITHOUT development:test
 ENV RAILS_SERVE_STATIC_FILES true
 ENV RAILS_LOG_TO_STDOUT true
 
-RUN mkdir /$APP_NAME
+RUN mkdir $APP_NAME
 WORKDIR /$APP_NAME
 
 # 別途インストールが必要なものがある場合は追加してください
