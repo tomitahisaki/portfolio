@@ -1,5 +1,5 @@
 #applicationのディレクトリ名で置き換えてください
-ARG APP_NAME= portfolio
+ARG APP_NAME=portfolio
 #使いたいrubyのimage名に置き換えてください
 ARG RUBY_IMAGE=ruby:3.1.2
 #使いたいnodeのversionに置き換えてください(`15.14.0`ではなく`15`とか`16`とかのメジャーバージョン形式で書いてください)
@@ -19,7 +19,7 @@ ENV BUNDLE_WITHOUT development:test
 ENV RAILS_SERVE_STATIC_FILES true
 ENV RAILS_LOG_TO_STDOUT true
 
-RUN mkdir $APP_NAME
+RUN mkdir /$APP_NAME
 WORKDIR /$APP_NAME
 
 # 別途インストールが必要なものがある場合は追加してください
