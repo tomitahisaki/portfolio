@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
-  database: portfolio_production
-  username: portfolio
-  password: <%= ENV["PORTFOLIO_DATABASE_PASSWORD"] %>
+  database: cldvba4st001kagp9cwm212z3
+  username: cldvba4sr001iagp99ei82pds
+  password: <%= ENV["RoundPlanner_DATABASE_PASSWORD"] %>
+  url: <%= ENV[DATABASE_URL] %>
