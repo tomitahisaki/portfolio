@@ -1,5 +1,5 @@
 #applicationのディレクトリ名で置き換えてください
-ARG APP_NAME= portfolio
+ARG APP_NAME= roundplanner
 #使いたいrubyのimage名に置き換えてください
 ARG RUBY_IMAGE=ruby:3.1.2
 #使いたいnodeのversionに置き換えてください(`15.14.0`ではなく`15`とか`16`とかのメジャーバージョン形式で書いてください)
