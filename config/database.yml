@@ -81,7 +81,7 @@ test:
 #
 production:
   <<: *default
-  database: cldvba4st001kagp9cwm212z3
-  username: cldvba4sr001iagp99ei82pds
+  database: cldvdhfm6001uagp99pcd0fnv
+  username: cldvdhfm4001sagp94cvr68gx
   password: <%= ENV["ROUNDPLANNER_DATABASE_PASSWORD"] %>
   url: <%= ENV[DATABASE_URL] %>
