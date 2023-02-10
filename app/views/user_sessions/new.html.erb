@@ -1,25 +1,25 @@
 <div class="hero min-h-screen bg-base-200">
-  <div class="hero-content flex-col lg:flex-row-reverse">
+  <div class="hero-content flex-col ">
     <div class=" flex-shrink-0 max-w-sm shadow-2xl bg-base-100">
       <h1 class="text-center ">login</h1>
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Email</span>
-          </label>
-          <input type="text" placeholder="email" class="input input-bordered" />
+        <%= form_with model: @user, local: true do |f| %>
+          <div class="form-control">
+            <%= f.label :email %>
+            <%= f.text_field :email, placeholder: '***@example.com', class:"input input-bordered" %>
+          </div>
+          <div class="form-control">
+            <%= f.label :password %>
+            <%= f.password_field :password, placeholder: 'password', class:"input input-bordered" %>
+          </div>
+          <div class="form-control mt-6">
+            <%= f.submit 'Login', class:'btn btn-primary' %>
+          </div>
+        <% end %>
         </div>
-        <div class="form-control">
           <label class="label">
-            <span class="label-text">Password</span>
+            <%= link_to 'Sign up', new_user_path, class:"label-text-alt link link-hover mr-10" %>
+            <%= link_to 'Forgot password', '#', class:"label-text-alt link link-hover" %>
           </label>
-          <input type="text" placeholder="password" class="input input-bordered" />
-          <label class="label">
-            <a href="#" class="label-text-alt link link-hover">Forgot password?</a>
-          </label>
-        </div>
-        <div class="form-control mt-6">
-          <button class="btn btn-primary">Login</button>
-        </div>
     </div>
   </div>
 </div>
