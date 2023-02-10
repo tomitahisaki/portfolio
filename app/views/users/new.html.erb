@@ -1,0 +1,32 @@
+<div class="hero min-h-screen bg-base-200">
+  <div class="hero-content flex-col ">
+    <div class=" flex-shrink-0 max-w-sm shadow-2xl bg-base-100">
+      <h1 class="text-center ">login</h1>
+        <%= form_with model: @user, local: true do |f| %>
+          <div class="form-control">
+            <%= f.label :name %>
+            <%= f.text_field :name, placeholder: 'name', class:"input input-bordered" %>
+          </div>
+          <div class="form-control">
+            <%= f.label :email %>
+            <%= f.text_field :email, placeholder: '***@example.com', class:"input input-bordered" %>
+          </div>
+          <div class="form-control">
+            <%= f.label :password %>
+            <%= f.password_field :password, placeholder: 'password', class:"input input-bordered" %>
+          </div>
+          <div class="form-control">
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :passwordconfirmation, placeholder: 'password_confirmation', class:"input input-bordered" %>
+          </div>
+          <div class="form-control mt-6">
+            <%= f.submit 'Login', class:'btn btn-primary' %>
+          </div>
+        <% end %>
+        </div>
+          <label class="label">
+            <a href="#" class="label-text-alt link link-hover">Forgot password?</a>
+          </label>
+    </div>
+  </div>
+</div>
