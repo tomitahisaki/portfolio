@@ -4,7 +4,7 @@ class UserSessionsController < ApplicationController
   def create
     @user = login(params[:email], params[:password])
 
-    if @user
+    if @user.save
       redirect_to root_path, notice: 'login success'
     else
       flash.now[:alert] = 'login failed'
@@ -14,6 +14,6 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    redirect to: root_path, notice: 'logout'
+    redirect_to root_path, notice: 'logout'
   end
 end
