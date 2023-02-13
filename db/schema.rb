@@ -10,40 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_11_060810) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_13_070129) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "information", force: :cascade do |t|
-    t.integer "country_area_cd"
-    t.integer "country_cd"
-    t.string "country_name"
-    t.string "measure_url"
-    t.text "measure_lead"
-    t.text "measure_subtext"
-    t.text "measure_main1"
-    t.text "measure_main2"
-    t.text "measure_main3"
-    t.text "measure_main4"
-    t.text "measure_main5"
-    t.text "measure_main6"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "informations", force: :cascade do |t|
-    t.integer "country_area_cd"
     t.integer "country_cd"
     t.string "country_name"
     t.string "measure_url"
-    t.text "measure_lead"
-    t.text "measure_subtext"
-    t.text "measure_main1"
-    t.text "measure_main2"
-    t.text "measure_main3"
-    t.text "measure_main4"
-    t.text "measure_main5"
-    t.text "measure_main6"
+    t.text "measure_text2"
+    t.text "measure_text3"
+    t.text "measure_text4"
+    t.text "measure_text5"
+    t.text "measure_text6"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
