@@ -4,78 +4,70 @@
     <input type="button" value="Encode" class='btn btn-primary px-4 py-2 rounded' onclick="codeAddress()">
   </div>
   
-  <%= form_with model: @plan, local: true do |f| %>
-    <div class="form-control">
-      <%= f.label :name, class:"block text-gray-700 text-sm font-normal mb-2" %>
-      <%= f.text_field :name, placeholder: 'name', class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-    </div>
-
-    <%= f.fields_for :countries do |country_field| %>
-      <div class="form-control">
-        <%= country_field.label :name, class:"block text-gray-700 text-sm font-normal mb-2" %>
-        <%= country_field.text_field :name, placeholder: 'name', class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-      </div>
-      <div class="form-control ">
-        <%= country_field.label :latitude, class:"block text-gnray-700 text-sm font-normal mb-2" %>
-        <%= country_field.text_field :latitude, placeholder: 'latitude', class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-      </div>
-      <div class="form-control">
-        <%= country_field.label :longtitude, class:"block text-gray-700 text-sm font-normal mb-2" %>
-        <%= country_field.text_field :longitude, placeholder: 'longitude', class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:outline-none focus:shadow-outline" %>
-      </div>
-    <% end %>
-  <% end %>
 
   <div id="display">何かが表示される、、、、！</div> 
   <div id="display_a">何かが表示される、、、、！</div>
   <div id="display_b">何かが表示される、、、、！</div>
   <div id='map'></div>
 
+  <div class='bg-blue-200 m-auto'>プラン作成</div>
+    <%= form_with model: @plan, local: true do |f| %>
+      <div class="form-control">
+        <%= f.label :plan_name, class:"block text-gray-700 text-sm font-normal mb-2" %>
+        <%= f.text_field :name, placeholder: 'plan_name', class:"border rounded w-full py-2 px-3 text-gray-700 " %>
+      </div>
+
   <div>
     <div class="overflow-x-auto">
     <table class="table w-full">
-      <!-- head -->
+      <%= f.fields_for :countries do |country_field| %>
       <thead>
         <tr>
-          <th></th>
-          <th>Name</th>
-          <th>Job</th>
-          <th>Favorite Color</th>
+          <th>No.</th>
+          <th>conutry name</th>
+          <th>latitude</th>
+          <th>longitude</th>
+            <%
+=begin%>
+ <div class="form-control">
+              <%= country_field.label :country_name, class:"block text-gray-700 text-sm font-normal mb-2" %>
+            </div>
+            <div class="form-control ">
+              <%= country_field.label :latitude, class:"block text-gnray-700 text-sm font-normal mb-2" %>
+            </div>
+            <div class="form-control">
+              <%= country_field.label :longtitude, class:"block text-gray-700 text-sm font-normal mb-2" %>
+            </div> 
+<%
+=end%>
         </tr>
       </thead>
       <tbody>
         <!-- row 1 -->
         <tr>
           <th>1</th>
-          <td>Cy Ganderton</td>
-          <td>Quality Control Specialist</td>
-          <td>Blue</td>
-        </tr>
-        <!-- row 2 -->
-        <tr class="hover">
-          <th>2</th>
-          <td>Hart Hagerty</td>
-          <td>Desktop Support Technician</td>
-          <td>Purple</td>
-        </tr>
-        <!-- row 3 -->
-        <tr>
-          <th>3</th>
-          <td>Brice Swyre</td>
-          <td>Tax Accountant</td>
-          <td>Red</td>
+          <td>
+            <%= country_field.text_field :name, placeholder: 'country_name', class:"border rounded w-full py-2 px-3 text-gray-700 " %>
+          </td>
+          <td>
+              <%= country_field.text_field :latitude, placeholder: 'latitude', class:"border rounded w-full py-2 px-3 text-gray-700 " %>
+          </td>
+          <td>
+            <%= country_field.text_field :longitude, placeholder: 'longitude', class:"border rounded w-full py-2 px-3 text-gray-700" %>
+          </td>
         </tr>
       </tbody>
     </table>
+      <% end %>
+            <div class="form-control mt-6">
+              <%= f.submit 'build plan', class:'btn btn-primary px-4 py-2 rounded ' %>
+            </div>
+    <% end %>
   </div>
 </div>
 
     
 <style>
-  /* n
-  * Always set the map height explicitly to define the size of the div element
-  * that contains the map. 
-  */
   #map {
     height: 700px;
     width: 1000px;
@@ -98,7 +90,7 @@ function initMap(){
     zoom: 2,
   });
 
-  // marker = new google.maps.Marker({
+  // marker = ne w google.maps.Marker({
   //   position:  {lat: 40.7828, lng:-73.9653},
   //   map: map
   // });

@@ -10,7 +10,7 @@ class PlansController < ApplicationController
   def create
     @plan = Plan.new(plan_params)
     if @plan.save
-      redirect_to root_path, notice: 'succes'
+      redirect_to root_path, notice: 'success'
     else
       flash.now[:alert] = 'failed'
       render :new
