@@ -4,10 +4,18 @@
     <input type="button" value="Encode" class='btn btn-primary px-4 py-2 rounded' onclick="codeAddress()">
   </div>
   
-  <%= form_with model: @user, local: true do |f| %>
+  <%= form_with model: @plan, local: true do |f| %>
     <div class="form-control">
       <%= f.label :name, class:"block text-gray-700 text-sm font-normal mb-2" %>
       <%= f.text_field :name, placeholder: 'name', class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+    <div class="form-control ">
+      <%= f.label :latitude, class:"block text-gray-700 text-sm font-normal mb-2" %>
+      <%= f.text_field :latitude, placeholder: 'name', class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+    <div class="form-control">
+      <%= f.label :longtitude, class:"block text-gray-700 text-sm font-normal mb-2" %>
+      <%= f.text_field :longitude, placeholder: 'name', class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     </div>
   <% end %>
 
@@ -57,7 +65,7 @@
 
     
 <style>
-  /* 
+  /* n
   * Always set the map height explicitly to define the size of the div element
   * that contains the map. 
   */
@@ -99,7 +107,9 @@ function codeAddress(){
           map: map,
           position: results[0].geometry.location
       });
-      document.getElementById('name').value = "検索結果：" + results[ 0 ].formatted_address.split(/、|\s/, 1);
+      document.getElementById('name').value = "国名:" + results[ 0 ].formatted_address.split(/、|\s/, 1);
+      document.getElementById('latitude').value = "緯度:" + results[ 0 ].geometry.location.lat();
+      document.getElementById('longitude').value = "経度:" + results[ 0 ].geometry.location.lng();
       display.textContent = "検索結果：" + results[ 0 ].formatted_address.split(/、|\s/, 1);
       display_a.textContent = "検索結果：" + results[ 0 ].geometry.location.lat();
       display_b.textContent = "検索結果：" + results[ 0 ].geometry.location.lng();
