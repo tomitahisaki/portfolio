@@ -6,5 +6,6 @@ class CreatePlanCountries < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+    add_index :plan_countries, [:plan_id, :country_id], unique: true
   end
 end

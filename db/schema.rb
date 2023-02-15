@@ -41,6 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_005835) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["country_id"], name: "index_plan_countries_on_country_id"
+    t.index ["plan_id", "country_id"], name: "index_plan_countries_on_plan_id_and_country_id", unique: true
     t.index ["plan_id"], name: "index_plan_countries_on_plan_id"
   end
 
