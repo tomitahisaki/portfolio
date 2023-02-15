@@ -9,14 +9,21 @@
       <%= f.label :name, class:"block text-gray-700 text-sm font-normal mb-2" %>
       <%= f.text_field :name, placeholder: 'name', class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     </div>
-    <div class="form-control ">
-      <%= f.label :latitude, class:"block text-gnray-700 text-sm font-normal mb-2" %>
-      <%= f.text_field :latitude, placeholder: 'latitude', class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-    </div>
-    <div class="form-control">
-      <%= f.label :longtitude, class:"block text-gray-700 text-sm font-normal mb-2" %>
-      <%= f.text_field :longitude, placeholder: 'longitude', class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-    </div>
+
+    <%= f.fields_for :countries do |country_field| %>
+      <div class="form-control">
+        <%= country_field.label :name, class:"block text-gray-700 text-sm font-normal mb-2" %>
+        <%= country_field.text_field :name, placeholder: 'name', class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+      <div class="form-control ">
+        <%= country_field.label :latitude, class:"block text-gnray-700 text-sm font-normal mb-2" %>
+        <%= country_field.text_field :latitude, placeholder: 'latitude', class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+      </div>
+      <div class="form-control">
+        <%= country_field.label :longtitude, class:"block text-gray-700 text-sm font-normal mb-2" %>
+        <%= country_field.text_field :longitude, placeholder: 'longitude', class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight  focus:outline-none focus:shadow-outline" %>
+      </div>
+    <% end %>
   <% end %>
 
   <div id="display">何かが表示される、、、、！</div> 
@@ -107,9 +114,9 @@ function codeAddress(){
           map: map,
           position: results[0].geometry.location
       });
-      document.getElementById('name').value = "国名:" + results[ 0 ].formatted_address.split(/、|\s/, 1);
-      document.getElementById('latitude').value = "緯度:" + results[ 0 ].geometry.location.lat();
-      document.getElementById('longitude').value = "経度:" + results[ 0 ].geometry.location.lng();
+      document.getElementById('plan_countries_attributes_0_name').value = "国名:" + results[ 0 ].formatted_address.split(/、|\s/, 1);
+      document.getElementById('plan_countries_attributes_0_latitude').value = "緯度:" + results[ 0 ].geometry.location.lat();
+      document.getElementById('plan_countries_attributes_0_longitude').value = "経度:" + results[ 0 ].geometry.location.lng();
       display.textContent = "検索結果：" + results[ 0 ].formatted_address.split(/、|\s/, 1);
       display_a.textContent = "検索結果：" + results[ 0 ].geometry.location.lat();
       display_b.textContent = "検索結果：" + results[ 0 ].geometry.location.lng();
