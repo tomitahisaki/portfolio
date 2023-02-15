@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_15_001640) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_15_005835) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -35,6 +35,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_001640) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "plan_countries", force: :cascade do |t|
+    t.bigint "plan_id", null: false
+    t.bigint "country_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_plan_countries_on_country_id"
+    t.index ["plan_id"], name: "index_plan_countries_on_plan_id"
+  end
+
   create_table "plans", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -51,4 +60,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_15_001640) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "plan_countries", "countries"
+  add_foreign_key "plan_countries", "plans"
 end
