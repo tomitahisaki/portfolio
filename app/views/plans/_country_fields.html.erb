@@ -1,0 +1,15 @@
+
+<tr class="nested-fields">
+  <td>
+    <%= f.text_field :name, placeholder: 'country_name', class:"py-2 px-3 text-gray-700 " %>
+  </td>
+  <td>
+      <%= f.text_field :latitude, placeholder: 'latitude', class:"py-2 px-3 text-gray-700 " %>
+  </td>
+  <td>
+    <%= f.text_field :longitude, placeholder: 'longitude', class:"py-2 px-3 text-gray-700" %>
+  </td>
+  <td>
+    <%= link_to_remove_association "remove task", f, class:'hover hover:link btn btn-secondry '%>
+  </td>
+</tr>

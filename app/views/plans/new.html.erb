@@ -1,122 +1,93 @@
 <div class="flex flex-col">
-  <div class=" shadow-lg rounded px-12 pt-6 pb-8 mb-4 bg-base-100">
-    <input id="address" class="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="検索">
-    <input type="button" value="Encode" class='btn btn-primary px-4 py-2 rounded' onclick="codeAddress()">
-  </div>
   
 
-  <div id="display">何かが表示される、、、、！</div> 
-  <div id="display_a">何かが表示される、、、、！</div>
-  <div id="display_b">何かが表示される、、、、！</div>
-  <div id='map'></div>
-
-  <div class='bg-blue-200 m-auto'>プラン作成</div>
-    <%= form_with model: @plan, local: true do |f| %>
-      <div class="form-control">
-        <%= f.label :plan_name, class:"block text-gray-700 text-sm font-normal mb-2" %>
-        <%= f.text_field :name, placeholder: 'plan_name', class:"border rounded w-full py-2 px-3 text-gray-700 " %>
+  <h1 class='bg-blue-200 m-auto text-5xl'>プラン作成</h1>
+    <div class='flex flex-row'>
+      <div id='map'></div>
+      <%= form_with model: @plan, local: true do |f| %>
+      <div>
+        <div class="form-control flex flex-col">
+          <div class=" shadow-lg rounded px-12 pt-6 pb-8 mb-4 bg-base-100">
+            <input id="address" class="border py-3 px-10 text-gray-700" placeholder="国名を入れてください">
+          </div>
+          <div class=' flex flex-row'>
+            <div>
+              <%= f.label :plan_name, class:"block text-gray-700 font-normal mb-2" %>
+              <%= f.text_field :name, placeholder: 'plan_name', class:" py-2 px-3  text-gray-700 " %>
+            </div>
+            <div class= 'btn btn-secondry' ><%= link_to_add_association 'add country', f, :countries, class: 'hover hover:link',
+                  data: {
+                          association_insertion_node: '#detail-association-insertion-point',
+                          association_insertion_method: 'append' }, onclick:"codeAddress()" %>
+            </div>
+          </div>
+        </div>   
+        <div class="overflow-x-auto">
+          <table class="table w-full">
+            <thead>
+              <tr>
+                <th>countri name</th>
+                <th>latitude</th>
+                <th>longitude</th>
+              </tr>
+            </thead>
+            <tbody id='detail-association-insertion-point'>
+                <%= f.fields_for :countries do |country| %>
+                  <%= render 'country_fields', f: country %>
+                <% end %>
+            </tbody>
+          </table>
+                  <div class="form-control mt-6 flex flex-row justify-center">
+                    <div>
+                      <%= f.submit 'build plan', class:'btn btn-primary px-4 py-2 rounded ' %>
+                    </div>
+                  </div>
+          <% end %>
+        </div>
       </div>
-
-  <div>
-    <div class="overflow-x-auto">
-    <table class="table w-full">
-      <%= f.fields_for :countries do |country_field| %>
-      <thead>
-        <tr>
-          <th>No.</th>
-          <th>conutry name</th>
-          <th>latitude</th>
-          <th>longitude</th>
-            <%
-=begin%>
- <div class="form-control">
-              <%= country_field.label :country_name, class:"block text-gray-700 text-sm font-normal mb-2" %>
-            </div>
-            <div class="form-control ">
-              <%= country_field.label :latitude, class:"block text-gnray-700 text-sm font-normal mb-2" %>
-            </div>
-            <div class="form-control">
-              <%= country_field.label :longtitude, class:"block text-gray-700 text-sm font-normal mb-2" %>
-            </div> 
-<%
-=end%>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- row 1 -->
-        <tr>
-          <th>1</th>
-          <td>
-            <%= country_field.text_field :name, placeholder: 'country_name', class:"border rounded w-full py-2 px-3 text-gray-700 " %>
-          </td>
-          <td>
-              <%= country_field.text_field :latitude, placeholder: 'latitude', class:"border rounded w-full py-2 px-3 text-gray-700 " %>
-          </td>
-          <td>
-            <%= country_field.text_field :longitude, placeholder: 'longitude', class:"border rounded w-full py-2 px-3 text-gray-700" %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-      <% end %>
-            <div class="form-control mt-6">
-              <%= f.submit 'build plan', class:'btn btn-primary px-4 py-2 rounded ' %>
-            </div>
-    <% end %>
-  </div>
+    </div>
 </div>
 
     
 <style>
   #map {
     height: 700px;
-    width: 1000px;
+    width: 80%;
   }
 
 </style>
 
 <script>
-let map
-let geocoder
-const display = document.getElementById('display')
-const display_a = document.getElementById('display_a')
-const display_b = document.getElementById('display_b')
+  let map
+  let geocoder
 
-function initMap(){
-  geocoder = new google.maps.Geocoder()
+  function initMap(){
+    geocoder = new google.maps.Geocoder()
 
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 36.204824, lng:138.252924}, // 日本の位置を初期値とする
-    zoom: 2,
-  });
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 36.204824, lng:138.252924}, // 日本の位置を初期値とする
+      zoom: 2,
+    });
+  }
 
-  // marker = ne w google.maps.Marker({
-  //   position:  {lat: 40.7828, lng:-73.9653},
-  //   map: map
-  // });
-}
-// ここから追加 
-function codeAddress(){
-  let inputAddress = document.getElementById('address').value;
+  function codeAddress(){
+    let inputAddress = document.getElementById('address').value;
 
-  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
-    if (status == 'OK') {
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-          map: map,
-          position: results[0].geometry.location
-      });
-      document.getElementById('plan_countries_attributes_0_name').value = "国名:" + results[ 0 ].formatted_address.split(/、|\s/, 1);
-      document.getElementById('plan_countries_attributes_0_latitude').value = "緯度:" + results[ 0 ].geometry.location.lat();
-      document.getElementById('plan_countries_attributes_0_longitude').value = "経度:" + results[ 0 ].geometry.location.lng();
-      display.textContent = "検索結果：" + results[ 0 ].formatted_address.split(/、|\s/, 1);
-      display_a.textContent = "検索結果：" + results[ 0 ].geometry.location.lat();
-      display_b.textContent = "検索結果：" + results[ 0 ].geometry.location.lng();
-    } else {
-      alert('該当する結果がありませんでした：' + status);
-    }
-  });   
-}
+    geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+      if (status == 'OK') {
+        map.setCenter(results[0].geometry.location);
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+        document.getElementById('plan_countries_attributes_0_name').value = "国名:" + results[ 0 ].formatted_address.split(/、|\s/, 1);
+        document.getElementById('plan_countries_attributes_0_latitude').value = "緯度:" + results[ 0 ].geometry.location.lat();
+        document.getElementById('plan_countries_attributes_0_longitude').value = "経度:" + results[ 0 ].geometry.location.lng();
+      } else {
+        alert('該当する結果がありませんでした：' + status);
+      }
+    });   
+  }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap&libraries=places&language=ja" async defer>
 </script>
