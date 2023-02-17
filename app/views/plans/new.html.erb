@@ -1,5 +1,4 @@
 <div class="flex flex-col">
-  
 
   <h1 class='bg-blue-200 m-auto text-5xl'>プラン作成</h1>
     <div class='flex flex-row'>
@@ -26,7 +25,7 @@
           <table class="table w-full">
             <thead>
               <tr>
-                <th>countri name</th>
+                <th>country name</th>
                 <th>latitude</th>
                 <th>longitude</th>
               </tr>
@@ -80,9 +79,9 @@
             map: map,
             position: results[0].geometry.location
         });
-        document.getElementById('plan_countries_attributes_0_name').value = "国名:" + results[ 0 ].formatted_address.split(/、|\s/, 1);
-        document.getElementById('plan_countries_attributes_0_latitude').value = "緯度:" + results[ 0 ].geometry.location.lat();
-        document.getElementById('plan_countries_attributes_0_longitude').value = "経度:" + results[ 0 ].geometry.location.lng();
+        document.getElementById('plan_countries_attributes_0_name').value = results[ 0 ].formatted_address.split(/、|\s/, 1);
+        document.getElementById('plan_countries_attributes_0_latitude').value = results[ 0 ].geometry.location.lat();
+        document.getElementById('plan_countries_attributes_0_longitude').value = results[ 0 ].geometry.location.lng();
       } else {
         alert('該当する結果がありませんでした：' + status);
       }
