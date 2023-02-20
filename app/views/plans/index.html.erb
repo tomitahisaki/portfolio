@@ -1,1 +1,123 @@
-<h1> 一覧画面</h1>
+<div class="flex flex-col">
+  <div class=" shadow-lg rounded px-12 pt-6 pb-8 mb-4 bg-base-100">
+    <input id="address" class="shadow appearance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="検索">
+    <input type="button" value="Encode" class='btn btn-primary px-4 py-2 rounded' onclick="codeAddress()">
+  </div>
+  
+  <%= form_with model: @plan, local: true do |f| %>
+    <div class="form-control">
+      <%= f.label :name, class:"block text-gray-700 text-sm font-normal mb-2" %>
+      <%= f.text_field :name, placeholder: 'name', class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+    <div class="form-control ">
+      <%= f.label :latitude, class:"block text-gray-700 text-sm font-normal mb-2" %>
+      <%= f.text_field :latitude, placeholder: 'name', class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+    <div class="form-control">
+      <%= f.label :longtitude, class:"block text-gray-700 text-sm font-normal mb-2" %>
+      <%= f.text_field :longitude, placeholder: 'name', class:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+  <% end %>
+
+  <div id="display">何かが表示される、、、、！</div> 
+  <div id="display_a">何かが表示される、、、、！</div>
+  <div id="display_b">何かが表示される、、、、！</div>
+  <div id='map'></div>
+
+  <div>
+    <div class="overflow-x-auto">
+    <table class="table w-full">
+      <!-- head -->
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Job</th>
+          <th>Favorite Color</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- row 1 -->
+        <tr>
+          <th>1</th>
+          <td>Cy Ganderton</td>
+          <td>Quality Control Specialist</td>
+          <td>Blue</td>
+        </tr>
+        <!-- row 2 -->
+        <tr class="hover">
+          <th>2</th>
+          <td>Hart Hagerty</td>
+          <td>Desktop Support Technician</td>
+          <td>Purple</td>
+        </tr>
+        <!-- row 3 -->
+        <tr>
+          <th>3</th>
+          <td>Brice Swyre</td>
+          <td>Tax Accountant</td>
+          <td>Red</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+    
+<style>
+  /* n
+  * Always set the map height explicitly to define the size of the div element
+  * that contains the map. 
+  */
+  #map {
+    height: 700px;
+    width: 1000px;
+  }
+
+</style>
+
+<script>
+let map
+let geocoder
+const display = document.getElementById('display')
+const display_a = document.getElementById('display_a')
+const display_b = document.getElementById('display_b')
+
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 36.204824, lng:138.252924}, // 日本の位置を初期値とする
+    zoom: 2,
+  });
+
+  // marker = new google.maps.Marker({
+  //   position:  {lat: 40.7828, lng:-73.9653},
+  //   map: map
+  // });
+}
+// ここから追加 
+function codeAddress(){
+  let inputAddress = document.getElementById('address').value;
+
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+      document.getElementById('name').value = "国名:" + results[ 0 ].formatted_address.split(/、|\s/, 1);
+      document.getElementById('latitude').value = "緯度:" + results[ 0 ].geometry.location.lat();
+      document.getElementById('longitude').value = "経度:" + results[ 0 ].geometry.location.lng();
+      display.textContent = "検索結果：" + results[ 0 ].formatted_address.split(/、|\s/, 1);
+      display_a.textContent = "検索結果：" + results[ 0 ].geometry.location.lat();
+      display_b.textContent = "検索結果：" + results[ 0 ].geometry.location.lng();
+    } else {
+      alert('該当する結果がありませんでした：' + status);
+    }
+  });   
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap&libraries=places&language=ja" async defer>
+</script>

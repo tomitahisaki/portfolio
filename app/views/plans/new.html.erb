@@ -1,13 +1,8 @@
 <div class="flex flex-col">
-  
 
   <h1 class='bg-blue-200 m-auto text-5xl'>プラン作成</h1>
     <div class='flex flex-row'>
-      <%
-=begin%>
- <div id='map'></div> 
-<%
-=end%>
+      <div id='map'></div>
       <%= form_with model: @plan, local: true do |f| %>
       <div>
         <div class="form-control flex flex-col">
@@ -18,7 +13,11 @@
             <div>
               <%= f.label :plan_name, class:"block text-gray-700 font-normal mb-2" %>
               <%= f.text_field :name, placeholder: 'plan_name', class:" py-2 px-3  text-gray-700 " %>
-              <%= link_to 'add country', '#', id: 'add-country', class:'btn btn-secondary hover hover:link' %>
+            </div>
+            <div class= 'btn btn-secondry' ><%= link_to_add_association 'add country', f, :countries, class: 'hover hover:link',
+                  data: {
+                          association_insertion_node: '#detail-association-insertion-point',
+                          association_insertion_method: 'append' }, onclick:"codeAddress()" %>
             </div>
           </div>
         </div>   
@@ -29,28 +28,11 @@
                 <th>country name</th>
                 <th>latitude</th>
                 <th>longitude</th>
-                <th>longitude</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id='detail-association-insertion-point'>
                 <%= f.fields_for :countries do |country| %>
-                  <div class= 'field'>
-                    <tr>
-                      <td>
-                        <%= country.text_field :name, placeholder: 'country_name', id: "plan_countries_attributes_0_name" ,class:"py-2 px-3 text-gray-700 " %>
-                      </td>
-                      <td>
-                        <%= country.text_field :latitude, placeholder: 'latitude', id: "plan_countries_attributes_0_latitude" , class:"py-2 px-3 text-gray-700 " %>
-                      </td>
-                      <td>
-                        <%= country.text_field :longitude, placeholder: 'longitude', id: "plan_countries_attributes_0_longitude" , class:"py-2 px-3 text-gray-700" %>
-                      </td>
-                      <td>
-                        <%= link_to 'remove', '#', class: 'remove btn btn-secondary hover hover:link' %>
-                      </td>
-                    </tr>
-                  </div>
-                  <div id="countries"></div>
+                  <%= render 'country_fields', f: country %>
                 <% end %>
             </tbody>
           </table>
@@ -62,49 +44,19 @@
           <% end %>
         </div>
       </div>
-
-      </div>
     </div>
 </div>
 
     
-<%
-=begin%>
- <style>
+<style>
   #map {
     height: 700px;
     width: 80%;
   }
 
-</style> 
-<%
-=end%>
+</style>
 
 <script>
-  //field_forの追加アクション
-  // var fieldIndex = 1;
-
-  $(document).on('click','#add-country', function() {
-    console.log("hi");
-    // フィールドを追加するためのHTMLを生成
-    // var html = '<div class="field"><tr><input type="text" name="plan[countries_attributes][' + fieldIndex + '][name]" id="plan_countries_attributes_' + fieldIndex + '_name"></tr><tr><input type="text" name="plan[countries_attributes][' + fieldIndex + '][latitude]" id="plan_countries_attributes_' + fieldIndex + '_latitude"></tr><tr><input type="text" name="plan[countries_attributes][' + fieldIndex + '][longitude]" id="plan_countries_attributes_' + fieldIndex + '_longitude"></tr><tr><a href="#" class="remove">Remove</a></tr></div>';
-    // // フィールドを追加
-    // $('#countries').append(html);
-    // fieldIndex++;
-  });
-
-  $('.remove').on('click', function() {
-    // 削除するフィールドを取得
-    var field = $(this).closest('.field');
-    // フィールドを削除
-    field.remove();
-    fieldIndex--;
-  });
-</script>
-
-<%
-=begin%>
- <script>
   let map
   let geocoder
 
@@ -127,9 +79,9 @@
             map: map,
             position: results[0].geometry.location
         });
-        // document.getElementById('plan_countries_attributes_0_name').value = "国名:" + results[ 0 ].formatted_address.split(/、|\s/, 1);
-        // document.getElementById('plan_countries_attributes_0_latitude').value = "緯度:" + results[ 0 ].geometry.location.lat();
-        // document.getElementById('plan_countries_attributes_0_longitude').value = "経度:" + results[ 0 ].geometry.location.lng();
+        document.getElementById('plan_countries_attributes_0_name').value = results[ 0 ].formatted_address.split(/、|\s/, 1);
+        document.getElementById('plan_countries_attributes_0_latitude').value = results[ 0 ].geometry.location.lat();
+        document.getElementById('plan_countries_attributes_0_longitude').value = results[ 0 ].geometry.location.lng();
       } else {
         alert('該当する結果がありませんでした：' + status);
       }
@@ -137,6 +89,4 @@
   }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap&libraries=places&language=ja" async defer>
-</script>  
-<%
-=end%>
+</script>

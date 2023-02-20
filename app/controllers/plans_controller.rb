@@ -9,7 +9,8 @@ class PlansController < ApplicationController
 
   def create
     @plan = Plan.new(plan_params)
-    if @plan.save
+    binding.pry
+    if @plan
       redirect_to root_path, notice: 'success'
     else
       flash.now[:alert] = 'failed'
@@ -29,6 +30,6 @@ class PlansController < ApplicationController
   private
 
   def plan_params
-    params.require(:plan).permit(:name, countries_attributes: [:name, :latitude, :longitude])
+    params.require(:plan).permit(:name, countries_attributes: [:id, :name, :latitude, :longitude])
   end
 end
