@@ -1,4 +1,4 @@
-<div class="flex flex-col">
+ <div class="flex flex-col">
 
   <h1 class='bg-blue-200 m-auto text-5xl'>プラン作成</h1>
     <div class='flex flex-row'>
@@ -8,16 +8,18 @@
         <div class="form-control flex flex-col">
           <div class=" shadow-lg rounded px-12 pt-6 pb-8 mb-4 bg-base-100">
             <input id="address" class="border py-3 px-10 text-gray-700" placeholder="国名を入れてください">
+            <input type="button" value="Search" onclick="codeAddress()">
+            <input type="button" value= 'お試し' onclick='putAddress()' >
           </div>
           <div class=' flex flex-row'>
             <div>
               <%= f.label :plan_name, class:"block text-gray-700 font-normal mb-2" %>
               <%= f.text_field :name, placeholder: 'plan_name', class:" py-2 px-3  text-gray-700 " %>
             </div>
-            <div class= 'btn btn-secondry' ><%= link_to_add_association 'add country', f, :countries, class: 'hover hover:link',
+            <div id='add' class='btn btn-secondry' ><%= link_to_add_association 'add', f, :countries, class: 'hover hover:link',
                   data: {
                           association_insertion_node: '#detail-association-insertion-point',
-                          association_insertion_method: 'append' }, onclick:"codeAddress()" %>
+                          association_insertion_method: 'append' }%>
             </div>
           </div>
         </div>   
@@ -45,20 +47,21 @@
         </div>
       </div>
     </div>
-</div>
+</div> 
 
-    
 <style>
   #map {
     height: 700px;
     width: 80%;
   }
-
 </style>
 
-<script>
+ <script>
   let map
   let geocoder
+  let country_name
+  let contry_latitude
+  let country_longitude
 
   function initMap(){
     geocoder = new google.maps.Geocoder()
@@ -79,14 +82,21 @@
             map: map,
             position: results[0].geometry.location
         });
-        document.getElementById('plan_countries_attributes_0_name').value = results[ 0 ].formatted_address.split(/、|\s/, 1);
-        document.getElementById('plan_countries_attributes_0_latitude').value = results[ 0 ].geometry.location.lat();
-        document.getElementById('plan_countries_attributes_0_longitude').value = results[ 0 ].geometry.location.lng();
       } else {
         alert('該当する結果がありませんでした：' + status);
       }
-    });   
+        country_name = results[ 0 ].formatted_address.split(/、|\s/, 1);
+        country_latitude = results[ 0 ].geometry.location.lat();
+        country_longitude = results[ 0 ].geometry.location.lng();
+        console.log(document.getElementById('address').value)
+    });
+  }
+
+  function putAddress(){
+    let template = document.getElementById('add').getElementsByTagName('a');
+    
+ 
   }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap&libraries=places&language=ja" async defer>
-</script>
+</script> 
