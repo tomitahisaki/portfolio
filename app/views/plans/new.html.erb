@@ -7,6 +7,12 @@
       <div>
         <div class="form-control flex flex-col">
           <div class=" shadow-lg rounded px-12 pt-6 pb-8 mb-4 bg-base-100">
+          <%
+=begin%>
+  codeAddressは、geocodingAPIをつかっている場所
+  putAddressは、試しに取得したい値を探しているところ
+<%
+=end%>
             <input id="address" class="border py-3 px-10 text-gray-700" placeholder="国名を入れてください">
             <input type="button" value="Search" onclick="codeAddress()">
             <input type="button" value= 'お試し' onclick='putAddress()' >
