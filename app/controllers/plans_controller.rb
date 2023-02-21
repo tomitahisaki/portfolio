@@ -4,7 +4,7 @@ class PlansController < ApplicationController
 
   def new
     @plan = Plan.new
-    @plan.countries.build
+    # @plan.countries.build
   end
 
   def create
