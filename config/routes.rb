@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  root to: 'static_pages#index'
+  root to: 'static_pages#top'
+
+  get 'term', to: 'static_pages#term'
+  get 'policy', to: 'static_pages#policy'
+  get 'contact', to: 'static_pages#contact'
 
   get 'login', to: 'user_sessions#new'
   post 'login', to: 'user_sessions#create'
@@ -7,6 +11,6 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[new create]
   resources :plans do
-    resources :countries, only %i[new create]
+    resources :countries
   end
 end
