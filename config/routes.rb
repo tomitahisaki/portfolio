@@ -7,6 +7,6 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[new create]
   resources :plans do
-    resources :countries, only: %i[new create]
-  end  
+    resources :countries, only %i[new create]
+  end
 end
