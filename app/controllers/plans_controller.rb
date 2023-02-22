@@ -1,21 +1,25 @@
 class PlansController < ApplicationController
   def index
+    @plans = Plan.all
   end
 
   def new
     @plan = Plan.new
-    # @plan.countries.build
+    # @plan.countries.build # field_forを最初は非表示とするため、コメントアウト
   end
 
   def create
     @plan = Plan.new(plan_params)
-    binding.pry
     if @plan
       redirect_to root_path, notice: 'success'
     else
       flash.now[:alert] = 'failed'
       render :new
     end
+  end
+
+  def show
+    
   end
 
   def edit
