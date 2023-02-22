@@ -1,5 +1,6 @@
 class PlansController < ApplicationController
   def index
+    @plans = Plan.all
   end
 
   def new
@@ -9,13 +10,16 @@ class PlansController < ApplicationController
 
   def create
     @plan = Plan.new(plan_params)
-    binding.pry
     if @plan
       redirect_to root_path, notice: 'success'
     else
       flash.now[:alert] = 'failed'
       render :new
     end
+  end
+
+  def show
+    
   end
 
   def edit
