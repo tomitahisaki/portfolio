@@ -4,7 +4,7 @@ class PlansController < ApplicationController
 
   def new
     @plan = Plan.new
-    # @plan.countries.build
+    # @plan.countries.build # field_forを最初は非表示とするため、コメントアウト
   end
 
   def create
