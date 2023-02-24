@@ -7,7 +7,7 @@ file = URI.open('https://www.ezairyu.mofa.go.jp/opendata/country/0970A.xml') #�
 xml_docs = Nokogiri::XML(file) # Nokogiri::XML::Document
 country_cds = []
 xml_docs.xpath('//country/cd').each do |xml_doc|  # Nokogiri::XML::NodeSet
-  country_cds << xml_doc.text unless country_cds.include?(xml_doc.text)                    # Nokogiri::XML::Element
+  country_cds << xml_doc.text unless country_cds.include?(xml_doc.text)                    # Nokogiri::XML::Element　　country_cdsは各タグごとにあるので、重複を避けるために unlessで省く
 end
 # p country_cds.size # 207カ国　確認
 
