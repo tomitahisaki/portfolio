@@ -23,3 +23,34 @@
 # end
 
 #初期データ作成
+# 2.times do |n|
+#   User.create!(
+#     name: Faker::Name.name, 
+#     email: Faker::Internet.email,
+#     password: 'aaa',
+#     password_confirmation: 'aaa'
+#   )
+
+# end
+
+# 5.times do |n|
+#   Plan.create!(
+#     name: Faker::Name.first_name,
+#     user: User.offset(rand(User.count)).first
+#   )
+# end
+
+# 20.times do |n|
+#   Country.create!(
+#     name: Faker::Address.country,
+#     latitude: Faker::Address.latitude,
+#     longitude: Faker::Address.longitude,
+#   )
+# end
+
+# 20.times do |n|
+#   PlanCountry.create!(
+#   plan: Plan.offset(rand(Plan.count)).first,
+#   country: Country.offset(rand(Country.count)).first
+# )
+# end
