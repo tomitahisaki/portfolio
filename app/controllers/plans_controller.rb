@@ -1,4 +1,7 @@
 class PlansController < ApplicationController
+
+  before_action :set_plan, only: %i[edit update destroy]
+
   def index
     @plans = Plan.all
   end
@@ -23,13 +26,20 @@ class PlansController < ApplicationController
     @countries = @plan.countries
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
+    if @plan.update!(plan_params)
+      redirect_to plan_path(@plan), notice: 'you succeed to update'
+    else
+      flash.now[:alert] = 'failed'
+      render :new
+    end
   end
 
   def destroy
+    @plan.destroy!
+    redirect_to plans_path, notice: 'you succeed to destroy '
   end
 
   private
