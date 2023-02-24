@@ -9,7 +9,7 @@ class PlansController < ApplicationController
   end
 
   def create
-    @plan = Plan.new(plan_params)
+    @plan = current_user.plans.new(plan_params)
     if @plan.save
       redirect_to plans_path, notice: 'success'
     else
@@ -19,7 +19,8 @@ class PlansController < ApplicationController
   end
 
   def show
-    
+    @plan = Plan.find(params[:id])
+    @countries = @plan.countries
   end
 
   def edit
@@ -32,6 +33,10 @@ class PlansController < ApplicationController
   end
 
   private
+
+  def set_plan
+    @plan = current_user.plans.find(params[:id])
+  end
 
   def plan_params
     params.require(:plan).permit(:name, countries_attributes: [:id, :name, :latitude, :longitude])
