@@ -1,49 +1,45 @@
 <div class="flex flex-col">
   <h1 class='bg-blue-200 m-auto text-5xl'>プラン詳細</h1>
-    <div class='flex flex-row'>
-      <div id='map'></div>
-      <div>
-        <div class="form-control flex flex-col">
-
-          <div class=' flex flex-row'>
-            <div>
-
-
-            </div>
-            <div class='hidden'>
-
-            </div>
+  <div class='flex flex-row'>
+    <div id='map'></div>
+    <div>
+      <div class="form-control flex flex-col">
+        <div class=' flex flex-row'>
+          <div class='m-auto flex flex-row '>
+            <h1 class='text-2xl mr-5'>plan name:</h1>
+            <h1 class='text-2xl'><%= @plan.name %></h1>
           </div>
-        </div>   
-        <div class="overflow-x-auto">
-          <h2 class='text-size'><%= @plan.name %></h2>
-          <table class="table w-full">
-            <thead>
-              <tr>
-                <th>country name</th>
-                <th>latitude</th>
-                <th>longitude</th>
-              </tr>
-            </thead>
-            <tbody id=''>
-                <% @countries.each do |country| %>
-              <tr>
-                <td><%= country.name %></td>
-                <td><%= country.latitude %></td>
-                <td><%= country.longitude %></td>
-                <% end %>
-              </tr>
-            </tbody>
-          </table>
-                  <div class="form-control mt-6 flex flex-row justify-center">
-                    <div>
-
-                    </div>
-                  </div>
-
+          <div class='flex flex-row'>
+            <% if current_user == @plan.user %>
+              <%= link_to 'edit', edit_plan_path(@plan), class:' btn btn-secondary link link-hover' %>
+              <%= button_to 'destroy', plan_path(@plan), method: :delete , class:' btn btn-secondary link link-hover ' %>
+            <% end %>
+            <%= link_to '一覧', plans_path, class:' btn btn-secondary link link-hover' %>
+          </div>
         </div>
       </div>
+      <div class="overflow-x-auto">
+        <table class="table w-full">
+          <thead>
+            <tr>
+              <th>country name</th>
+              <th>latitude</th>
+              <th>longitude</th>
+            </tr>
+          </thead>
+          <tbody id=''>
+              <% @countries.each do |country| %>
+            <tr>
+              <td><%= country.name %></td>
+              <td><%= country.latitude %></td>
+              <td><%= country.longitude %></td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </div> 
 
 
