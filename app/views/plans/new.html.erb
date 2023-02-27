@@ -1,13 +1,12 @@
 <div class="flex flex-col">
   <h1 class='bg-blue-200 m-auto text-5xl'>プラン作成</h1>
     <div class='flex flex-row'>
-      <div id='map'></div>
       <%= form_with model: @plan, local: true do |f| %>
       <div>
         <div class="form-control flex flex-col">
           <div class=" shadow-lg rounded px-12 pt-6 pb-8 mb-4 bg-base-100">
             <input id="address" class="border py-3 px-10 text-gray-700" placeholder="国名を入れてください">
-            <input type="button" value="add country" onclick="testCode()" class='btn btn-secondary hover hover:link'>
+            <input type="button" value="add country" onclick="putCode()" class='btn btn-secondary hover hover:link'>
           </div>
           <div class=' flex flex-row'>
             <div>
@@ -46,24 +45,20 @@
           <% end %>
         </div>
       </div>
+      <div id='map'></div>
     </div>
 </div> 
 
 <style>
   #map {
     height: 700px;
-    width: 60%;
+    width: 70%;
   }
 </style>
 
  <script>
   let map
   let geocoder
-  let country_name
-  let contry_latitude
-  let country_longitude
-  let template
-  
 
   function initMap(){
     geocoder = new google.maps.Geocoder()
@@ -75,19 +70,20 @@
   }
 
   function codeAddress(){
+    let country_name
+    let contry_latitude
+    let country_longitude
     let inputAddress = document.getElementById('address').value;
     let add = document.getElementById('add');
 
     geocoder.geocode( { 'address': inputAddress}, function(results, status) {
       if (status == 'OK') {
-        // map.setCenter(results[0].geometry.location); 取得したマーカーを中心にセットし直すので、コメントアウト
+        // map.setCenter(results[0].geometry.location); 取得したマーカーを中心にセットし直してしまうので、コメントアウト
         var marker = new google.maps.Marker({
             map: map,
             position: results[0].geometry.location
         });
-      } else {
-        alert('該当する結果がありませんでした：' + status);
-      }
+
         country_name = results[ 0 ].formatted_address.split(/、|\s/, 1);
         country_latitude = results[ 0 ].geometry.location.lat();
         country_longitude = results[ 0 ].geometry.location.lng();
@@ -102,12 +98,18 @@
         </td>
         <td><input value=&quot;false&quot; autocomplete=&quot;off&quot; type=&quot;hidden&quot; name=&quot;plan[countries_attributes][new_countries][_destroy]&quot; id=&quot;plan_countries_attributes_new_countries__destroy&quot; /><a class=&quot;remove_bty btn btn-danger link link-hover remove_fields dynamic&quot; href=&quot;#&quot;>remove</a>
         </td>
+        <td><a id=&quot;[new_countries]&quot;  class=&quot; btn btn-danger link link-hover href=&quot;#&quot; onclick=&quot;test()&quot;>[new_countries]</a>
+        </td>
         </tr>
         " href="#">add</a>`;
+
+      } else {
+        alert('該当する結果がありませんでした：' + status);
+      }
     });
   }
 
-  function testCode(){
+  function putCode(){
     let promise = new Promise((resolve) => {
      resolve(codeAddress());
     })
@@ -117,8 +119,42 @@
       },200);
     })
     .then(() => {
-      document.getElementById('address').value ='';
+      setTimeout(() => {
+        document.getElementById('address').value ='';
+        document.getElementById('add').outerHTML = `<a id="add" class="btn btn-secondary hover hover:link add_fields" data-association-insertion-node="#detail-association-insertion-point" data-association-insertion-method="append" data-association="country" data-associations="countries" data-association-insertion-template="<tr id='country_fields' class= 'nested-fields'>
+          <td><input placeholder=&quot;country_name&quot; class=&quot;country_name py-2 px-3 text-gray-700 &quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][name]&quot; id=&quot;plan_countries_attributes_new_countries_name&quot; value=&quot;&quot; />
+          </td>
+          <td><input placeholder=&quot;latitude&quot; class=&quot;latitude py-2 px-3 text-gray-700 &quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][latitude]&quot; id=&quot;plan_countries_attributes_new_countries_latitude&quot; value=&quot;&quot; />
+          </td>
+          <td><input placeholder=&quot;longitude&quot; class=&quot;longitude py-2 px-3 text-gray-700&quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][longitude]&quot; id=&quot;plan_countries_attributes_new_countries_longitude&quot; value=&quot;&quot; />
+          </td>
+          <td><input value=&quot;false&quot; autocomplete=&quot;off&quot; type=&quot;hidden&quot; name=&quot;plan[countries_attributes][new_countries][_destroy]&quot; id=&quot;plan_countries_attributes_new_countries__destroy&quot; /><a class=&quot;remove_bty btn btn-danger link link-hover remove_fields dynamic&quot; href=&quot;#&quot;>remove</a>
+          </td>
+          <td><a class=&quot; btn btn-danger link link-hover href=&quot;#&quot; onclick=&quot;test()&quot;>[new_countries]</a>
+          </td>
+          </tr>
+          " href="#">add</a>`;
+      },200)
     });
+  }
+
+  function test(){
+    // let clickedX = event.clientX;
+    // let clickedY = event.clientY;
+    // let clickedElement = document.elementFromPoint(clickedX, clickedY);
+    // console.log(clickedElement); //クリックした場所のelementを取得するDOM操作
+
+    let clickedElement = event.target; //クリックした要素を基準とする
+    // let siblingElements = clickedElement.parentNode.parentNode.children[1].firstElementChild.value;  // クリックした箇所を基準に、親の親要素(aタグ→td→trを指定する。) そして、childrenとすることでその階層を配列風に取得している。
+    // console.log(siblingElements); //クリックした場所をターゲットとした形の取得方法。sibling要素がほしかったので処理を書いた。
+    let latitude = clickedElement.parentNode.parentNode.children[1].firstElementChild.value;  // latitude
+    let longitude = clickedElement.parentNode.parentNode.children[2].firstElementChild.value;  // longitude
+
+    console.log(latitude);
+    console.log(longitude);
+
+    let setLatLng = { lat: latitude, lng: longitude };
+    console.log(setLatLng);
   }
 
 </script>

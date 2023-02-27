@@ -1,10 +1,7 @@
-
-
  <div class="flex flex-col">
 
   <h1 class='bg-blue-200 m-auto text-5xl'>プラン更新</h1>
     <div class='flex flex-row'>
-      <div id='map'></div>
       <%= form_with model: @plan, local: true do |f| %>
       <div>
         <div class="form-control flex flex-col">
@@ -46,13 +43,14 @@
           <% end %>
         </div>
       </div>
+      <div id='map'></div>
     </div>
 </div> 
 
 <style>
   #map {
     height: 700px;
-    width: 80%;
+    width: 100%;
   }
 </style>
 
