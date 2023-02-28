@@ -7,6 +7,7 @@
           <div class=" shadow-lg rounded px-12 pt-6 pb-8 mb-4 bg-base-100">
             <input id="address" class="border py-3 px-10 text-gray-700" placeholder="国名を入れてください">
             <input type="button" value="add country" onclick="putCode()" class='btn btn-secondary hover hover:link'>
+            <input type="button" value="お試し" onclick="test()" class='btn btn-secondary hover hover:link'>
           </div>
           <div class=' flex flex-row'>
             <div>
@@ -153,6 +154,10 @@
         return;
       }
     }
+  }
+
+  function test(){
+    console.log(markerPoint);
   }
 
 </script>

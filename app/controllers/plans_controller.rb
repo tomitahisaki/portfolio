@@ -24,6 +24,7 @@ class PlansController < ApplicationController
   def show
     @plan = Plan.find(params[:id])
     @countries = @plan.countries
+    gon.countries = @countries
   end
 
   def edit; end
