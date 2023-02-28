@@ -27,7 +27,9 @@ class PlansController < ApplicationController
     gon.countries = @countries
   end
 
-  def edit; end
+  def edit
+    gon.countries = @plan.countries
+  end
 
   def update
     if @plan.update!(plan_params)
