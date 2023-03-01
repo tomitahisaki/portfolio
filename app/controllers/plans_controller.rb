@@ -52,6 +52,6 @@ class PlansController < ApplicationController
   end
 
   def plan_params
-    params.require(:plan).permit(:name, countries_attributes: [:id, :name, :latitude, :longitude])
+    params.require(:plan).permit(:name, countries_attributes: [:id, :name, :latitude, :longitude ,:_destroy])
   end
 end
