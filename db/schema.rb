@@ -10,9 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_11_060810) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_24_022603) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name", null: false
+    t.float "latitude", null: false
+    t.float "longitude", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "informations", force: :cascade do |t|
     t.integer "country_cd"
@@ -27,10 +35,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_060810) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "plan_countries", force: :cascade do |t|
+    t.bigint "plan_id", null: false
+    t.bigint "country_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["country_id"], name: "index_plan_countries_on_country_id"
+    t.index ["plan_id", "country_id"], name: "index_plan_countries_on_plan_id_and_country_id", unique: true
+    t.index ["plan_id"], name: "index_plan_countries_on_plan_id"
+  end
+
   create_table "plans", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar"
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_plans_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -38,9 +59,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_11_060810) do
     t.string "crypted_password"
     t.string "salt"
     t.string "name", null: false
+    t.string "avatar"
+    t.text "introduction"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "plan_countries", "countries"
+  add_foreign_key "plan_countries", "plans"
+  add_foreign_key "plans", "users"
 end

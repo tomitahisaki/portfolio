@@ -1,0 +1,81 @@
+<div class="flex flex-col">
+  <h1 class='bg-blue-200 m-auto text-5xl'>プラン詳細</h1>
+  <div class='flex flex-row w-auto'>
+    <div>
+      <div class="form-control flex flex-col">
+        <div class=' flex flex-row'>
+          <div class='m-auto flex flex-row '>
+            <h1 class='text-2xl mr-5'>plan name:</h1>
+            <h1 class='text-2xl'><%= @plan.name %></h1>
+          </div>
+          <div class='flex flex-row'>
+            <% if current_user == @plan.user %>
+              <%= link_to 'edit', edit_plan_path(@plan), class:' btn btn-secondary link link-hover' %>
+              <%= button_to 'destroy', plan_path(@plan), method: :delete , class:' btn btn-secondary link link-hover ' %>
+            <% end %>
+            <%= link_to '一覧', plans_path, class:' btn btn-secondary link link-hover' %>
+            <a type="button" class="btn btn-secondary", onclick="test()">テスト</a>
+          </div>
+        </div>
+      </div>
+      <div class="overflo w-x-auto">
+        <table class="table w-full">
+          <thead>
+            <tr>
+              <th>country name</th>
+              <th>latitude</th>
+              <th>longitude</th>
+            </tr>
+          </thead>
+          <tbody id=''>
+              <% @countries.each do |country| %>
+            <tr>
+              <td><%= country.name %></td>
+              <td><%= country.latitude %></td>
+              <td><%= country.longitude %></td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div id='map'></div>
+  </div>
+</div> 
+
+<style>
+  #map {
+    height: 700px;
+    width: 70%;
+  }
+</style>
+
+<script>
+  let countries = gon.countries;
+  let mylatlng_data = [];
+
+  for(let i = 0; i < countries.length + 1; i++){
+    mylatlng_data.push([countries[i].latitude, countries[i].longitude]);
+  }
+
+
+  function initMap(){
+
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 36.204824, lng: 138.252924}, // 日本の位置を初期値とする
+      zoom: 2,
+    });
+    
+    for(let i=0; i < mylatlng_data.length + 1; i++){
+       let marker = new google.maps.Marker({
+        map: map,
+        position: new google.maps.LatLng(mylatlng_data[i][0], mylatlng_data[i][1]),
+      });
+      marker.setMap(map);
+    };
+  }
+
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap&libraries=places&language=ja" async defer>
+</script> 
