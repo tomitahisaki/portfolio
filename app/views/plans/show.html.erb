@@ -9,7 +9,7 @@
             <h1 class='text-2xl'><%= @plan.name %></h1>
           </div>
           <div class='flex flex-row'>
-            <% if current_user == @plan.user %>
+            <% if current_user.own?(@plan) %>
               <%= link_to 'edit', edit_plan_path(@plan), class:' btn btn-secondary link link-hover' %>
               <%= button_to 'destroy', plan_path(@plan), method: :delete , class:' btn btn-secondary link link-hover ' %>
             <% end %>
