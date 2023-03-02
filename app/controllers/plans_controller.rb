@@ -14,9 +14,9 @@ class PlansController < ApplicationController
   def create
     @plan = current_user.plans.new(plan_params)
     if @plan.save
-      redirect_to plans_path, notice: 'success'
+      redirect_to plans_path, success: 'success'
     else
-      flash.now[:alert] = 'failed'
+      flash.now[:error] = 'failed'
       render :new
     end
   end
@@ -33,16 +33,16 @@ class PlansController < ApplicationController
 
   def update
     if @plan.update!(plan_params)
-      redirect_to plan_path(@plan), notice: 'you succeed to update'
+      redirect_to plan_path(@plan), success: 'you succeed to update'
     else
-      flash.now[:alert] = 'failed'
+      flash.now[:error] = 'failed'
       render :new
     end
   end
 
   def destroy
     @plan.destroy!
-    redirect_to plans_path, notice: 'you succeed to destroy '
+    redirect_to plans_path, info: 'you succeed to destroy '
   end
 
   private
