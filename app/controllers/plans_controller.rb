@@ -16,7 +16,7 @@ class PlansController < ApplicationController
     if @plan.save
       redirect_to plans_path, success: 'success'
     else
-      flash.now[:error] = 'failed'
+      flash.now[:error] = 'failed to build plan'
       render :new
     end
   end
@@ -36,7 +36,7 @@ class PlansController < ApplicationController
       redirect_to plan_path(@plan), success: 'you succeed to update'
     else
       flash.now[:error] = 'failed'
-      render :new
+      render :edit
     end
   end
 

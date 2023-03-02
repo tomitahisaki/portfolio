@@ -25,4 +25,5 @@ class Plan < ApplicationRecord
   accepts_nested_attributes_for :countries, allow_destroy: true
 
   validates :name, presence: true
+
 end
