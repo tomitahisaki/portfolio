@@ -4,7 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  avatar     :string
-#  name       :string
+#  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  user_id    :bigint           not null
@@ -23,4 +23,6 @@ class Plan < ApplicationRecord
   has_many :countries, through: :plan_countries
 
   accepts_nested_attributes_for :countries, allow_destroy: true
+
+  validates :name, presence: true
 end

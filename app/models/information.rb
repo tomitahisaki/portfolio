@@ -13,6 +13,15 @@
 #  measure_url   :string
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  country_id    :bigint
+#
+# Indexes
+#
+#  index_informations_on_country_id  (country_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (country_id => countries.id)
 #
 class Information < ApplicationRecord
 end
