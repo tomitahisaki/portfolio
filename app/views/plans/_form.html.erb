@@ -2,6 +2,7 @@
   <%= form_with model: plan, local: true do |f| %>
   <div>
     <div class="form-control flex flex-col">
+      <%= render 'shared/error_messages', object: f.object %>
       <div class=" shadow-lg rounded px-12 pt-6 pb-8 mb-4 bg-base-100">
         <input id="address" class="border py-3 px-10 text-gray-700" placeholder="国名を入れてください">
         <input type="button" value="add country" onclick="putCode()" class='btn btn-secondary hover hover:link'>
@@ -12,11 +13,11 @@
           <%= f.text_field :name, placeholder: 'plan_name', class:" py-2 px-3  text-gray-700 " %>
         </div>
         <div class='hidden'>
-        <%= link_to_add_association 'add', f, :countries, id:'add', class:'btn btn-secondary hover hover:link', 
+          <%= link_to_add_association 'add', f, :countries, id:'add', class:'btn btn-secondary hover hover:link',
               data: {
                       association_insertion_node: '#detail-association-insertion-point',
                       association_insertion_method: 'append',
-                        } %>
+                     } %>
         </div>
       </div>
     </div>   
@@ -40,9 +41,9 @@
             <%= f.submit 'build plan', class:'btn btn-primary px-4 py-2 rounded ' %>
           </div>
         </div>
-      <% end %>
     </div>
   </div>
+  <% end %>
   <div id='map'></div>
 </div>
 

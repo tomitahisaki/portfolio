@@ -67,9 +67,14 @@ gem 'geocoder'
 # rails has relationship with javascript as variable
 gem 'gon'
 
+# to use 'cocoon-js-vanilla'
 gem 'cocoon'
 
+# create test data in seed.rb
 gem 'faker'
+
+# easy to see model.rb
+gem 'annotate'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
