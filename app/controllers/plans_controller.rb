@@ -1,5 +1,4 @@
 class PlansController < ApplicationController
-
   before_action :set_plan, only: %i[edit update destroy]
 
   def index
@@ -15,24 +14,22 @@ class PlansController < ApplicationController
     @plan = current_user.plans.new(plan_params)
     
     @plan.transaction do
-      country_names =  params[:plan][:countries_attributes].values.map{|country| country[:name]}# フォームから送信された値をattributeの名前を取得
-      existing_countries = Country.where(name: country_names).to_a # countryモデルにある country_namesのオブジェクトを取得
-      
-      countries = plan_params[:countries_attributes].values.map do |country_params| #countries_attributesから Countryオブジェクトを生成。
-        country = existing_countries.find{|country| country.name == country_params[:name]} # existing_countriesから、country_params[:name]と等しいnameを取得する
-
-        if country.nil?  
-          country = Country.new(country_params.except(:_destroy)) #countryがない場場合 新たに、countryオブジェクトを作成する。
-        else
-          country.assign_attributes(country_params.except(:_destroy)) #countryがあれば、country_params.except(:_destroy)で属性の変更のみ行う。
+      countries = plan_params[:countries_attributes].values.map do |country_params| # フォームから送信された値のplan_paramsのcountry_attributesのハッシュの値(value)をmapメソッドで配列に変換し、countries変数に入れる。
+        Country.find_or_initialize_by(name: country_params[:name]) do |country| # Countryモデルから、country_params[:name]でフォームで受け取った値があるか確認する。ある場合はfind_byとなる。ない場合は、initializeで新規作成が行われる。
+          country.assign_attributes(country_params.except(:_destroy))
         end
-
-        country
       end
 
       @plan.countries = countries
 
-
+      # countries.each do |country|
+      #   @set_info = Information.find_by("country_name LIKE ?", "#%{country.name}%")
+      #   if @set_info.present?
+      #     @set_info.save(country_id: country.id)
+      #   end
+      # end
+      
+      binding.break
       if @plan.save
         redirect_to plans_path, success: 'success'
       else
@@ -55,17 +52,10 @@ class PlansController < ApplicationController
   def update
 
     @plan.transaction do
-      country_names =  params[:plan][:countries_attributes].values.map{|country| country[:name]}# フォームから送信された値をattributeの名前を取得
-      existing_countries = Country.where(name: country_names).to_a # countryモデルにある country_namesのオブジェクトを取得
-      
-      countries = plan_params[:countries_attributes].values.map do |country_params| #countries_attributesから Countryオブジェクトを生成。
-        country = existing_countries.find{|country| country.name == country_params[:name]} # existing_countriesから、country_params[:name]と等しいnameを取得する
-        if country.nil?  
-          country = Country.new(country_params.except(:_destroy)) #countryがcontryモデルにない場合 新たに、countryオブジェクトを作成する。
-        else
-          country.assign_attributes(country_params.except(:_destroy)) #countryがcountryモデルにあれば、country_params.except(:_destroy)で属性の変更のみ行う。
+      countries = plan_params[:countries_attributes].values.map do |country_params| # フォームから送信された値のplan_paramsのcountry_attributesのハッシュの値(value)をmapメソッドで配列に変換し、countries変数に入れる。
+        Country.find_or_initialize_by(name: country_params[:name]) do |country| # Countryモデルから、country_params[:name]でフォームで受け取った値があるか確認する。ある場合はfind_byとなる。ない場合は、initializeで　新規作成が行われる。
+          country.assign_attributes(country_params.except(:_destroy))
         end
-        country
       end
 
         @plan.countries.delete_all

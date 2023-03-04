@@ -12,6 +12,7 @@
 class Country < ApplicationRecord
   has_many :plan_countries, dependent: :destroy
   has_many :plans, through: :plan_countries
+  has_one :information, dependent: :destroy
 
   validates :name, presence: true
   validates :latitude, presence: true
