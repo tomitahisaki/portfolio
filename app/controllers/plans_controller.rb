@@ -22,10 +22,9 @@ class PlansController < ApplicationController
 
       countries.each do |country|
         set_info = Information.where("country_name LIKE ?", "%#{country.name}%")  # country.nameを渡して、country_nameに部分一致するものを取り出す。
-        if set_info.present? && set_info.pluck(:country_id).nil?                  # set_infoに情報があり、かつcountry_id(外部キー)がない場合に以下の処理をする。
+        if set_info.present? && set_info.pluck(:country_id) == [nil]                  # set_infoに情報があり、かつcountry_id(外部キー)がない場合に以下の処理をする。
           set_info.update(country_id: country.id)                                 # 外部キーのcountry_idにcountry.idを入れて更新する。
         end
-        binding.break
       end
       
       @plan.countries = countries
@@ -59,7 +58,7 @@ class PlansController < ApplicationController
 
       countries.each do |country|
         set_info = Information.where("country_name LIKE ?", "%#{country.name}%")
-        if set_info.present? && set_info.pluck(:country_id).nil?
+        if set_info.present? && set_info.pluck(:country_id) == [nil]
           set_info.update(country_id: country.id)
         end
       end
