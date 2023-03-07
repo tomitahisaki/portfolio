@@ -6,12 +6,11 @@ class PlanCountriesController < ApplicationController
   end
 
   def show
+    @plan = Plan.find(params[:plan_id])
+    @countries =  @plan.countries
   end
 
   def edit
-    @plan = current_user.plans.find(params[:plan_id])
-    @countries =  @plan.countries
-    @plan_country = PlanCountry.find(params[:plan_id, :country_id])
   end
 
   def update

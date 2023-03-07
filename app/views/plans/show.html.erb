@@ -14,6 +14,7 @@
               <%= button_to 'destroy', plan_path(@plan), method: :delete , class:' btn btn-secondary link link-hover ' %>
             <% end %>
             <%= link_to '一覧', plans_path, class:' btn btn-secondary link link-hover' %>
+            <%= link_to 'schedule', plan_plan_country_path(@plan, @plan.plan_countries.ids.first), class:' btn btn-secondary link link-hover' %>
             <a type="button" class="btn btn-secondary", onclick="test()">テスト</a>
           </div>
         </div>
@@ -25,7 +26,7 @@
               <th>country name</th>
             </tr>
           </thead>
-          <tbody id=''>
+          <tbody >
               <% @countries.each do |country| %>
             <tr>
               <td><%= country.name %></td>

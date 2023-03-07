@@ -25,6 +25,7 @@ class PlansController < ApplicationController
         if set_info.present? && set_info.pluck(:country_id) == [nil]                  # set_infoに情報があり、かつcountry_id(外部キー)がない場合に以下の処理をする。
           set_info.update(country_id: country.id)                                 # 外部キーのcountry_idにcountry.idを入れて更新する。
         end
+        binding.break
       end
       
       @plan.countries = countries
@@ -50,7 +51,8 @@ class PlansController < ApplicationController
   def update
 
     @plan.transaction do
-      countries = plan_params[:countries_attributes].values.map do |country_params| # フォームから送信された値のplan_paramsのcountry_attributesのハッシュの値(value)をmapメソッドで配列に変換し、countries変数に入れる。
+      countries_params = plan_params[:countries_attributes].values.reject{|country_params| country_params[:_destroy] != 'false'}
+      countries = countries_params.map do |country_params| # フォームから送信された値のplan_paramsのcountry_attributesのハッシュの値(value)をmapメソッドで配列に変換し、countries変数に入れる。
                     Country.find_or_create_by(name: country_params[:name]) do |country| # Countryモデルから、country_params[:name]でフォームで受け取った値があるか確認する。ある場合はfind_byとなる。ない場合は、initializeで　新規作成が行われる。
                       country.assign_attributes(country_params.except(:_destroy))
                     end
@@ -58,7 +60,7 @@ class PlansController < ApplicationController
 
       countries.each do |country|
         set_info = Information.where("country_name LIKE ?", "%#{country.name}%")
-        if set_info.present? && set_info.pluck(:country_id) == [nil]
+        if set_info.present? && set_info.pluck(:country_id) == nil
           set_info.update(country_id: country.id)
         end
       end
