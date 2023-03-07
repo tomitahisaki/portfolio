@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resources :plans do
     resources :countries
+    resources :plan_countries
   end
 end

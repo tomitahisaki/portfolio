@@ -9,12 +9,7 @@
             <h1 class='text-2xl'><%= @plan.name %></h1>
           </div>
           <div class='flex flex-row'>
-            <% if current_user.own?(@plan) %>
-              <%= link_to 'edit', edit_plan_path(@plan), class:' btn btn-secondary link link-hover' %>
-              <%= button_to 'destroy', plan_path(@plan), method: :delete , class:' btn btn-secondary link link-hover ' %>
-            <% end %>
-            <%= link_to '一覧', plans_path, class:' btn btn-secondary link link-hover' %>
-            <%= link_to 'schedule', plan_plan_country_path(@plan, @plan.plan_countries.ids.first), class:' btn btn-secondary link link-hover' %>
+
             <a type="button" class="btn btn-secondary", onclick="test()">テスト</a>
           </div>
         </div>
@@ -24,12 +19,21 @@
           <thead>
             <tr>
               <th>country name</th>
+              <th>country name</th>
+              <th>country name</th>
+              <th>country name</th>
             </tr>
           </thead>
-          <tbody >
+          <tbody>
               <% @countries.each do |country| %>
             <tr>
               <td><%= country.name %></td>
+              <%
+=begin%>
+ <td><%= country.information.country_name %></td> 
+<%
+=end%>
+              <td><%= simple_format(country.information.measure_text2) %></td>
               <% end %>
             </tr>
           </tbody>

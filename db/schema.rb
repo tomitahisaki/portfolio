@@ -38,6 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_02_061849) do
   end
 
   create_table "plan_countries", force: :cascade do |t|
+    t.integer "duration"
     t.bigint "plan_id", null: false
     t.bigint "country_id", null: false
     t.datetime "created_at", null: false

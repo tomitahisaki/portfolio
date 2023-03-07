@@ -24,5 +24,5 @@
 #  fk_rails_...  (country_id => countries.id)
 #
 class Information < ApplicationRecord
-  belongs_to :country
+  belongs_to :country, optional: true
 end

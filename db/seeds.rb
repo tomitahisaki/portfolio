@@ -8,8 +8,11 @@
 
 # 外務省スクレイピングデータ作成用
 require 'csv'
+
 CSV.foreach('db/csv/countries_data.csv', headers: true) do |row|
+  # country = Country.find_by("name LIKE ?", "#{row['country_name']}")  #外部キーをつける処理 一旦コメントアウト controlerでも同処理をしている
   Information.create(
+    # country_id: country ? country.id : nil,
     country_cd: row['country_cd'],
     country_name: row['country_name'],
     measure_url: row['measure_url'],
@@ -19,7 +22,6 @@ CSV.foreach('db/csv/countries_data.csv', headers: true) do |row|
     measure_text5: row['measure_text5'],
     measure_text6: row['measure_text6'],
   )
-
 end
 
 #初期データ作成
