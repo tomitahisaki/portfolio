@@ -48,9 +48,9 @@
         add.outerHTML = `<a id="add" class="btn btn-secondary hover hover:link add_fields" data-association-insertion-node="#detail-association-insertion-point" data-association-insertion-method="append" data-association="country" data-associations="countries" data-association-insertion-template="<tr id='country_fields' class= 'nested-fields'>
         <td><input placeholder=&quot;country_name&quot; class=&quot;country_name py-2 px-3 text-gray-700 &quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][name]&quot; id=&quot;plan_countries_attributes_new_countries_name&quot; value=&quot;${country_name}&quot; />
         </td>
-        <td><input placeholder=&quot;latitude&quot; class=&quot;latitude py-2 px-3 text-gray-700 &quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][latitude]&quot; id=&quot;plan_countries_attributes_new_countries_latitude&quot; value=&quot;${country_latitude}&quot; />
+        <td class=&quot;hidden&quot;><input placeholder=&quot;latitude&quot; class=&quot;latitude py-2 px-3 text-gray-700 &quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][latitude]&quot; id=&quot;plan_countries_attributes_new_countries_latitude&quot; value=&quot;${country_latitude}&quot; />
         </td>
-        <td><input placeholder=&quot;longitude&quot; class=&quot;longitude py-2 px-3 text-gray-700&quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][longitude]&quot; id=&quot;plan_countries_attributes_new_countries_longitude&quot; value=&quot;${country_longitude}&quot; />
+        <td class=&quot;hidden&quot;><input placeholder=&quot;longitude&quot; class=&quot;longitude py-2 px-3 text-gray-700&quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][longitude]&quot; id=&quot;plan_countries_attributes_new_countries_longitude&quot; value=&quot;${country_longitude}&quot; />
         </td>
         <td onclick=&quot;deleteMarker()&quot;><input value=&quot;false&quot; autocomplete=&quot;off&quot; type=&quot;hidden&quot; name=&quot;plan[countries_attributes][new_countries][_destroy]&quot; id=&quot;plan_countries_attributes_new_countries__destroy&quot; /><a class=&quot;remove_bty btn btn-danger link link-hover remove_fields dynamic&quot; href=&quot;#&quot;>remove</a>
         </td>

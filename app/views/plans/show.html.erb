@@ -23,16 +23,12 @@
           <thead>
             <tr>
               <th>country name</th>
-              <th>latitude</th>
-              <th>longitude</th>
             </tr>
           </thead>
           <tbody id=''>
               <% @countries.each do |country| %>
             <tr>
               <td><%= country.name %></td>
-              <td><%= country.latitude %></td>
-              <td><%= country.longitude %></td>
               <% end %>
             </tr>
           </tbody>
@@ -58,7 +54,6 @@
     mylatlng_data.push([countries[i].latitude, countries[i].longitude]);
   }
 
-
   function initMap(){
 
     map = new google.maps.Map(document.getElementById('map'), {
@@ -74,7 +69,6 @@
       marker.setMap(map);
     };
   }
-
 
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap&libraries=places&language=ja" async defer>
