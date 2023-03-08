@@ -14,18 +14,18 @@ class PlansController < ApplicationController
     @plan = current_user.plans.new(plan_params)
     
     @plan.transaction do
-      countries = plan_params[:countries_attributes].values.map do |country_params| # フォームから送信された値のplan_paramsのcountry_attributesのハッシュの値(value)をmapメソッドで配列に変換し、countries変数に入れる。
-                    Country.find_or_create_by(name: country_params[:name]) do |country| # Countryモデルから、country_params[:name]でフォームで受け 取った値があるか確認する。ある場合はfind_byとなる。ない場合は、createで新規作成と保存が行われる。
+      countries = plan_params[:countries_attributes].values.map do |country_params|
+                    Country.find_or_create_by(name: country_params[:name]) do |country|
                       country.assign_attributes(country_params.except(:_destroy))
                     end
                   end
 
       countries.each do |country|
-        set_info = Information.where("country_name LIKE ?", "%#{country.name}%")  # country.nameを渡して、country_nameに部分一致するものを取り出す。
-        if set_info.present? && set_info.pluck(:country_id) == [nil]                  # set_infoに情報があり、かつcountry_id(外部キー)がない場合に以下の処理をする。
-          set_info.update(country_id: country.id)                                 # 外部キーのcountry_idにcountry.idを入れて更新する。
+        set_info = Information.where(country_name: country.name)
+        set_info = Information.where("country_name LIKE ?", "%#{country.name}%") if set_info.empty?
+        if set_info.present? && set_info.pluck(:country_id) == [nil]
+          set_info.update(country_id: country.id)
         end
-        binding.break
       end
       
       @plan.countries = countries
@@ -52,17 +52,19 @@ class PlansController < ApplicationController
 
     @plan.transaction do
       countries_params = plan_params[:countries_attributes].values.reject{|country_params| country_params[:_destroy] != 'false'}
-      countries = countries_params.map do |country_params| # フォームから送信された値のplan_paramsのcountry_attributesのハッシュの値(value)をmapメソッドで配列に変換し、countries変数に入れる。
-                    Country.find_or_create_by(name: country_params[:name]) do |country| # Countryモデルから、country_params[:name]でフォームで受け取った値があるか確認する。ある場合はfind_byとなる。ない場合は、initializeで　新規作成が行われる。
+      countries = countries_params.map do |country_params| 
+                    Country.find_or_create_by(name: country_params[:name]) do |country|
                       country.assign_attributes(country_params.except(:_destroy))
                     end
                   end
 
       countries.each do |country|
-        set_info = Information.where("country_name LIKE ?", "%#{country.name}%")
-        if set_info.present? && set_info.pluck(:country_id) == nil
+        set_info = Information.where(country_name: country.name)
+        set_info = Information.where("country_name LIKE ?", "%#{country.name}%") if set_info.empty?
+        if set_info.present? && set_info.pluck(:country_id) == [nil]
           set_info.update(country_id: country.id)
         end
+        binding.break
       end
 
         @plan.countries.delete_all

@@ -9,8 +9,6 @@
             <h1 class='text-2xl'><%= @plan.name %></h1>
           </div>
           <div class='flex flex-row'>
-
-            <a type="button" class="btn btn-secondary", onclick="test()">テスト</a>
           </div>
         </div>
       </div>
@@ -19,20 +17,13 @@
           <thead>
             <tr>
               <th>country name</th>
-              <th>country name</th>
-              <th>country name</th>
-              <th>country name</th>
+              <th>country information</th>
             </tr>
           </thead>
           <tbody>
               <% @countries.each do |country| %>
             <tr>
-              <td><%= country.name %></td>
-              <%
-=begin%>
- <td><%= country.information.country_name %></td> 
-<%
-=end%>
+              <td><%= link_to country.name, (country.information.measure_url), class:'link link-primary' %></td>
               <td><%= simple_format(country.information.measure_text2) %></td>
               <% end %>
             </tr>
