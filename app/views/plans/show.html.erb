@@ -51,7 +51,7 @@
   let countries = gon.countries;
   let mylatlng_data = [];
 
-  for(let i = 0; i < countries.length + 1; i++){
+  for(let i = 0; i < countries.length ; i++){
     mylatlng_data.push([countries[i].latitude, countries[i].longitude]);
   }
 
@@ -60,9 +60,15 @@
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 36.204824, lng: 138.252924}, // 日本の位置を初期値とする
       zoom: 2,
+      zoomControl: false,
+      mapTypeControl: false,
+      scaleControl: false,
+      streetViewControl: false,
+      rotateControl: false,
+      fullscreenControl: false
     });
     
-    for(let i=0; i < mylatlng_data.length + 1; i++){
+    for(let i=0; i < mylatlng_data.length ; i++){
        let marker = new google.maps.Marker({
         map: map,
         position: new google.maps.LatLng(mylatlng_data[i][0], mylatlng_data[i][1]),

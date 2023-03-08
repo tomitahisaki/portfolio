@@ -1,71 +1,74 @@
 <div class="flex flex-col">
-  <h1 class='bg-blue-200 m-auto text-5xl'>プラン詳細</h1>
-  <div class='flex flex-row w-auto'>
-    <div>
-      <div class="form-control flex flex-col">
-        <div class=' flex flex-row'>
-          <div class='m-auto flex flex-row '>
-            <h1 class='text-2xl mr-5'>plan name:</h1>
-            <h1 class='text-2xl'><%= @plan.name %></h1>
-          </div>
-          <div class='flex flex-row'>
-          </div>
-        </div>
-      </div>
-      <div class="overflo w-x-auto">
-        <table class="table w-full">
-          <thead>
-            <tr>
-              <th>country name</th>
-              <th>country information</th>
-            </tr>
-          </thead>
-          <tbody>
-              <% @countries.each do |country| %>
-            <tr>
-              <td><%= link_to country.name, (country.information.measure_url), class:'link link-primary' %></td>
-              <td><%= simple_format(country.information.measure_text2) %></td>
-              <% end %>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div id='map'></div>
+  <h1 class='bg-blue-200 m-auto text-5xl'>情報詳細</h1>
+  <div id='map'></div>
   </div>
 </div> 
 
 <style>
   #map {
-    height: 700px;
-    width: 70%;
+    height: 800px;
+    width: 100%;
   }
 </style>
 
 <script>
   let countries = gon.countries;
-  let mylatlng_data = [];
-
-  for(let i = 0; i < countries.length + 1; i++){
-    mylatlng_data.push([countries[i].latitude, countries[i].longitude]);
-  }
+  let countries_information = gon.country_information
+  let marker = [];
+  let infoWindow = [];
+  let content1 = [];  // 外務省へのリンク measure_url
+  let content2 = [];  // 安全情報1   measure_text2
 
   function initMap(){
-
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 36.204824, lng: 138.252924}, // 日本の位置を初期値とする
-      zoom: 2,
+      zoom: 3,
+      zoomControl: false,
+      mapTypeControl: false,
+      scaleControl: false,
+      streetViewControl: false,
+      rotateControl: false,
+      fullscreenControl: false
     });
     
-    for(let i=0; i < mylatlng_data.length + 1; i++){
-       let marker = new google.maps.Marker({
-        map: map,
-        position: new google.maps.LatLng(mylatlng_data[i][0], mylatlng_data[i][1]),
+    for(let i=0; i < countries.length ; i++){
+      markerLatLng = new google.maps.LatLng({
+        lat: countries[i].latitude,
+        lng: countries[i].longitude
       });
-      marker.setMap(map);
-    };
-  }
 
+      marker[i] = new google.maps.Marker({
+        position: markerLatLng,
+        map: map,
+      });
+      
+      content1[i] = "<h2 class='text-bold'>" + countries[i].name + "</h2><p>外務省ページは<a class='text-blue-400 hover:text-blue-800 link link-hover', href '" + countries_information[i].measure_url + "' target='_blank'>こちら</a>をクリック</p>";
+      content2[i] = "<h3>安全基礎情報</h3><p>" + countries_information[i].measure_text2.slice(0,2000) + "........" + "</p>";
+        // マーカーの情報を作成する
+      infoWindow[i] = new google.maps.InfoWindow({
+        content: content1[i] + content2[i],
+      });
+        // マーカーにクリックイベントを追加
+      markerEvent(i);
+    }
+      // マーカーをクリックしたら情報を表示
+    function markerEvent(i) {
+      marker[i].addListener('click', function () {
+        closeInfoWindow();
+        infoWindow[i].open(map, marker[i]);
+      });
+    }
+    // 他の場所を押したら、情報を閉じるようにする
+    google.maps.event.addListener(map, 'click', function(){
+      closeInfoWindow();
+    })
+
+    function closeInfoWindow(){
+      for(let i = 0; i < infoWindow.length; i++) {
+        infoWindow[i].close();
+      }
+    }
+  }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap&libraries=places&language=ja" async defer>
 </script> 
