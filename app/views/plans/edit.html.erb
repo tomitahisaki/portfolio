@@ -27,6 +27,12 @@
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 36.204824, lng: 138.252924}, // 日本の位置を初期値とする
       zoom: 2,
+      zoomControl: false,
+      mapTypeControl: false,
+      scaleControl: false,
+      streetViewControl: false,
+      rotateControl: false,
+      fullscreenControl: false
     });
 
     for(let i=0; i < mylatlng_data.length + 1; i++){
