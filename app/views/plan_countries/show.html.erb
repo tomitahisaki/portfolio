@@ -1,22 +1,20 @@
-<div class="flex flex-col">
-  <h1 class='bg-blue-200 m-auto text-2xl'>情報詳細</h1>
-  
-    <!-- The button to open modal -->
-  <label id='modal_btn' for="my-modal-4" class="btn hidden">open modal</label>
-  <!-- Put this part before </body> tag -->
-  <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-  <label for="my-modal-4" class="modal cursor-pointer">
-    <label id="my-modal" class="modal-box relative" for="">
-      <h1 class="font-semibold underline">Country Name</h1>
-      <p>外務省ページは<a href="URL" target="_blank" class='text-blue-400 hover:text-blue-800 link link-hover'>こちら</a>をクリック</p>
-      <h2 class='font-semibold underline'>安全基礎情報</h2>
-      <div>Some content here...</div>
-    </label>
-  </label>
+<h1 class='bg-blue-200 m-auto text-2xl'>情報詳細</h1>
+  <!-- The button to open modal -->
+<label id='modal_btn' for="my-modal" class="btn hidden">open modal</label>
+<!-- Put this part before </body> tag -->
+<input type="checkbox" id="my-modal" class="modal-toggle" />
+<label for="my-modal" class="modal cursor-pointer">
+    <div id="my-modal" class="modal-box relative w-1/2 max-w-6xl bg-opacity-90 " for="">
+      <label>
+        <h1 class="font-semibold underline">Country Name</h1>
+        <p>外務省ページは<a href="URL" target="_blank" class='text-blue-400 hover:text-blue-800 link link-hover'>こちら</a>をクリック</p>
+        <h2 class='font-semibold underline'>安全基礎情報</h2>
+        <div>Some content here...</div>
+      </label>
+    </div>
+</label>
 
-  <div id='map'></div>
-  </div>
-</div> 
+<div id='map'></div>
 
 <style>
   #map {
@@ -66,7 +64,7 @@
           document.querySelector("#my-modal h1").textContent = countries[i].name;
           document.querySelector("#my-modal a").href = countries_information[i].measure_url;
           document.querySelector("#my-modal h2").textContent = "安全基礎情報";
-          document.querySelector("#my-modal div").textContent = countries_information[i].measure_text2.slice(0, 2000) + "...";
+          document.querySelector("#my-modal div").textContent = countries_information[i].measure_text2;
 
           document.getElementById("modal_btn").click();
       });
