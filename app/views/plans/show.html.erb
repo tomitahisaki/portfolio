@@ -3,7 +3,7 @@
   <div class='flex flex-row w-auto'>
     <div>
       <div class="form-control flex flex-col">
-        <div class=' flex flex-row'>
+        <div class=' flex flex-col'>
           <div class='m-auto flex flex-row '>
             <h1 class='text-2xl mr-5'>plan name:</h1>
             <h1 class='text-2xl'><%= @plan.name %></h1>
@@ -14,8 +14,7 @@
               <%= button_to 'destroy', plan_path(@plan), method: :delete , class:' btn btn-secondary link link-hover ' %>
             <% end %>
             <%= link_to '一覧', plans_path, class:' btn btn-secondary link link-hover' %>
-            <%= link_to 'schedule', plan_plan_country_path(@plan, @plan.plan_countries.ids.first), class:' btn btn-secondary link link-hover' %>
-            <a type="button" class="btn btn-secondary", onclick="test()">テスト</a>
+            <%= link_to '情報', plan_plan_country_path(@plan, @plan.plan_countries.ids.first), class:' btn btn-secondary link link-hover' %>
           </div>
         </div>
       </div>
@@ -42,8 +41,8 @@
 
 <style>
   #map {
-    height: 700px;
-    width: 70%;
+    height: 800px;
+    width: 90%;
   }
 </style>
 
@@ -59,7 +58,7 @@
 
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 36.204824, lng: 138.252924}, // 日本の位置を初期値とする
-      zoom: 2,
+      zoom: 2.5,
       zoomControl: false,
       mapTypeControl: false,
       scaleControl: false,

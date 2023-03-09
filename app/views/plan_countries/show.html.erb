@@ -1,5 +1,19 @@
 <div class="flex flex-col">
-  <h1 class='bg-blue-200 m-auto text-5xl'>情報詳細</h1>
+  <h1 class='bg-blue-200 m-auto text-2xl'>情報詳細</h1>
+  
+    <!-- The button to open modal -->
+  <label id='modal_btn' for="my-modal-4" class="btn hidden">open modal</label>
+  <!-- Put this part before </body> tag -->
+  <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+  <label for="my-modal-4" class="modal cursor-pointer">
+    <label id="my-modal" class="modal-box relative" for="">
+      <h1 class="font-semibold underline">Country Name</h1>
+      <p>外務省ページは<a href="URL" target="_blank" class='text-blue-400 hover:text-blue-800 link link-hover'>こちら</a>をクリック</p>
+      <h2 class='font-semibold underline'>安全基礎情報</h2>
+      <div>Some content here...</div>
+    </label>
+  </label>
+
   <div id='map'></div>
   </div>
 </div> 
@@ -41,32 +55,21 @@
         position: markerLatLng,
         map: map,
       });
-      
-      content1[i] = "<h2 class='text-bold'>" + countries[i].name + "</h2><p>外務省ページは<a class='text-blue-400 hover:text-blue-800 link link-hover', href '" + countries_information[i].measure_url + "' target='_blank'>こちら</a>をクリック</p>";
-      content2[i] = "<h3>安全基礎情報</h3><p>" + countries_information[i].measure_text2.slice(0,2000) + "........" + "</p>";
-        // マーカーの情報を作成する
-      infoWindow[i] = new google.maps.InfoWindow({
-        content: content1[i] + content2[i],
-      });
         // マーカーにクリックイベントを追加
       markerEvent(i);
     }
       // マーカーをクリックしたら情報を表示
     function markerEvent(i) {
       marker[i].addListener('click', function () {
-        closeInfoWindow();
-        infoWindow[i].open(map, marker[i]);
-      });
-    }
-    // 他の場所を押したら、情報を閉じるようにする
-    google.maps.event.addListener(map, 'click', function(){
-      closeInfoWindow();
-    })
+        //  document.getElementById("my-modal").classList.add("active");
+          // モーダル内のテキストを設定する
+          document.querySelector("#my-modal h1").textContent = countries[i].name;
+          document.querySelector("#my-modal a").href = countries_information[i].measure_url;
+          document.querySelector("#my-modal h2").textContent = "安全基礎情報";
+          document.querySelector("#my-modal div").textContent = countries_information[i].measure_text2.slice(0, 2000) + "...";
 
-    function closeInfoWindow(){
-      for(let i = 0; i < infoWindow.length; i++) {
-        infoWindow[i].close();
-      }
+          document.getElementById("modal_btn").click();
+      });
     }
   }
 </script>
