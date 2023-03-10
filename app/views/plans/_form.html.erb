@@ -1,47 +1,46 @@
-<div class='flex flex-row'>
-  <%= form_with model: plan, local: true do |f| %>
-  <div>
-    <div class="form-control flex flex-col">
-      <%= render 'shared/error_messages', object: f.object %>
-      <div class=" shadow-lg rounded px-12 pt-6 pb-8 mb-4 bg-base-100">
-        <input id="address" class="border py-3 px-10 text-gray-700" placeholder="国名を入れてください">
-        <input type="button" value="add country" onclick="putCode()" class='btn btn-secondary hover hover:link'>
-      </div>
-      <div class=' flex flex-row'>
-        <div>
-          <%= f.label :plan_name, class:"block text-gray-700 font-normal mb-2" %>
-          <%= f.text_field :name, placeholder: 'plan_name', class:" py-2 px-3  text-gray-700 " %>
-        </div>
-        <div class='hidden'>
-          <%= link_to_add_association 'add', f, :countries, id:'add', class:'btn btn-secondary hover hover:link',
-              data: {
-                      association_insertion_node: '#detail-association-insertion-point',
-                      association_insertion_method: 'append',
-                     } %>
-        </div>
-      </div>
-    </div>   
-    <div class="overflow-x-auto">
-      <table class="table w-full">
-        <thead>
-          <tr>
-            <th>country name</th>
-          </tr>
-        </thead>
-        <tbody id='detail-association-insertion-point'>
-          <%= f.fields_for :countries do |country| %>
-            <%= render 'country_fields', f: country %>
-          <% end %>
-        </tbody>
-      </table>
-        <div class="form-control mt-6 flex flex-row justify-center">
+  <div class='relative  top-0 left-0 w-full h-full z-0'>
+    <div id='map'></div>
+    <div class='absolute top-0 left-0  h-full z-10 justify-start items-center opacity-70'>
+      <%= form_with model: plan, local: true do |f| %>
+      <div>
+        <div class="form-control flex flex-col" >
+          <%= render 'shared/error_messages', object: f.object %>
           <div>
-            <%= f.submit 'build plan', class:'btn btn-primary px-4 py-2 rounded ' %>
+            <%= f.label :name, class:"bg-gray-400 font-semibold text-lg mr-2" %>
+            <%= f.text_field :name, placeholder: '計画名', class:"text-lg text-gray-700 " %>
           </div>
+          <div class="bg-base-100">
+            <input id="address" class=" py-3 px-10 text-gray-700 hover:bg-gray-100" placeholder="国名を入れてください">
+            <input type="button" value="追加" onclick="putCode()" class='btn btn-ghost text-gray-700 text-semibold hover hover:link'>
+          </div>
+            <div class='hidden'>
+              <%= link_to_add_association 'add', f, :countries, id:'add', class:'btn btn-secondary hover hover:link',
+                  data: {
+                          association_insertion_node: '#detail-association-insertion-point',
+                          association_insertion_method: 'append',
+                        } %>
+            </div>
         </div>
+          <table >
+            <thead>
+              <tr>
+                <th class='bg-gray-400'>country name</th>
+              </tr>
+            </thead>
+            <tbody id='detail-association-insertion-point'>
+              <%= f.fields_for :countries do |country| %>
+                <%= render 'country_fields', f: country %>
+              <% end %>
+            </tbody>
+          </table>
+            <div class="form-control mt-6">
+              <div>
+                <%= f.submit 'build plan', class:'btn btn-ghost text-black font-bold rounded ' %>
+              </div>
+            </div>
+      </div>
+      <% end %>
     </div>
   </div>
-  <% end %>
-  <div id='map'></div>
-</div>
+
 
