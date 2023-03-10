@@ -1,10 +1,10 @@
 <tr id='country_fields' class= 'nested-fields'>
-  <td><%= f.text_field :name, placeholder: 'country_name', class:"country_name py-2 px-3 text-gray-700 " %>
+  <td><%= f.text_field :name, placeholder: 'country_name', class:"country_name text-gray-700 " %>
   </td>
-  <td class='hidden'><%= f.text_field :latitude, placeholder: 'latitude', class:"latitude py-2 px-3 text-gray-700 " %>
+  <td class='hidden'><%= f.text_field :latitude, placeholder: 'latitude', class:"latitude " %>
   </td>
-  <td class='hidden' ><%= f.text_field :longitude, placeholder: 'longitude', class:"longitude py-2 px-3 text-gray-700" %>
+  <td class='hidden' ><%= f.text_field :longitude, placeholder: 'longitude', class:"longitude " %>
   </td>
-  <td onclick='deleteMarker()'><%= link_to_remove_association "remove", f, class:' btn btn-danger link link-hover' %>
+  <td onclick='deleteMarker()'><%= link_to_remove_association "削除", f, class:'btn btn-ghost link link-hover' %>
   </td>
 </tr>
