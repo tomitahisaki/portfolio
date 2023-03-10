@@ -1,12 +1,10 @@
-<header>
-  <div class="navbar bg-base-100">
-    <div class="navbar-start">
-      <img src="", alt="ROUND PLANNER LOGO">
-      <%= link_to 'ROUND PLANNER', root_path, class:'btn btn-ghost normal-case text-xl' %>
-    </div>
-    <div class="navbar-end mr-5">
-      <%= link_to 'Login', login_path, class:'btn btn-secondary mr-10 rounded' %>
-      <%= link_to 'Sign up', new_user_path, class:'btn btn-secondary mr-10 rounded' %>
-    </div>
+<header class='fixed navbar opacity-100'>
+  <div class='navbar-start'>
+    <img src='', alt='LOGO'>
+    <%= link_to 'ROUND PLANNER', root_path, class:'btn btn-ghost rounded link link-hover font-bold text-4xl opacity-70' %>
+  </div>
+  <div class='navbar-end mr-5'>
+    <%= link_to 'Login', login_path, class:'btn btn-ghost rounded link link-hover font-semibold text-xl mr-10 opacity-70' %>
+    <%= link_to 'Sign up', new_user_path, class:'btn btn-ghost rounded link link-hover font-semibold text-xl mr-10 opacity-70' %>
   </div>
 </header>
