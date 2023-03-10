@@ -1,11 +1,15 @@
-<div class="flex flex-col">
-  <h1 class='bg-blue-200 m-auto text-5xl'>プラン作成</h1>
-    <%= render 'form', plan: @plan %>
-</div> 
+<div class="bg-white sm:py-5 lg:py-5">
+  <div class="max-w-screen-3xl pt-20 md:px-8 mx-auto">
+    <div class="flex flex-col">
+      <h1 class='bg-blue-200 m-auto text-3xl'>プラン作成</h1>
+        <%= render 'form', plan: @plan %>
+    </div>
+  </div>
+</div>
 
 <style>
   #map {
-    height: 700px;
+    height: 800px;
     width: 70%;
   }
 </style>
