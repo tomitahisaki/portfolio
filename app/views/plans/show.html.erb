@@ -11,11 +11,10 @@
             </div>
             <div class='flex flex-row'>
               <% if current_user.own?(@plan) %>
-                <%= link_to '編集', edit_plan_path(@plan), class:' btn btn-ghost link link-hover bg-slate-300' %>
-                <%= button_to '削除', plan_path(@plan), method: :delete , class:' btn btn-ghost link link-hover bg-slate-300 ' %>
-                <%= link_to '情報取得', plan_plan_country_path(@plan, @plan.plan_countries.ids.first), class:' btn btn-ghost link link-hover bg-slate-300' %>
+                <%= link_to '編集', edit_plan_path(@plan), class:' btn btn-ghost rounded link link-hover bg-slate-300' %>
+                <%= button_to '削除', plan_path(@plan), method: :delete , class:' btn btn-ghost rounded link link-hover bg-slate-300 ml-2 ' %>
               <% end %>
-              <%= link_to '戻る', plans_path, class:' btn btn-ghost link link-hover bg-slate-300' %>
+              <%= link_to '戻る', plans_path, class:' btn btn-ghost rounded link link-hover bg-slate-300 ml-2' %>
             </div>
           </div>
           <div class='flex flex-col mt-2 ml-4 bg-gray-200 '>
@@ -24,6 +23,7 @@
             <li class='mt-2 underline text-xl'><%= country.name %></li>
             <% end %>
           </div>
+          <%= link_to '安全情報を見に行く', plan_plan_country_path(@plan, @plan.plan_countries.ids.first), class:' btn btn-ghost rounded link link-hover bg-slate-300 mt-5' %>
         </div>
       </div>
     </div>
