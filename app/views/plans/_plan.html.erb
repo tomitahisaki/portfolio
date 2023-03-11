@@ -1,9 +1,13 @@
 <!-- product - start -->
       <div>
-        <%= link_to image_tag('travel_image.jpg'), plan_path(plan), class:'group block bg-gray-100 rounded-lg overflow-hidden shadow-lg mb-2 lg:mb-3' %>
+        <%= link_to image_tag('camera-1130731_1920.jpg'), plan_path(plan), class:'group block bg-gray-100 rounded-lg overflow-hidden shadow-lg mb-2 lg:mb-3' %>
         <div class="flex flex-col">
-          <%= link_to plan.name, plan_path(plan), class:'text-gray-800 hover:text-gray-500 text-lg lg:text-xl font-bold transition duration-100' %>
-          <a href="#" class=" justify-end text-gray-800"><%= plan.user.name %></a>
+          <div>
+            <%= link_to plan.name, plan_path(plan), class:' text-gray-800 hover:bg-cyan-600 link link-hover text-lg lg:text-xl font-bold ' %>
+          </div>
+          <div>
+            <a href="#" class=" justify-end text-gray-800 link link-hover hover:bg-cyan-600 font-semibold"><%= plan.user.name %></a>
+          </div>
         </div>
       </div>
 <!-- product - end -->

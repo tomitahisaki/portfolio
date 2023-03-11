@@ -1,58 +1,14 @@
- <div class="flex flex-col">
-  <h1 class='bg-blue-200 m-auto text-5xl'>プラン更新</h1>
-    <div class='flex flex-row'>
-      <%= form_with model: @plan, local: true do |f| %>
-      <div>
-        <div class="form-control flex flex-col">
-          <div class=" shadow-lg rounded px-12 pt-6 pb-8 mb-4 bg-base-100">
-            <input id="address" class="border py-3 px-10 text-gray-700" placeholder="国名を入れてください">
-            <input type="button" value="add country" onclick="putCode()" class='btn btn-secondary hover hover:link'>
-            <input type="button" value="お試し" onclick=" test()" class='btn btn-secondary hover hover:link'>
-          </div>
-          <div class=' flex flex-row'>
-            <div>
-              <%= f.label :plan_name, class:"block text-gray-700 font-normal mb-2" %>
-              <%= f.text_field :name, placeholder: 'plan_name', class:" py-2 px-3  text-gray-700 " %>
-            </div>
-            <div class='hidden'>
-              <%= link_to_add_association 'add', f, :countries, id:'add', class:'btn btn-secondary hover hover:link', 
-                  data: {
-                          association_insertion_node: '#detail-association-insertion-point',
-                          association_insertion_method: 'append',
-                           } %>
-            </div>
-          </div>
-        </div>   
-        <div class="overflow-x-auto">
-          <table class="table w-full">
-            <thead>
-              <tr>
-                <th>country name</th>
-                <th>latitude</th>
-                <th>longitude</th>
-              </tr>
-            </thead>
-            <tbody id='detail-association-insertion-point'>
-                <%= f.fields_for :countries do |country| %>
-                  <%= render 'country_fields', f: country %>
-                <% end %>
-            </tbody>
-          </table>
-            <div class="form-control mt-6 flex flex-row justify-center">
-              <div>
-                <%= f.submit 'build plan', class:'btn btn-primary px-4 py-2 rounded ' %>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      </div>
-      <div id='map'></div>
+<div class="bg-gray-400 sm:py-5 lg:py-5">
+  <div class="min-h-screen pt-20 md:px-8 mx-auto">
+    <div class="relative">
+      <%= render 'form', plan: @plan %>
     </div>
-</div> 
+  </div>
+</div>
 
 <style>
   #map {
-    height: 700px;
+    height: 900px;
     width: 100%;
   }
 </style>
@@ -73,14 +29,20 @@
 
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 36.204824, lng: 138.252924}, // 日本の位置を初期値とする
-      zoom: 2,
+      zoom: 2.7,
+      zoomControl: false,
+      mapTypeControl: false,
+      scaleControl: false,
+      streetViewControl: false,
+      rotateControl: false,
+      fullscreenControl: false
     });
 
     for(let i=0; i < mylatlng_data.length + 1; i++){
       let marker = new google.maps.Marker({
                    map: map,
                    position: new google.maps.LatLng(mylatlng_data[i][0], mylatlng_data[i][1]),
-    });
+      });
       marker.setMap(map);
       markerPoint.push(marker);
     };
@@ -108,18 +70,7 @@
         country_longitude = results[ 0 ].geometry.location.lng();
         // console.log(marker); marker の情報を取得するため
 
-        add.outerHTML = `<a id="add" class="btn btn-secondary hover hover:link add_fields" data-association-insertion-node="#detail-association-insertion-point" data-association-insertion-method="append" data-association="country" data-associations="countries" data-association-insertion-template="<tr id='country_fields' class= 'nested-fields'>
-        <td><input placeholder=&quot;country_name&quot; class=&quot;country_name py-2 px-3 text-gray-700 &quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][name]&quot; id=&quot;plan_countries_attributes_new_countries_name&quot; value=&quot;${country_name}&quot; />
-        </td>
-        <td><input placeholder=&quot;latitude&quot; class=&quot;latitude py-2 px-3 text-gray-700 &quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][latitude]&quot; id=&quot;plan_countries_attributes_new_countries_latitude&quot; value=&quot;${country_latitude}&quot; />
-        </td>
-        <td><input placeholder=&quot;longitude&quot; class=&quot;longitude py-2 px-3 text-gray-700&quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][longitude]&quot; id=&quot;plan_countries_attributes_new_countries_longitude&quot; value=&quot;${country_longitude}&quot; />
-        </td>
-        <td onclick=&quot;deleteMarker()&quot;><input value=&quot;false&quot; autocomplete=&quot;off&quot; type=&quot;hidden&quot; name=&quot;plan[countries_attributes][new_countries][_destroy]&quot; id=&quot;plan_countries_attributes_new_countries__destroy&quot; /><a class=&quot;remove_bty btn btn-danger link link-hover remove_fields dynamic&quot; href=&quot;#&quot;>remove</a>
-        </td>
-        </tr>
-        " href="#">add</a>`;
-
+        add.outerHTML = `<a id="add" class="btn btn-secondary hover hover:link add_fields" data-association-insertion-node="#detail-association-insertion-point" data-association-insertion-method="append" data-association="country" data-associations="countries" data-association-insertion-template="<div id='country_fields' class= 'nested-fields flex flex-row w-auto'><input placeholder=&quot;country_name&quot; class=&quot;country_name text-black bg-gray-300 underline&quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][name]&quot; id=&quot;plan_countries_attributes_new_countries_name&quot; value=&quot;${country_name}&quot; /><div onclick='deleteMarker()'><input value=&quot;false&quot; autocomplete=&quot;off&quot; type=&quot;hidden&quot; name=&quot;plan[countries_attributes][new_countries][_destroy]&quot; id=&quot;plan_countries_attributes_new_countries__destroy&quot; /><a class=&quot;btn btn-ghost round text-black text-semibold hover:link hover:bg-gray-400 hover:text-white remove_fields dynamic&quot; href=&quot;#&quot;>削除</a></div><div class='hidden'><input placeholder=&quot;latitude&quot; class=&quot;latitude &quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][latitude]&quot; id=&quot;plan_countries_attributes_new_countries_latitude&quot; value=&quot;${country_latitude}&quot; /><input placeholder=&quot;longitude&quot; class=&quot;longitude &quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][longitude]&quot; id=&quot;plan_countries_attributes_new_countries_longitude&quot; value=&quot;${country_longitude}&quot; /></div></div>" href="#">add</a>`;
       } else {
         alert('該当する結果がありませんでした：' + status);
       }

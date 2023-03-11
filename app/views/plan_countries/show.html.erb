@@ -1,0 +1,86 @@
+<div class="bg-gray-400 sm:py-5 lg:py-5">
+  <div class="min-h-screen pt-20 md:px-8 mx-auto">
+    <div class='relative  top-0 left-0 w-full h-full z-0'>
+      <div id='map'></div>
+      <div class='absolute top-0 left-0  h-full z-10 justify-start items-center opacity-90'>
+        <div class=>
+          <p class='font-semibold text-gray-800 text-2xl'>マーカークリックして、情報を開けます</p>
+        </div>
+        <!-- The button to open modal -->
+        <label id='modal_btn' for="my-modal" class="btn hidden">open modal</label>
+        <!-- Put this part before </body> tag -->
+        <input type="checkbox" id="my-modal" class="modal-toggle" />
+        <label for="my-modal" class="modal cursor-pointer">
+            <div id="my-modal" class="modal-box relative w-full max-w-6xl bg-opacity-80 " for="">
+              <label>
+                <h1 class="font-semibold underline">Country Name</h1>
+                <p>外務省ページは<a href="URL" target="_blank" class='text-blue-400 hover:text-blue-800 link link-hover'>こちら</a>をクリック</p>
+                <h2 class='font-semibold underline'>安全基礎情報</h2>
+                <div>Some content here...</div>
+              </label>
+            </div>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<style>
+  #map {
+    height: 950px;
+    width: 100%;
+  }
+</style>
+
+<script>
+  let countries = gon.countries;
+  let countries_information = gon.country_information
+  let marker = [];
+  let infoWindow = [];
+  let content1 = [];  // 外務省へのリンク measure_url
+  let content2 = [];  // 安全情報1   measure_text2
+
+  function initMap(){
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 36.204824, lng: 138.252924}, // 日本の位置を初期値とする
+      zoom: 2.8,
+      zoomControl: false,
+      mapTypeControl: false,
+      scaleControl: false,
+      streetViewControl: false,
+      rotateControl: false,
+      fullscreenControl: false
+    });
+    
+    for(let i=0; i < countries.length ; i++){
+      markerLatLng = new google.maps.LatLng({
+        lat: countries[i].latitude,
+        lng: countries[i].longitude
+      });
+
+      marker[i] = new google.maps.Marker({
+        position: markerLatLng,
+        map: map,
+      });
+        // マーカーにクリックイベントを追加
+      markerEvent(i);
+    }
+      // マーカーをクリックしたら情報を表示
+    function markerEvent(i) {
+      marker[i].addListener('click', function () {
+        //  document.getElementById("my-modal").classList.add("active");
+          // モーダル内のテキストを設定する
+          document.querySelector("#my-modal h1").textContent = countries[i].name;
+          document.querySelector("#my-modal a").href = countries_information[i].measure_url;
+          document.querySelector("#my-modal h2").textContent = "安全基礎情報";
+          document.querySelector("#my-modal div").textContent = countries_information[i].measure_text2;
+
+          document.getElementById("modal_btn").click();
+      });
+    }
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_API_KEY'] %>&callback=initMap&libraries=places&language=ja" async defer>
+</script> 
