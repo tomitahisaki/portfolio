@@ -1,48 +1,39 @@
-<div class="flex flex-col">
-  <h1 class='bg-blue-200 m-auto text-5xl'>プラン詳細</h1>
-  <div class='flex flex-row w-auto'>
-    <div>
-      <div class="form-control flex flex-col">
-        <div class=' flex flex-col'>
-          <div class='m-auto flex flex-row '>
-            <h1 class='text-2xl mr-5'>plan name:</h1>
-            <h1 class='text-2xl'><%= @plan.name %></h1>
+<div class="bg-gray-400 sm:py-5 lg:py-5">
+  <div class="min-h-screen pt-20 md:px-8 mx-auto">
+    <div class='relative  top-0 left-0 w-full h-full z-0'>
+        <div id='map'></div>
+      <div class='absolute top-0 left-0  h-full z-10 justify-start items-center opacity-70'>
+        <div class="form-control flex flex-col">
+          <div class=' flex flex-col'>
+            <div class='flex justify-evenly '>
+                <h1 class='text-3xl font-gray-800 font-semibold '>旅行名</h1>
+                <h1 class='text-3xl font-gray-800 '><%= @plan.name %></h1>
+            </div>
+            <div class='flex flex-row'>
+              <% if current_user.own?(@plan) %>
+                <%= link_to '編集', edit_plan_path(@plan), class:' btn btn-ghost rounded link link-hover bg-slate-300' %>
+                <%= button_to '削除', plan_path(@plan), method: :delete , class:' btn btn-ghost rounded link link-hover bg-slate-300 ml-2 ' %>
+              <% end %>
+              <%= link_to '戻る', plans_path, class:' btn btn-ghost rounded link link-hover bg-slate-300 ml-2' %>
+            </div>
           </div>
-          <div class='flex flex-row'>
-            <% if current_user.own?(@plan) %>
-              <%= link_to 'edit', edit_plan_path(@plan), class:' btn btn-secondary link link-hover' %>
-              <%= button_to 'destroy', plan_path(@plan), method: :delete , class:' btn btn-secondary link link-hover ' %>
+          <div class='flex flex-col mt-2 ml-4 bg-gray-200 '>
+            <h2 class='text-2xl font-semibold'>旅行先</h2>
+            <% @countries.each do |country| %>
+            <li class='mt-2 underline text-xl'><%= country.name %></li>
             <% end %>
-            <%= link_to '一覧', plans_path, class:' btn btn-secondary link link-hover' %>
-            <%= link_to '情報', plan_plan_country_path(@plan, @plan.plan_countries.ids.first), class:' btn btn-secondary link link-hover' %>
           </div>
+          <%= link_to '安全情報を見に行く', plan_plan_country_path(@plan, @plan.plan_countries.ids.first), class:' btn btn-ghost rounded link link-hover bg-slate-300 mt-5' %>
         </div>
       </div>
-      <div class="overflo w-x-auto">
-        <table class="table w-full">
-          <thead>
-            <tr>
-              <th>country name</th>
-            </tr>
-          </thead>
-          <tbody >
-              <% @countries.each do |country| %>
-            <tr>
-              <td><%= country.name %></td>
-              <% end %>
-            </tr>
-          </tbody>
-        </table>
-      </div>
     </div>
-    <div id='map'></div>
   </div>
 </div> 
 
 <style>
   #map {
-    height: 800px;
-    width: 90%;
+    height: 900px;
+    width: 100%;
   }
 </style>
 
@@ -58,7 +49,7 @@
 
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 36.204824, lng: 138.252924}, // 日本の位置を初期値とする
-      zoom: 2.5,
+      zoom: 2.7,
       zoomControl: false,
       mapTypeControl: false,
       scaleControl: false,
