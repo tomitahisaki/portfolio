@@ -1,24 +1,28 @@
-<h1 class='bg-blue-200 m-auto text-2xl'>情報詳細</h1>
-  <!-- The button to open modal -->
-<label id='modal_btn' for="my-modal" class="btn hidden">open modal</label>
-<!-- Put this part before </body> tag -->
-<input type="checkbox" id="my-modal" class="modal-toggle" />
-<label for="my-modal" class="modal cursor-pointer">
-    <div id="my-modal" class="modal-box relative w-1/2 max-w-6xl bg-opacity-90 " for="">
-      <label>
-        <h1 class="font-semibold underline">Country Name</h1>
-        <p>外務省ページは<a href="URL" target="_blank" class='text-blue-400 hover:text-blue-800 link link-hover'>こちら</a>をクリック</p>
-        <h2 class='font-semibold underline'>安全基礎情報</h2>
-        <div>Some content here...</div>
+<div class="bg-gray-400 sm:py-5 lg:py-5">
+  <div class="min-h-screen pt-20 md:px-8 mx-auto">
+    <div id='map'></div>
+      <!-- The button to open modal -->
+      <label id='modal_btn' for="my-modal" class="btn hidden">open modal</label>
+      <!-- Put this part before </body> tag -->
+      <input type="checkbox" id="my-modal" class="modal-toggle" />
+      <label for="my-modal" class="modal cursor-pointer">
+          <div id="my-modal" class="modal-box relative w-full max-w-6xl bg-opacity-80 " for="">
+            <label>
+              <h1 class="font-semibold underline">Country Name</h1>
+              <p>外務省ページは<a href="URL" target="_blank" class='text-blue-400 hover:text-blue-800 link link-hover'>こちら</a>をクリック</p>
+              <h2 class='font-semibold underline'>安全基礎情報</h2>
+              <div>Some content here...</div>
+            </label>
+          </div>
       </label>
-    </div>
-</label>
+  </div>
+</div>
 
-<div id='map'></div>
+
 
 <style>
   #map {
-    height: 800px;
+    height: 900px;
     width: 100%;
   }
 </style>
