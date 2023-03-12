@@ -76,6 +76,10 @@ gem 'faker'
 # easy to see model.rb
 gem 'annotate'
 
+gem 'net-imap'
+gem 'net-pop'
+gem 'net-smtp'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
