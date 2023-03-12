@@ -24,5 +24,5 @@ class PlanCountry < ApplicationRecord
   belongs_to :plan
   belongs_to :country
 
-  validates :plan, uniqueness: { scope: :country}
+  validates :plan, uniqueness: { scope: :country }
 end

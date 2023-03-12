@@ -5,7 +5,7 @@ class UserSessionsController < ApplicationController
 
   def create
     @user = login(params[:email], params[:password])
-    
+
     if @user
       flash[:success] = 'successfully login'
       redirect_to root_path
@@ -27,12 +27,10 @@ class UserSessionsController < ApplicationController
       redirect to root_path
     else
       random_value = SecureRandom.hex
-      @user = User.create!(name: 'guest', email: "test_#{random_value}@example.com", password: "#{random_value}", password_confirmation: "#{random_value}" )
+      @user = User.create!(name: 'guest', email: "test_#{random_value}@example.com", password: random_value.to_s, password_confirmation: random_value.to_s)
       auto_login(@user)
       flash[:success] = 'successfully login as guest'
       redirect_to root_path
     end
-
-
   end
 end
