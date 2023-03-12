@@ -2,10 +2,7 @@
   <div class="min-h-screen pt-20 md:px-8 mx-auto">
     <div class='relative  top-0 left-0 w-full h-full z-0'>
       <div id='map'></div>
-      <div class='absolute top-0 left-0  h-full z-10 justify-start items-center opacity-90'>
-        <div class=>
-          <p class='font-semibold text-gray-800 text-2xl'>マーカークリックして、情報を開けます</p>
-        </div>
+        <p class='absolute top-0 left-0  z-10 justify-start items-center opacity-90 font-semibold text-gray-800 text-2xl'>マーカークリックして、情報を開けます</p>
         <!-- The button to open modal -->
         <label id='modal_btn' for="my-modal" class="btn hidden">open modal</label>
         <!-- Put this part before </body> tag -->
@@ -70,7 +67,7 @@
       // マーカーをクリックしたら情報を表示
     function markerEvent(i) {
       marker[i].addListener('click', function () {
-        //  document.getElementById("my-modal").classList.add("active");
+         document.getElementById("my-modal").classList.add("active");
           // モーダル内のテキストを設定する
           document.querySelector("#my-modal h1").textContent = countries[i].name;
           document.querySelector("#my-modal a").href = countries_information[i].measure_url;
