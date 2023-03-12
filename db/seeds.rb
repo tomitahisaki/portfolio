@@ -10,7 +10,6 @@
 require 'csv'
 
 CSV.foreach('db/csv/countries_data.csv', headers: true) do |row|
-  (country_name: country.name)
   # country = Country.find_by(name: "row['country_name']")  #外部キーをつける処理 一旦コメントアウト controlerでも同処理をしている
   # country = Country.find_by("name LIKE ?", "#{row['country_name']}") if country.empty?  #外部キーをつける処理 一旦コメントアウト controlerでも同処理をしている
   Information.create(
