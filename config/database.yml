@@ -81,7 +81,7 @@ test:
 #
 production:
   <<: *default
-  database: cldwxjoc8003lagp929es72kw
-  username: cldwxjoc7003jagp9bgoq16zn
-  password: <%= ENV["ROUNDPLANNER_DATABASE_PASSWORD"] %>
-  url: <%= ENV["DATABASE_URL"] %>
+  # database: cldwxjoc8003lagp929es72kw
+  # username: cldwxjoc7003jagp9bgoq16zn
+  # password: <%= ENV["ROUNDPLANNER_DATABASE_PASSWORD"] %>
+  # url: <%= ENV["DATABASE_URL"] %>
