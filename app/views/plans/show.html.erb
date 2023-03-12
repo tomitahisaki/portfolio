@@ -23,7 +23,9 @@
             <li class='mt-2 mr-2 underline text-xl'><%= country.name %></li>
             <% end %>
           </div>
-          <%= link_to '安全情報を見に行く', plan_plan_country_path(@plan, @plan.plan_countries.ids.first), class:' btn btn-ghost rounded link link-hover bg-slate-300 mt-5' %>
+          <% if current_user.own?(@plan) %>
+            <%= link_to '安全情報を見に行く', plan_plan_country_path(@plan, @plan.plan_countries.ids.first), class:' btn btn-ghost rounded link link-hover bg-slate-300 mt-5' %>
+          <% end %>
         </div>
       </div>
     </div>

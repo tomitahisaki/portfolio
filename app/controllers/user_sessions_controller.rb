@@ -1,5 +1,5 @@
 class UserSessionsController < ApplicationController
-  skip_before_action :require_login, only: %i[new create]
+  skip_before_action :require_login, only: %i[new create guest_login]
 
   def new; end
 
@@ -7,7 +7,7 @@ class UserSessionsController < ApplicationController
     @user = login(params[:email], params[:password])
     
     if @user
-      flash[:success] = 'successfully logged in'
+      flash[:success] = 'successfully login'
       redirect_to root_path
     else
       flash.now[:error] = 'login failed'
@@ -19,5 +19,20 @@ class UserSessionsController < ApplicationController
     logout
     flash[:info] = 'successfully logout'
     redirect_to root_path
+  end
+
+  def guest_login
+    if current_user
+      flash[:error] = 'you already login'
+      redirect to root_path
+    else
+      random_value = SecureRandom.hex
+      @user = User.create!(name: 'guest', email: "test_#{random_value}@example.com", password: "#{random_value}", password_confirmation: "#{random_value}" )
+      auto_login(@user)
+      flash[:success] = 'successfully login as guest'
+      redirect_to root_path
+    end
+
+
   end
 end
