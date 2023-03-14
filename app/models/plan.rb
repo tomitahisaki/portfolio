@@ -23,6 +23,7 @@ class Plan < ApplicationRecord
   has_many :countries, through: :plan_countries
 
   accepts_nested_attributes_for :countries, allow_destroy: true
+  validates_associated :countries 
 
   validates :name, presence: true
 end

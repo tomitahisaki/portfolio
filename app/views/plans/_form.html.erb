@@ -3,10 +3,9 @@
     <div class='absolute top-0 left-0  h-full z-10 justify-start items-center opacity-70'>
       <%= form_with model: plan, local: true do |f| %>
         <div class="form-control flex flex-col" >
-          <%= render 'shared/error_messages', object: f.object %>
-          <div class='flex justify-evenly'>
-            <%= f.label :name, class:"text-3xl font-gray-800 font-semibold mr-2" %>
+          <div class='flex flex-col'>
             <%= f.text_field :name, placeholder: '計画名', class:"text-3xl font-gray-800 " %>
+            <%= render 'shared/error_messages', object: f.object %>
           </div>
           <div>
             <input id="address" class=" py-3 px-10 text-gray-700 hover:bg-gray-100" placeholder="国名を入れてください">
