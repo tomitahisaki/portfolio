@@ -5,9 +5,8 @@
       <div class='absolute top-0 left-0  h-full z-10 justify-start items-center opacity-70'>
         <div class="form-control flex flex-col">
           <div class=' flex flex-col'>
-            <div class='flex justify-evenly '>
-                <h1 class='text-3xl font-gray-800 font-semibold '>旅行名</h1>
-                <h1 class='text-3xl font-gray-800 '><%= @plan.name %></h1>
+            <div class=''>
+                <h1 class='text-3xl font-bold font-gray-800 '><%= @plan.name %></h1>
             </div>
             <div class='flex flex-row'>
               <% if current_user.own?(@plan) %>
