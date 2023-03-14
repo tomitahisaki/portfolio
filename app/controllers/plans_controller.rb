@@ -23,24 +23,30 @@ class PlansController < ApplicationController
   def create
     @plan = current_user.plans.new(plan_params)
 
-    countries = plan_params[:countries_attributes].values.map do |country_params|
-      Country.find_or_create_by(name: country_params[:name]) do |country|
-        country.assign_attributes(country_params.except(:_destroy))
+    if plan_params[:countries_attributes].present?
+      countries = plan_params[:countries_attributes].values.map do |country_params|
+        Country.find_or_create_by(name: country_params[:name]) do |country|
+          country.assign_attributes(country_params.except(:_destroy))
+        end
       end
-    end
+  
+      countries.each do |country|
+        set_info = Information.where(country_name: country.name)
+        set_info = Information.where('country_name LIKE ?', "%#{country.name}%") if set_info.empty?
+        set_info.update(country_id: country.id) if set_info.present? && set_info.pluck(:country_id) == [nil]
+      end
+      
+      @plan.countries = countries
 
-    countries.each do |country|
-      set_info = Information.where(country_name: country.name)
-      set_info = Information.where('country_name LIKE ?', "%#{country.name}%") if set_info.empty?
-      set_info.update(country_id: country.id) if set_info.present? && set_info.pluck(:country_id) == [nil]
-    end
-
-    @plan.countries = countries
-    if @plan.save
-      redirect_to plans_path, success: 'success'
+      if @plan.save
+        redirect_to plans_path, success: 'success'
+      else
+        @plan.countries.clear
+        flash.now[:error] = 'failed to build plan'
+        render :new
+      end
     else
-      @plan.countries.clear
-      flash.now[:error] = 'failed to build plan'
+      flash.now[:error] ='failed to build plan. please add countries'
       render :new
     end
   end
