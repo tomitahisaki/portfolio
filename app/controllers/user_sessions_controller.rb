@@ -27,7 +27,7 @@ class UserSessionsController < ApplicationController
       redirect to root_path
     else
       random_value = SecureRandom.hex
-      @user = User.create!(name: 'guest', email: "test_#{random_value}@example.com", password: random_value.to_s, password_confirmation: random_value.to_s)
+      @user = User.create!(name: 'Guest User', email: "test_#{random_value}@example.com", password: random_value.to_s, password_confirmation: random_value.to_s)
       auto_login(@user)
       flash[:success] = 'successfully login as guest'
       redirect_to root_path
