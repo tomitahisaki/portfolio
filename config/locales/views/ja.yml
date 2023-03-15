@@ -3,6 +3,7 @@ ja:
     login: 'ログイン'
     register: '登録'
     logout: 'ログアウト'
+    guest_login: 'ゲストログイン'
     edit: '編集'
     show: '詳細'
     delete: '削除'
