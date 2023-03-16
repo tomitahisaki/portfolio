@@ -1,7 +1,7 @@
 ja:
   defaults:
     login: 'ログイン'
-    register: '登録'
+    register: '新規登録'
     logout: 'ログアウト'
     guest_login: 'ゲストログイン'
     edit: '編集'
@@ -26,7 +26,7 @@ ja:
   user_sessions:
     new:
       title: 'ログイン'
-      to_register_page: '登録ページへ'
+      to_register_page: '新規登録ページへ'
       password_forget: 'パスワードお忘れの方はこちら'
     create:
       success: 'ログインしました'
