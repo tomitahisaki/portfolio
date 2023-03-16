@@ -10,6 +10,7 @@ ja:
     edit: '編集'
     show: '詳細'
     delete: '削除'
+    back: '戻る'
     message: 
       require_login: 'ログインしてください'
       created: "%{item}を作成しました"
@@ -42,9 +43,10 @@ ja:
       no_result: 'プランがありません'
     new:
       title: 'プラン作成'
-      register: '登録する'
+      countries: '旅行先'
     show:
       title: 'プラン詳細'
+      to_safety_page: '安全情報を見に行く'
     edit:
       title: 'プラン編集'
   profiles:
