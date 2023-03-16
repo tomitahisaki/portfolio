@@ -1,9 +1,12 @@
 ja:
   defaults:
     login: 'ログイン'
-    register: '登録'
+    register: '新規登録'
     logout: 'ログアウト'
     guest_login: 'ゲストログイン'
+    term_of_use: '利用規約'
+    privacy_policy: 'プライバシーポリシー'
+    contact_us: 'お問い合わせ'
     edit: '編集'
     show: '詳細'
     delete: '削除'
@@ -26,7 +29,7 @@ ja:
   user_sessions:
     new:
       title: 'ログイン'
-      to_register_page: '登録ページへ'
+      to_register_page: '新規登録ページへ'
       password_forget: 'パスワードお忘れの方はこちら'
     create:
       success: 'ログインしました'

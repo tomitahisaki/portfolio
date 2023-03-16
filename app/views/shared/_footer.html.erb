@@ -1,10 +1,11 @@
 <footer class='footer footer-center bg-base-200 '>
   <div class='grid grid-flow-col gap-7 text-xl'>
-    <%= link_to 'Term of use',term_path, class:'link link-hover' %>
-    <%= link_to 'Privacy policy',policy_path, class:'link link-hover' %>
-    <%= link_to 'Contact us',contact_path, class:'link link-hover' %>
+    <%= link_to t('defaults.term_of_use'), term_path, class:'link link-hover' %>
+    <%= link_to t('defaults.privacy_policy'), policy_path, class:'link link-hover' %>
+    <%= link_to t('defaults.contact_us'), contact_path, class:'link link-hover' %>
   </div> 
   <div>
+    <p>出典：外務省 海外安全情報オープンデータ</p>
     <p>Copyright © 2023 - All right reserved by ROUND PLANNER</p>
   </div>
 </footer>

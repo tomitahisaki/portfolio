@@ -15,7 +15,7 @@ ja:
         email: 'メールアドレス'
         password: 'パスワード'
         password_confirmation: 'パスワード確認'
-        name: '姓'
+        name: '名前'
         avatar: 'アバター'
       plan:
         name: '計画名'
