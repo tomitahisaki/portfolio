@@ -4,14 +4,11 @@ ja:
     register: '新規登録'
     logout: 'ログアウト'
     guest_login: 'ゲストログイン'
-    term_of_use: '利用規約'
-    privacy_policy: 'プライバシーポリシー'
-    contact_us: 'お問い合わせ'
     edit: '編集'
     show: '詳細'
     delete: '削除'
     back: '戻る'
-    message: 
+    message:
       require_login: 'ログインしてください'
       created: "%{item}を作成しました"
       not_created: "%{item}を作成できませんでした"
@@ -19,6 +16,13 @@ ja:
       not_updated: "%{item}を更新できませんでした"
       deleted: "%{item}を削除しました"
       delete_confirm: '削除しますか？'
+  static_page:
+    term:
+      title: '利用規約'
+    contact:
+      title: 'お問い合わせ'
+    policy:
+      title: 'プライバシーポリシー'
   users:
     new:
       title: 'ユーザー登録'
