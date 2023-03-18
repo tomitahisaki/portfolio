@@ -11,7 +11,7 @@ ja:
     show: '詳細'
     delete: '削除'
     back: '戻る'
-    message: 
+    message:
       require_login: 'ログインしてください'
       created: "%{item}を作成しました"
       not_created: "%{item}を作成できませんでした"
