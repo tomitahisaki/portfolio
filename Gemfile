@@ -78,7 +78,7 @@ gem 'annotate'
 
 # OGP
 gem 'meta-tags'
-
+gem 'sitemap_generator'
 # deploy
 gem 'net-imap'
 gem 'net-pop'
