@@ -37,3 +37,4 @@
 /.env
 /Dockerfile
 /entrypoint.sh
+/public/sitemap.xml.gz
