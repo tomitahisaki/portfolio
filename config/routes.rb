@@ -15,4 +15,5 @@ Rails.application.routes.draw do
     resources :countries
     resources :plan_countries
   end
+  resource :profile, only: %i[show edit update]
 end
