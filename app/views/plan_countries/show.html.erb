@@ -67,7 +67,7 @@
       // マーカーをクリックしたら情報を表示
     function markerEvent(i) {
       marker[i].addListener('click', function () {
-        //  document.getElementById("my-modal").classList.add("active");
+         document.getElementById("my-modal").classList.add("active");
           // モーダル内のテキストを設定する
           document.querySelector("#my-modal h1").textContent = countries_information[i].country_name;
           document.querySelector("#my-modal a").href = countries_information[i].measure_url;
