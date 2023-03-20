@@ -97,6 +97,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    chronic (0.10.2)
     cocoon (1.2.15)
     coderay (1.1.3)
     concurrent-ruby (1.2.0)
@@ -179,6 +180,8 @@ GEM
       rubyntlm (~> 0.6, >= 0.6.3)
       webrick (~> 1.7)
       webrobots (~> 0.1.2)
+    meta-tags (2.18.0)
+      actionpack (>= 3.2.0, < 7.1)
     method_source (1.0.0)
     mime-types (3.4.1)
       mime-types-data (~> 3.2015)
@@ -314,6 +317,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    sitemap_generator (6.3.0)
+      builder (~> 3.0)
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
@@ -376,6 +381,8 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    whenever (1.0.0)
+      chronic (>= 0.6.3)
     xpath (3.2.0)
       nokogiri (~> 1.8)
     yard (0.9.28)
@@ -405,6 +412,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   mechanize
+  meta-tags
   net-imap
   net-pop
   net-smtp
@@ -417,6 +425,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
+  sitemap_generator
   solargraph
   sorcery
   spring
@@ -426,6 +435,7 @@ DEPENDENCIES
   tzinfo-data
   web-console
   webdrivers
+  whenever
 
 RUBY VERSION
    ruby 3.1.2p20

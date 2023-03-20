@@ -1,0 +1,60 @@
+ja:
+  defaults:
+    login: 'ログイン'
+    register: '新規登録'
+    logout: 'ログアウト'
+    guest_login: 'ゲストログイン'
+    edit: '編集'
+    show: '詳細'
+    delete: '削除'
+    back: '戻る'
+    message:
+      require_login: 'ログインしてください'
+      created: "%{item}を作成しました"
+      not_created: "%{item}を作成できませんでした"
+      updated: "%{item}を更新しました"
+      not_updated: "%{item}を更新できませんでした"
+      deleted: "%{item}を削除しました"
+      delete_confirm: '削除しますか？'
+  static_pages:
+    term:
+      title: '利用規約'
+    contact:
+      title: 'お問い合わせ'
+    policy:
+      title: 'プライバシーポリシー'
+  users:
+    new:
+      title: 'ユーザー登録'
+      sign_up: '登録'
+      to_login_page: 'ログインページへ'
+    create:
+      success: 'ユーザーを登録しました'
+      fail: 'ユーザー登録に失敗しました'
+  user_sessions:
+    new:
+      title: 'ログイン'
+      to_register_page: '新規登録ページへ'
+      password_forget: 'パスワードお忘れの方はこちら'
+    create:
+      success: 'ログインしました'
+      fail: 'ログインに失敗しました'
+    destroy:
+      success: 'ログアウトしました'
+  plans:
+    index:
+      title: 'プラン一覧'
+      no_result: 'プランがありません'
+    new:
+      title: 'プラン作成'
+      countries: '旅行先'
+    show:
+      title: 'プラン詳細'
+      to_safety_page: '安全情報を見に行く'
+    edit:
+      title: 'プラン編集'
+  profiles:
+    show:
+      title: 'プロフィール'
+    edit:
+      title: 'プロフィール編集'

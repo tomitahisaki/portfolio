@@ -76,6 +76,13 @@ gem 'faker'
 # easy to see model.rb
 gem 'annotate'
 
+# OGP
+gem 'meta-tags'
+gem 'sitemap_generator'
+
+gem 'whenever', require: false
+
+# deploy
 gem 'net-imap'
 gem 'net-pop'
 gem 'net-smtp'

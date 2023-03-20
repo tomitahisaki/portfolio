@@ -1,0 +1,35 @@
+ja:
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
+    models:
+      user: 'ユーザー'
+      plan: 'プラン'
+      country: '国'
+    attributes:
+      user:
+        email: 'メールアドレス'
+        password: 'パスワード'
+        password_confirmation: 'パスワード確認'
+        name: '名前'
+        avatar: 'アバター'
+      plan:
+        name: '計画名'
+        avatar: '画像'
+      country:
+        name: '国名'
+        latitude: '緯度'
+        longitude: '経度'
+      information:
+        country_name: '国名'
+        country_cd: '国コード'
+        measure_url: '安全対策基礎データURL'
+        measure_text2: '査証、出入国審査等の情報'
+        measure_text3: '滞在時の留意事項の情報'
+        measure_text4: '風俗、習慣、健康等の情報'
+        measure_text5: '緊急時の連絡先'
+        measure_text6: '問い合わせ先'

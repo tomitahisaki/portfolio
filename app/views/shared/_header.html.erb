@@ -1,12 +1,18 @@
-<header class='fixed navbar opacity-100 z-20'>
+<header class='fixed navbar opacity-100 z-20 '>
   <div class='navbar-start'>
     <%= link_to 'ROUND PLANNER', root_path, class:'btn btn-ghost text-gray-100 rounded link link-hover font-bold text-4xl opacity-80' %>
   </div>
   <div class='navbar-center'>
-    <%= link_to 'プラン作成', new_plan_path, class:'btn btn-ghost text-gray-100 rounded link link-hover font-semibold text-xl mr-10 opacity-80' %>
-    <%= link_to 'プラン一覧', plans_path, class:'btn btn-ghost text-gray-100 rounded link link-hover font-semibold text-xl mr-10 opacity-80' %>
+    <%= link_to t('plans.new.title'), new_plan_path, class:'btn btn-ghost text-gray-100 rounded link link-hover font-semibold text-xl mr-10 opacity-80' %>
+    <%= link_to t('plans.index.title'), plans_path, class:'btn btn-ghost text-gray-100 rounded link link-hover font-semibold text-xl mr-10 opacity-80' %>
   </div>
   <div class='navbar-end mr-5'>
-    <%= button_to 'Logout', logout_path, method: :delete, class:'btn btn-ghost text-gray-100 rounded link link-hover font-semibold text-xl mr-10 opacity-80' %>
+    <div class="dropdown dropdown-end ">
+      <label tabindex="0" class="btn btn-ghost text-gray-100 rounded link link-hover text-xl opacity-80"><%= current_user.name %></label>
+      <ul tabindex="0" class=" dropdown-content p-2 mt-4 whitespace-nowrap rounded bg-cyan-400">
+        <li><%= link_to t('profiles.show.title'), "#", class:'btn btn-ghost text-gray-100 rounded link link-hover text-base opacity-80' %></li>
+        <li><%= button_to t('defaults.logout'), logout_path, method: :delete, class:'btn btn-ghost text-gray-100 rounded link link-hover text-base opacity-80' %></li>
+      </ul>
+    </div>
   </div>
 </header>

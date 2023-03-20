@@ -8,7 +8,7 @@ class UserSessionsController < ApplicationController
 
     if @user
       flash[:success] = 'successfully login'
-      redirect_to root_path
+      redirect_to new_plan_path
     else
       flash.now[:error] = 'login failed'
       render :new
@@ -24,10 +24,10 @@ class UserSessionsController < ApplicationController
   def guest_login
     if current_user
       flash[:error] = 'you already login'
-      redirect to root_path
+      redirect to new_plan_path
     else
       random_value = SecureRandom.hex
-      @user = User.create!(name: 'guest', email: "test_#{random_value}@example.com", password: random_value.to_s, password_confirmation: random_value.to_s)
+      @user = User.create!(name: 'Guest User', email: "test_#{random_value}@example.com", password: random_value.to_s, password_confirmation: random_value.to_s)
       auto_login(@user)
       flash[:success] = 'successfully login as guest'
       redirect_to root_path
