@@ -16,7 +16,8 @@ ja:
         password: 'パスワード'
         password_confirmation: 'パスワード確認'
         name: '名前'
-        avatar: 'アバター'
+        avatar: 'プロフィール画像'
+        introduction: '自己紹介'
       plan:
         name: '計画名'
         avatar: '画像'
