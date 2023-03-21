@@ -1,6 +1,6 @@
 # サービス名： Round Planner
 
-<image src='/Users/hisaki/portfolio/portfolio/app/assets/images/ogp.png'>
+[![Image from Gyazo](https://i.gyazo.com/7d5266b856cb0f732f0db29d68ea45d9.jpg)](https://gyazo.com/7d5266b856cb0f732f0db29d68ea45d9)
 
 ## ■ サービス概要
 海外周遊旅行を考えているバックパッカーや旅行者の
