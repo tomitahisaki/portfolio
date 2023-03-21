@@ -1,8 +1,8 @@
 <%= content_for(:title, t('.title')) %>
-<div class="bg-gray-300 sm:py-5 lg:py-5">
+<div class="bg-custom_color3 sm:py-5 lg:py-5">
   <div class="min-h-screen pt-20 md:px-8 ">
     <div class='flex flex-col pt-20'>
-      <div class='flex flex-row pb-24 rounded-lg'>
+      <div class='flex flex-row pb-24 rounded-lg bg-custom_color1'>
         <div class="avatar flex flex-col w-1/2 items-center">
           <p class=' text-2xl mb-4' ><%= I18n.t('activerecord.attributes.user.avatar') %></p>
           <div class="w-72 rounded-full">
@@ -28,7 +28,7 @@
           </div>
         </div>
       </div>
-      <div class='mt-4'>
+      <div class='mt-4 bg-custom_color1 rounded-lg'>
         <h1 class='text-2xl font-semibold mb-5'><%= t('plans.index.title') %></h1>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-40 gap-y-10 mx-10 ">
           <%= render partial: 'plans/plan', collection: @plans %>
