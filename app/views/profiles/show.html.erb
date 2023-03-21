@@ -1,28 +1,38 @@
 <%= content_for(:title, t('.title')) %>
-<div class="bg-gray-400 sm:py-5 lg:py-5">
+<div class="bg-gray-300 sm:py-5 lg:py-5">
   <div class="min-h-screen pt-20 md:px-8 ">
     <div class='flex flex-col pt-20'>
-      <div class='flex flex-row'>
-        <div class='w-1/2 '>
-          <%= image_tag '25096637_m.jpg', size: '300x300', class: 'mx-auto ' %>
+      <div class='flex flex-row pb-24 rounded-lg'>
+        <div class="avatar flex flex-col w-1/2 items-center">
+          <p class=' text-2xl mb-4' ><%= I18n.t('activerecord.attributes.user.avatar') %></p>
+          <div class="w-72 rounded-full">
+            <%= image_tag '25096637_m.jpg', size: '300x300' %>
+          </div>
         </div>
-        <div class='flex flex-col'>
-          <div class='flex flex-row'>
-            <p class=' text-2xl' >name</p>
+        <div class='flex flex-col items-start '>
+          <div class='flex flex-row mt-10'>
+            <p class=' text-2xl' ><%= I18n.t('activerecord.attributes.user.name') %></p>
             <div class='text-2xl ml-4'><%= @user.name%></div>
           </div>
-          <div class='flex flex-row'>
-            <p class=' text-2xl' >email</p>
+          <div class='flex flex-row mt-5'>
+            <p class=' text-2xl' ><%= I18n.t('activerecord.attributes.user.email') %></p>
             <div class='text-2xl ml-4'><%= @user.email%></div>
           </div>
-          <div class='flex flex-row'>
-            <p class=' text-2xl' >introduction</p>
-            <div class='text-2xl ml-4'><%= @user.introduction %></div>
+          <div class='flex flex-row mt-10'>
+            <p class=' text-2xl' ><%= I18n.t('activerecord.attributes.user.introduction') %></p>
+            <div class='text-2xl ml-4'><%= simple_format(@user.introduction) %></div>
+          </div>
+          <div class='flex flex-col mt-10'>
+            <p class=' text-2xl mb-4' ><%= t('profiles.show.countries_list') %> : <%= @countries.count %>ヶ国</p>
+            <div class='text-2xl ml-4 w-2/3'><%= @countries.join(' , ') %></div>
           </div>
         </div>
       </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-6">
-        <%= render partial: 'plans/plan', collection: @plans %>
+      <div class='mt-4'>
+        <h1 class='text-2xl font-semibold mb-5'><%= t('plans.index.title') %></h1>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-40 gap-y-10 mx-10 ">
+          <%= render partial: 'plans/plan', collection: @plans %>
+        </div>
       </div>
     </div>
   </div>
