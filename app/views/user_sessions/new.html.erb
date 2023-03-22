@@ -1,8 +1,8 @@
 <%= content_for(:title, t('.title')) %>
 <div class="hero min-h-screen" style="background-image: url(<%= asset_path "beach-1852945.jpg" %>);">
-  <div class="hero-overlay bg-opacity-50"></div>
+  <div class="hero-overlay bg-opacity-20"></div>
   <div class="hero-content w-full ">
-    <div class=' w-1/2 px-12 py-8 opacity-90'>
+    <div class=' w-1/2 px-12 py-8 opacity-80 bg-custom_color2 rounded-lg'>
       <h1 class="text-black text-3xl font-bold border-b-2 py-2 mb-4 text-center"><%= t('.title') %></h1>
         <%= form_with model: @user, local: true do |f| %>
           <div class="form-control ">
@@ -19,7 +19,7 @@
         <% end %>
           <label class="flex flex-col text-center">
             <%= link_to (t '.to_register_page'), new_user_path, class:"mt-5 link link-hover hover:text-indigo-700 font-semibold text-xl" %>
-            <%= link_to (t '.password_forget'),'#', class:"mt-5 link link-hover hover:text-indigo-700 font-semibold text-xl" %>
+            <%= link_to (t '.password_forget'),'#', class:"mt-5 link link-hover hover:text-indigo-700 " %>
           </label>
         </div>
     </div>

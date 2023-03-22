@@ -1,13 +1,13 @@
 module ApplicationHelper
   
   def page_title(page_title = '')
-    base_title = 'Round Planner'
+    base_title = 'RoundPlanner'
     page_title.empty? ? base_title : page_title + ' | ' + base_title
   end
 
   def default_meta_tags
     {
-      site: 'Round Planner',
+      site: 'RoundPlanner',
       title: '入国前情報を提供するサービス',
       reverse: true,
       separator: '|',
@@ -15,7 +15,7 @@ module ApplicationHelper
       keywords: '旅行,バックパッカー,安全対策基礎データ,入国手続き',
       charset: 'UTF-8',
       canonical: request.original_url,
-      noindex: ! Rails.env.production?,
+      noindex: !Rails.env.production?,
       icon: [
         {href: image_url('favicon.png'), sizes: '32x32'}
       ],
