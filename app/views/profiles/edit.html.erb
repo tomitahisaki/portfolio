@@ -1,6 +1,23 @@
 <%= content_for(:title, t('.title')) %>
 <div class="bg-custom_color3 sm:py-5 lg:py-5">
-  <div class="min-h-screen pt-20 md:px-8 ">
-    <p>editdayo-</p>
+  <div class="min-h-screen pt-20 md:px-0 flex justify-center  ">
+    <div class='w-2/5'>
+      <%= form_with model: @user, url: profile_path, local: true do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div class="form-control mb-5">
+        <%= f.label :name, User.human_attribute_name(:name), class:" text-lg " %>
+        <%= f.text_field :name, class: "input input-bordered input-primary input-lg w-full" %>
+      </div>
+      <div class="form-control mb-5 ">
+        <%= f.label :email, User.human_attribute_name(:email), class:" text-lg" %>
+        <%= f.text_field :email, class:"textarea textarea-primary textarea-lg w-full " %>
+      </div>
+      <div class="form-control mb-5 ">
+        <%= f.label :introduction, User.human_attribute_name(:introduction), class:" text-lg" %>
+        <%= f.text_area :introduction, rows: 10, class:"textarea textarea-primary textarea-lg w-full " %>
+      </div>
+        <%= f.submit t('defaults.edit'), class:'btn btn-primary link link-hover hover:text-white rounded-lg' %>
+      <% end %>
+    </div>
   </div>
 </div>
