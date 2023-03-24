@@ -4,7 +4,7 @@
     <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold"><%= t('plans.index.title') %></h2>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-6">
       <!-- product - start -->
-      <%= render partial: 'plan', collection: @plans %>
+      <%= render @plans %>
       <!-- product - end -->
     </div>
   </div>
