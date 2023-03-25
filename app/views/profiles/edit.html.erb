@@ -8,13 +8,16 @@
         <%= f.label :name, User.human_attribute_name(:name), class:" text-lg " %>
         <%= f.text_field :name, class: "input input-bordered  w-full" %>
       </div>
-      <div class="form-control mb-5 ">
+      <div class="mb-5 ">
         <%= f.label :email, User.human_attribute_name(:email), class:" text-lg" %>
         <%= f.text_field :email, class:"input input-bordered w-full " %>
       </div>
-      <div class="form-control mb-5 ">
+      <div class="mb-5 ">
         <%= f.label :introduction, User.human_attribute_name(:introduction), class:" text-lg" %>
         <%= f.text_area :introduction, rows: 10, class:"textarea textarea-bordered w-full " %>
+      </div>
+      <div class="mb-5">
+        <%= f.file_field :avatar %>
       </div>
         <%= f.submit t('defaults.edit'), class:'btn btn-primary link link-hover hover:text-white rounded-lg' %>
       <% end %>
