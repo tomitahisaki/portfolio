@@ -28,7 +28,24 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true, length: { maximum: 200 }
 
+  validate :avatar_size
+  validate :avatar_file
+
   def own?(object)
     id == object.user.id
+  end
+
+  private
+
+  def avatar_size
+    if avatar.blob.byte_size > 10.megabytes
+      errors.add(:avatar, 'は 10MB 以下のファイルを選択してください')
+    end
+  end
+  
+  def avatar_file
+    if !avatar.blob.content_type.in?(%('image/jpeg image/png'))
+      errors.add(:avatar, 'は JPEG 形式または PNG 形式のみ選択してください')
+    end
   end
 end
