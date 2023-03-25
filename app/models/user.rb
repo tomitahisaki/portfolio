@@ -3,7 +3,6 @@
 # Table name: users
 #
 #  id               :bigint           not null, primary key
-#  avatar           :string
 #  crypted_password :string
 #  email            :string           not null
 #  introduction     :text
@@ -20,6 +19,7 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
 
   has_many :plans
+  has_one_attached :avatar
 
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }

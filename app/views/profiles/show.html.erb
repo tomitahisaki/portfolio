@@ -5,7 +5,11 @@
       <div class='flex flex-row py-10 pl-4  rounded-lg bg-custom_color1'>
         <div class="avatar flex flex-col items-center">
           <div class="w-72 rounded-full">
+          <% if @user.avatar.attached? %>
+            <%= image_tag @user.avatar, size: '300x300' %>
+          <% else %>
             <%= image_tag '25096637_m.jpg', size: '300x300' %>
+          <% end %>
           </div>
           <p class=' text-xl my-4 ' ><%= I18n.t('activerecord.attributes.user.avatar') %></p>
         </div>
