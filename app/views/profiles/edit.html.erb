@@ -1,0 +1,65 @@
+<%= content_for(:title, t('.title')) %>
+<div class="bg-custom_color3 sm:py-5 lg:py-5">
+  <div class="min-h-screen pt-20 md:px-0 flex justify-center  ">
+    <div class='w-2/5'>
+      <%= form_with model: @user, url: profile_path, local: true do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div class="mb-5">
+        <%= f.label :name, User.human_attribute_name(:name), class:" text-lg " %>
+        <%= f.text_field :name, class: "input input-bordered  w-full" %>
+      </div>
+      <div class="mb-5 ">
+        <%= f.label :email, User.human_attribute_name(:email), class:" text-lg" %>
+        <%= f.text_field :email, class:"input input-bordered w-full " %>
+      </div>
+      <div class="mb-5 ">
+        <%= f.label :introduction, User.human_attribute_name(:introduction), class:" text-lg" %>
+        <%= f.text_area :introduction, rows: 10, class:"textarea textarea-bordered w-full " %>
+      </div>
+      <div class="mb-5">
+        <div class="flex flex-row">
+          <div>
+            <%= f.label :avatar, class:" text-lg" %>
+            <%= f.file_field :avatar, id: 'avatar-upload', class:'file-input ' %>
+          </div>
+          <div class="avatar flex flex-col items-center">
+            <div class="w-60 rounded-full" id="avatar-preview-container">
+              <% if @user.avatar.attached? %>
+                <%= image_tag @user.avatar, size: '300x300' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+        <%= f.submit t('defaults.edit'), class:'btn btn-primary link link-hover hover:text-white rounded-lg' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  let input = document.querySelector('input[type="file"]#avatar-upload');
+  let preview = document.createElement('img');
+
+  preview.setAttribute('id', 'avatar-preview');
+  preview.setAttribute('src', '');
+  preview.setAttribute('alt', 'Avatar Preview');
+
+  input.addEventListener('change', () => {
+    let file = input.files[0];
+
+    // ファイルを読み込む
+    let reader = new FileReader();
+    reader.addEventListener('load', () => {
+      // 画像を表示する
+      preview.setAttribute('src', reader.result);
+    });
+    reader.readAsDataURL(file);
+
+    // プレビュー用の要素を追加する
+    let previewContainer = document.querySelector('#avatar-preview-container');
+    previewContainer.innerHTML = '';
+    previewContainer.appendChild(preview);
+
+  });
+</script>

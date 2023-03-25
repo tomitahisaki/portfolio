@@ -2,30 +2,37 @@
 <div class="bg-custom_color3 sm:py-5 lg:py-5">
   <div class="min-h-screen pt-20 md:px-8 ">
     <div class='flex flex-col pt-20'>
-      <div class='flex flex-row pb-24 rounded-lg bg-custom_color1'>
-        <div class="avatar flex flex-col w-1/2 items-center">
-          <p class=' text-2xl mb-4' ><%= I18n.t('activerecord.attributes.user.avatar') %></p>
+      <div class='flex flex-row py-10 pl-4  rounded-lg bg-custom_color1'>
+        <div class="avatar flex flex-col items-center">
           <div class="w-72 rounded-full">
+          <% if @user.avatar.attached? %>
+            <%= image_tag @user.avatar, size: '300x300' %>
+          <% else %>
             <%= image_tag '25096637_m.jpg', size: '300x300' %>
+          <% end %>
           </div>
+          <p class=' text-xl my-4 ' ><%= I18n.t('activerecord.attributes.user.avatar') %></p>
         </div>
-        <div class='flex flex-col items-start '>
-          <div class='flex flex-row mt-10'>
-            <p class=' text-2xl' ><%= I18n.t('activerecord.attributes.user.name') %></p>
-            <div class='text-2xl ml-4'><%= @user.name%></div>
+        <div class='flex flex-col items-start pl-5 w-1/3 '>
+          <div class='flex flex-row '>
+            <div class='flex flex-col mt-10'>
+              <p class=' text-2xl justify-center mb-4' ><%= I18n.t('activerecord.attributes.user.name') %></p>
+              <p class=' text-2xl ' ><%= I18n.t('activerecord.attributes.user.email') %></p>
+            </div>
+            <div class='flex flex-col mt-10'>
+              <div class='text-2xl ml-4 mb-4'><%= @user.name%></div>
+              <div class='text-2xl ml-4'><%= @user.email%></div>
+            </div>
           </div>
-          <div class='flex flex-row mt-5'>
-            <p class=' text-2xl' ><%= I18n.t('activerecord.attributes.user.email') %></p>
-            <div class='text-2xl ml-4'><%= @user.email%></div>
+          <div class='flex flex-col mt-4'>
+            <p class=' text-2xl ' ><%= I18n.t('activerecord.attributes.user.introduction') %></p>
+            <div class='text-2xl ml-4 mt-2 leading-relaxed whitespace-normal break-words w-2/3 '><%= simple_format(@user.introduction) %></div>
           </div>
-          <div class='flex flex-row mt-10'>
-            <p class=' text-2xl' ><%= I18n.t('activerecord.attributes.user.introduction') %></p>
-            <div class='text-2xl ml-4'><%= simple_format(@user.introduction) %></div>
-          </div>
-          <div class='flex flex-col mt-10'>
-            <p class=' text-2xl mb-4' ><%= t('profiles.show.countries_list') %> : <%= @countries.count %>ヶ国</p>
-            <div class='text-2xl ml-4 w-2/3'><%= @countries.join(' , ') %></div>
-          </div>
+          <div class='mt-10'><%= link_to t('defaults.edit'), edit_profile_path, class:'btn btn-secondary rounded link link-hover hover:text-white text-xl' %></div>
+        </div>
+        <div class='flex flex-col pt-10 pr-4 w-auto'>
+          <p class=' text-2xl mb-4 ' ><%= t('profiles.show.countries_list') %> : <%= @countries.count %>ヶ国</p>
+          <div class='text-2xl leading-relaxed ml-4 '><%= @countries.join(' , ') %></div>
         </div>
       </div>
       <div class='mt-4 bg-custom_color1 rounded-lg'>
