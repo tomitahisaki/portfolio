@@ -68,6 +68,9 @@ class PlansController < ApplicationController
     @plan.countries.delete_all
     @plan.countries = countries
 
+    plan_name = plan_params[:name]
+    @plan.name = plan_name
+
     if @plan.save
       flash[:success] = 'you succeed to update '
       redirect_to plan_path(@plan)
