@@ -11,17 +11,18 @@
             <input id="address" class=" py-3 px-10 text-gray-700 hover:bg-gray-100" placeholder="国名を入れてください">
             <input type="button" value="追加" onclick="putCode()" class='btn btn-ghost round text-black text-semibold hover:link hover:bg-gray-500 hover:text-white'>
           </div>
-            <div class='hidden'>
-              <%= link_to_add_association 'add', f, :countries, id:'add', class:'btn btn-secondary hover hover:link',
-                  data: {
-                          association_insertion_node: '#detail-association-insertion-point',
-                          association_insertion_method: 'append',
-                        } %>
-            </div>
+          <div class='hidden'>
+            <%= link_to_add_association 'add', f, :countries, id:'add', class:'btn btn-secondary hover hover:link',
+                data: {
+                        association_insertion_node: '#detail-association-insertion-point',
+                        association_insertion_method: 'append',
+                      } %>
+          </div>
           <div class='flex flex-col mt-2 bg-gray-300 w-3/4 '>
             <h2 class='text-2xl font-semibold'><%= t('plans.new.countries') %></h2>
-             <ol id='detail-association-insertion-point'><%= f.fields_for :countries do |country| %><%= render 'country_fields', f: country %>
-              <% end %></ol>
+            <ol id='detail-association-insertion-point'><%= f.fields_for :countries do |country| %><%= render 'country_fields', f: country %>
+              <% end %>
+            </ol>
             <div class="form-control mt-6">
               <div>
                 <%= f.submit class:'btn btn-ghost round text-black text-semibold hover:link hover:bg-gray-500 hover:text-white' %>
