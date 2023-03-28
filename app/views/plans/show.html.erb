@@ -25,6 +25,7 @@
               <% end %>
             </div>
               <%= link_to t('plans.show.to_safety_page'), plan_plan_country_path(@plan, @plan.plan_countries.ids.first), class:' btn btn-primary rounded-lg link link-hover mt-5' %>
+              <%= link_to t('plans.show.to_safety_page'), visa_path( @plan.plan_countries.ids.first), class:' btn btn-primary rounded-lg link link-hover mt-5' %>
           </div>
         </div>
       </div>
