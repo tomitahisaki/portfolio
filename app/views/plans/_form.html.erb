@@ -1,15 +1,15 @@
   <div class='relative  top-0 left-0 w-full h-full z-0'>
     <div id='map'></div>
-    <div class='absolute top-4 left-4 h-full z-10 justify-start items-center drop-shadow-lg '>
+    <div class='absolute top-4 left-4 h-full z-10 justify-start items-center drop-shadow-lg opacity-95 '>
       <%= form_with model: plan, local: true do |f| %>
       <div class=' bg-custom_color3 p-3 rounded-lg'>
         <div class=" flex flex-col" >
           <div class='flex flex-col'>
-            <%= f.text_field :name, placeholder: Plan.human_attribute_name(:name), class:"input input-bordered w-full max-w-xs font-gray-800 " %>
+            <%= f.text_field :name, placeholder: Plan.human_attribute_name(:name), class:"input input-bordered rounded-lg w-full max-w-xs " %>
             <%= render 'shared/error_messages', object: f.object %>
           </div>
           <div class="mt-3">
-            <input id="address" class="input input-bordered max-w-xs " placeholder="国名を入れてください">
+            <input id="address" class="input input-bordered max-w-xs rounded-lg " placeholder="国名を入れてください">
             <input type="button" value="追加" onclick="putCode()" class='btn btn-primary rounded-lg hover:link '>
           </div>
           <div class='hidden'>
