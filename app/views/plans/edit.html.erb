@@ -71,7 +71,18 @@
         country_longitude = results[ 0 ].geometry.location.lng();
         // console.log(marker); marker の情報を取得するため
 
-        add.outerHTML = `<a id="add" class="btn btn-secondary hover hover:link add_fields" data-association-insertion-node="#detail-association-insertion-point" data-association-insertion-method="append" data-association="country" data-associations="countries" data-association-insertion-template="<div id='country_fields' class= 'nested-fields flex flex-row w-auto'><input placeholder=&quot;country_name&quot; class=&quot;country_name text-black bg-gray-300 underline&quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][name]&quot; id=&quot;plan_countries_attributes_new_countries_name&quot; value=&quot;${country_name}&quot; /><div onclick='deleteMarker()'><input value=&quot;false&quot; autocomplete=&quot;off&quot; type=&quot;hidden&quot; name=&quot;plan[countries_attributes][new_countries][_destroy]&quot; id=&quot;plan_countries_attributes_new_countries__destroy&quot; /><a class=&quot;btn btn-ghost round text-black text-semibold hover:link hover:bg-gray-400 hover:text-white remove_fields dynamic&quot; href=&quot;#&quot;>削除</a></div><div class='hidden'><input placeholder=&quot;latitude&quot; class=&quot;latitude &quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][latitude]&quot; id=&quot;plan_countries_attributes_new_countries_latitude&quot; value=&quot;${country_latitude}&quot; /><input placeholder=&quot;longitude&quot; class=&quot;longitude &quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][longitude]&quot; id=&quot;plan_countries_attributes_new_countries_longitude&quot; value=&quot;${country_longitude}&quot; /></div></div>" href="#">add</a>`;
+        add.outerHTML = `<a id="add" class="btn btn-secondary hover hover:link add_fields" data-association-insertion-node="#detail-association-insertion-point" data-association-insertion-method="append" data-association="country" data-associations="countries" data-association-insertion-template="<div id='country_fields' class= 'nested-fields flex flex-row w-auto mt-2'>
+          <input placeholder=&quot;country_name&quot; class=&quot;country_name input input-ghost&quot; readonly=&quot;true&quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][name]&quot; id=&quot;plan_countries_attributes_new_countries_name&quot; value=&quot;${country_name}&quot; />
+          <div onclick='deleteMarker()' class='ml-2'>
+            <input value=&quot;false&quot; autocomplete=&quot;off&quot; type=&quot;hidden&quot; name=&quot;plan[countries_attributes][new_countries][_destroy]&quot; id=&quot;plan_countries_attributes_new_countries__destroy&quot; />
+            <a class=&quot;btn btn-secondary rounded-lg hover:link  remove_fields dynamic&quot; href=&quot;#&quot;>削除</a>
+          </div>
+          <div class='hidden'>
+            <input placeholder=&quot;latitude&quot; class=&quot;latitude &quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][latitude]&quot; id=&quot;plan_countries_attributes_new_countries_latitude&quot; value=&quot;${country_latitude}&quot; />
+            <input placeholder=&quot;longitude&quot; class=&quot;longitude &quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][longitude]&quot; id=&quot;plan_countries_attributes_new_countries_longitude&quot; value=&quot;${country_longitude}&quot; />
+          </div>
+        </div>
+        " href="#">add</a>`;
       } else {
         alert('該当する結果がありませんでした：' + status);
       }
@@ -90,18 +101,20 @@
     .then(() => {
       setTimeout(() => {
         document.getElementById('address').value ='';
-        document.getElementById('add').outerHTML = `<a id="add" class="btn btn-secondary hover hover:link add_fields" data-association-insertion-node="#detail-association-insertion-point" data-association-insertion-method="append" data-association="country" data-associations="countries" data-association-insertion-template="<tr id='country_fields' class= 'nested-fields'>
-          <td><input placeholder=&quot;country_name&quot; class=&quot;country_name py-2 px-3 text-gray-700 &quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][name]&quot; id=&quot;plan_countries_attributes_new_countries_name&quot; value=&quot;&quot; />
-          </td>
-          <td><input placeholder=&quot;latitude&quot; class=&quot;latitude py-2 px-3 text-gray-700 &quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][latitude]&quot; id=&quot;plan_countries_attributes_new_countries_latitude&quot; value=&quot;&quot; />
-          </td>
-          <td><input placeholder=&quot;longitude&quot; class=&quot;longitude py-2 px-3 text-gray-700&quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][longitude]&quot; id=&quot;plan_countries_attributes_new_countries_longitude&quot; value=&quot;&quot; />
-          </td>
-          <td><input value=&quot;false&quot; autocomplete=&quot;off&quot; type=&quot;hidden&quot; name=&quot;plan[countries_attributes][new_countries][_destroy]&quot; id=&quot;plan_countries_attributes_new_countries__destroy&quot; /><a class=&quot; btn btn-danger link link-hover remove_fields dynamic&quot; href=&quot;#&quot;>remove</a>
-          </td>
-          </tr>
-          " href="#">add</a>`;
-      },200)
+        
+        document.getElementById('add').outerHTML = `<a id="add" class="btn btn-secondary hover hover:link add_fields" data-association-insertion-node="#detail-association-insertion-point" data-association-insertion-method="append" data-association="country" data-associations="countries" data-association-insertion-template="<div id='country_fields' class= 'nested-fields flex flex-row w-auto mt-2'>
+          <input placeholder=&quot;country_name&quot; class=&quot;country_name input input-ghost&quot; readonly=&quot;true&quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][name]&quot; id=&quot;plan_countries_attributes_new_countries_name&quot; value=&quot;&quot; />
+          <div onclick='deleteMarker()' class='ml-2'>
+            <input value=&quot;false&quot; autocomplete=&quot;off&quot; type=&quot;hidden&quot; name=&quot;plan[countries_attributes][new_countries][_destroy]&quot; id=&quot;plan_countries_attributes_new_countries__destroy&quot; />
+            <a class=&quot;btn btn-secondary rounded-lg hover:link  remove_fields dynamic&quot; href=&quot;#&quot;>削除</a>
+          </div>
+          <div class='hidden'>
+            <input placeholder=&quot;latitude&quot; class=&quot;latitude &quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][latitude]&quot; id=&quot;plan_countries_attributes_new_countries_latitude&quot; value=&quot;&quot; />
+            <input placeholder=&quot;longitude&quot; class=&quot;longitude &quot; type=&quot;text&quot; name=&quot;plan[countries_attributes][new_countries][longitude]&quot; id=&quot;plan_countries_attributes_new_countries_longitude&quot; value=&quot;&quot; />
+          </div>
+        </div>
+        " href="#">add</a>`; }
+      , 200)
     });
   }
 
