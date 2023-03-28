@@ -59,3 +59,6 @@ ja:
       countries_list: '計画中の国'
     edit:
       title: 'プロフィール編集'
+  plan_countries:
+    show:
+      title: 入国審査詳細
