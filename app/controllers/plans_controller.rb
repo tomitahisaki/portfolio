@@ -71,6 +71,9 @@ class PlansController < ApplicationController
     plan_name = plan_params[:name]
     @plan.name = plan_name
 
+    plan_image = plan_params[:image]
+    @plan.image = plan_image
+
     if @plan.save
       flash[:success] = 'you succeed to update '
       redirect_to plan_path(@plan)
@@ -92,6 +95,6 @@ class PlansController < ApplicationController
   end
 
   def plan_params
-    params.require(:plan).permit(:name, countries_attributes: %i[id name latitude longitude _destroy])
+    params.require(:plan).permit(:name, :image, countries_attributes: %i[id name latitude longitude _destroy])
   end
 end
