@@ -1,21 +1,28 @@
+<%= content_for(:title, t('.title')) %>
 <div class="bg-custom_color3 sm:py-5 lg:py-5">
   <div class="min-h-screen pt-20 md:px-8 mx-auto">
     <div class='relative  top-0 left-0 w-full h-full z-0'>
       <div id='map'></div>
-       <p class='absolute top-0 left-0  z-10 justify-start items-center opacity-90 font-semibold text-gray-800 text-2xl'>マーカークリックして、情報を開けます</p>
+        <div class='absolute top-2 left-2 z-10 justify-start items-center bg-custom_color3 rounded-lg '>
+          <div class="m-4" >
+            <h1 class="text-3xl font-semibold"><%= I18n.t('activerecord.attributes.information.measure_text2') %></h1>
+            <p>※マーカをクリックして、情報を開けます</p>
+          </div>
+      </div>
+      
         <!-- The button to open modal -->
         <label id='modal_btn' for="my-modal" class="btn hidden">open modal</label>
         <!-- Put this part before </body> tag -->
         <input type="checkbox" id="my-modal" class="modal-toggle" />
         <label for="my-modal" class="modal cursor-pointer">
-            <div id="my-modal" class="modal-box relative w-full max-w-6xl bg-opacity-80 " for="">
-              <label>
-                <h1 class="font-semibold underline">Country Name</h1>
-                <p>外務省ページは<a href="URL" target="_blank" class='text-blue-400 hover:text-blue-800 link link-hover'>こちら</a>をクリック</p>
-                <h2 class='font-semibold underline'>安全基礎情報</h2>
-                <div>Some content here...</div>
-              </label>
-            </div>
+          <div id="my-modal" class="modal-box relative w-full max-w-7xl bg-opacity-90 " for="">
+            <label>
+              <h1 class="font-semibold underline">Country Name</h1>
+              <p>外務省ページは<a href="URL" target="_blank" class='text-blue-400 hover:text-blue-800 link link-hover'>こちら</a>をクリック</p>
+              <h2 class='font-semibold underline'>安全基礎情報</h2>
+              <div>Some content here...</div>
+            </label>
+          </div>
         </label>
       </div>
     </div>
@@ -35,9 +42,6 @@
   let countries = gon.countries;
   let countries_information = gon.country_information
   let marker = [];
-  let infoWindow = [];
-  let content1 = [];  // 外務省へのリンク measure_url
-  let content2 = [];  // 安全情報1   measure_text2
 
   function initMap(){
     map = new google.maps.Map(document.getElementById('map'), {
@@ -72,10 +76,14 @@
           document.querySelector("#my-modal h1").textContent = countries_information[i].country_name;
           document.querySelector("#my-modal a").href = countries_information[i].measure_url;
           document.querySelector("#my-modal h2").textContent = gon.measure_text2;
-          document.querySelector("#my-modal div").textContent = countries_information[i].measure_text2;
+          document.querySelector("#my-modal div").innerHTML = simpleFormat(countries_information[i].measure_text2);
 
           document.getElementById("modal_btn").click();
       });
+    }
+
+    function simpleFormat(text) {
+      return text.replace(/\n/g, "<br>");
     }
   }
 </script>

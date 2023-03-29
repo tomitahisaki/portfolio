@@ -12,7 +12,7 @@ ja:
       country: '国'
     attributes:
       user:
-        email: 'メールアドレス'
+        email: 'email'
         password: 'パスワード'
         password_confirmation: 'パスワード確認'
         name: '名前'

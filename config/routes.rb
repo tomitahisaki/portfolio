@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'visas/show'
   root to: 'static_pages#top'
 
   get 'term', to: 'static_pages#term'
@@ -15,5 +16,6 @@ Rails.application.routes.draw do
     resources :countries
     resources :plan_countries
   end
+  resources :visas, only: %i[show]
   resource :profile, only: %i[show edit update]
 end

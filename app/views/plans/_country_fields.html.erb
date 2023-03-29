@@ -1,6 +1,6 @@
-<div id='country_fields' class= 'nested-fields flex flex-row w-auto'>
-  <%= f.text_field :name, placeholder: 'country_name', class:"country_name text-black bg-gray-300 underline" %>
-  <div onclick='deleteMarker()'><%= link_to_remove_association "削除", f, class:'btn btn-ghost round text-black text-semibold hover:link hover:bg-gray-400 hover:text-white' %>
+<div id='country_fields' class= 'nested-fields flex flex-row w-auto mt-2'>
+  <%= f.text_field :name, placeholder: 'country_name', class:"country_name input input-ghost ", readonly: true %>
+  <div onclick='deleteMarker()' class= "ml-2"><%= link_to_remove_association "削除", f, class:'btn btn-secondary rounded-lg hover:link ' %>
   </div>
   <div class='hidden'>
     <%= f.text_field :latitude, placeholder: 'latitude', class:"latitude " %>
