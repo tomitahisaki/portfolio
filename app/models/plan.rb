@@ -3,7 +3,6 @@
 # Table name: plans
 #
 #  id         :bigint           not null, primary key
-#  avatar     :string
 #  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -19,11 +18,12 @@
 #
 class Plan < ApplicationRecord
   belongs_to :user
+  has_one_attached :image
   has_many :plan_countries, dependent: :destroy
   has_many :countries, through: :plan_countries
 
   accepts_nested_attributes_for :countries, allow_destroy: true
-  validates_associated :countries 
+  validates_associated :countries
 
   validates :name, presence: true
 end
