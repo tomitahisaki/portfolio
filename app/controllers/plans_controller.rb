@@ -2,7 +2,12 @@ class PlansController < ApplicationController
   before_action :set_plan, only: %i[edit update destroy]
 
   def index
-    @plans = Plan.all
+    if params[:country_name]
+      @country = Country.find_by(name: params[:country_name])
+      @plans = @country.plans
+    else
+      @plans = Plan.all
+    end
   end
 
   def show
@@ -23,7 +28,7 @@ class PlansController < ApplicationController
   def create
     @plan = current_user.plans.new(plan_params)
 
-    if plan_params[:countries_attributes].present?
+    if @plan.valid? && plan_params[:countries_attributes].present?
       countries = plan_params[:countries_attributes].values.map do |country_params|
         Country.find_or_create_by(name: country_params[:name]) do |country|
           country.assign_attributes(country_params.except(:_destroy))
@@ -68,6 +73,12 @@ class PlansController < ApplicationController
     @plan.countries.delete_all
     @plan.countries = countries
 
+    plan_name = plan_params[:name]
+    @plan.name = plan_name
+
+    plan_image = plan_params[:image]
+    @plan.image = plan_image
+
     if @plan.save
       flash[:success] = 'you succeed to update '
       redirect_to plan_path(@plan)
@@ -89,6 +100,6 @@ class PlansController < ApplicationController
   end
 
   def plan_params
-    params.require(:plan).permit(:name, countries_attributes: %i[id name latitude longitude _destroy])
+    params.require(:plan).permit(:name, :image, countries_attributes: %i[id name latitude longitude _destroy])
   end
 end

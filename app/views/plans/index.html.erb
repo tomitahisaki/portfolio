@@ -1,10 +1,14 @@
 <%= content_for(:title, t('.title')) %>
 <div class="bg-custom_color3 sm:py-5 lg:py-5">
-  <div class="min-h-screen pt-20 md:px-8 mx-auto">
-    <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold"><%= t('plans.index.title') %></h2>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 md:gap-x-6 gap-y-6">
+  <div class="min-h-screen pt-20">
+    <% if params[:country_name].present? %>
+      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold ml-10 mb-10"><%= t('plans.index.title_country', country_name: params[:country_name]) %></h2>
+    <% else %>
+      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold ml-10 mb-10"><%= t('plans.index.title') %></h2>
+    <% end %>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-5 gap-y-20 place-items-center ">
       <!-- product - start -->
-      <%= render partial: 'plan', collection: @plans %>
+      <%= render @plans %>
       <!-- product - end -->
     </div>
   </div>

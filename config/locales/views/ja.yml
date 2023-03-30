@@ -43,7 +43,8 @@ ja:
       success: 'ログアウトしました'
   plans:
     index:
-      title: 'プラン一覧'
+      title: '旅行計画 一覧'
+      title_country: " %{country_name}を含む旅行計画 一覧"
       no_result: 'プランがありません'
     new:
       title: 'プラン作成'
@@ -59,3 +60,6 @@ ja:
       countries_list: '計画中の国'
     edit:
       title: 'プロフィール編集'
+  plan_countries:
+    show:
+      title: 入国審査詳細

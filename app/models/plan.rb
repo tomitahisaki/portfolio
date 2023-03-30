@@ -3,7 +3,6 @@
 # Table name: plans
 #
 #  id         :bigint           not null, primary key
-#  avatar     :string
 #  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -19,11 +18,27 @@
 #
 class Plan < ApplicationRecord
   belongs_to :user
+  has_one_attached :image
   has_many :plan_countries, dependent: :destroy
   has_many :countries, through: :plan_countries
 
   accepts_nested_attributes_for :countries, allow_destroy: true
-  validates_associated :countries 
+  validates_associated :countries
 
   validates :name, presence: true
+
+  validate :image_file
+  validate :image_size
+
+  def image_file
+    if image.present? && !image.blob.content_type.in?(%('image/jpeg image/png'))
+      errors.add(:image, 'は JPEG 形式または PNG 形式のみ選択してください')
+    end
+  end
+
+  def image_size
+    if image.present? && image.blob.byte_size > 10.megabytes
+      errors.add(:image, 'は 10MB 以下のファイルを選択してください')
+    end
+  end
 end

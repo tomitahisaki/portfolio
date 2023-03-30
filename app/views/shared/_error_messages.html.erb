@@ -1,8 +1,8 @@
 <% if object.errors.any? %>
   <div class="alert alert-error">
-    <ul>
+    <ul class="list-disc flex flex-col items-start">
       <% object.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+      <li><%= msg %></li>
       <% end %>
     </ul>
   </div>

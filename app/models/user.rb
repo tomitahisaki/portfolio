@@ -3,7 +3,6 @@
 # Table name: users
 #
 #  id               :bigint           not null, primary key
-#  avatar           :string
 #  crypted_password :string
 #  email            :string           not null
 #  introduction     :text
@@ -20,6 +19,7 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
 
   has_many :plans
+  has_one_attached :avatar
 
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
@@ -28,7 +28,24 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
   validates :name, presence: true, length: { maximum: 200 }
 
+  validate :avatar_size
+  validate :avatar_file
+
   def own?(object)
     id == object.user.id
+  end
+
+  private
+
+  def avatar_size
+    if avatar.blob.byte_size > 10.megabytes
+      errors.add(:avatar, 'は 10MB 以下のファイルを選択してください')
+    end
+  end
+  
+  def avatar_file
+    if !avatar.blob.content_type.in?(%('image/jpeg image/png'))
+      errors.add(:avatar, 'はJPEGまたはPNG形式のみ選択してください')
+    end
   end
 end
