@@ -20,7 +20,7 @@ ja:
         introduction: '自己紹介'
       plan:
         name: '計画名'
-        avatar: '画像'
+        image: '画像'
       country:
         name: '国名'
         latitude: '緯度'
