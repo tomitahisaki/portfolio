@@ -8,13 +8,13 @@
           <%= render 'shared/error_messages', object: f.object %>
           <%= f.text_field :name, placeholder: Plan.human_attribute_name(:name), class:"input input-bordered rounded-lg w-full max-w-xs " %>
           <div class="flex flex-col">
-            <div class="mt-2">
-              <%= f.file_field :image, placeholder: "旅行画像",  id: 'image-upload', class:'file-input file-input-sm ' %>
+            <div class="mt-3">
+              <%= f.file_field :image, id: 'image-upload', class:'file-input rounded-lg w-full max-w-xs ' %>
             </div>
             <div class="image mt-2">
-              <div class="w-20 rounded-lg" id="image-preview-container">
-                <% if @plan.image.attached? %>
-                  <%= image_tag @plan.image, size: '300x300' %>
+              <div class="w-32 rounded-lg" id="image-preview-container">
+                <% if plan.image.attached? %>
+                  <%= image_tag plan.image %>
                 <% end %>
               </div>
             </div>

@@ -1,17 +1,24 @@
 <!-- product - start -->
-      <div>
-        <% if plan.image.attached? %>
-          <%= link_to image_tag(plan.image, size: "412x309"), plan_path(plan), class:'group block rounded-lg overflow-hidden drop-shadow-2xl mb-2 lg:mb-3' %>
-        <% else %>
-          <%= link_to image_tag('camera-1130731_1920.jpg'), plan_path(plan), class:'group block rounded-lg overflow-hidden drop-shadow-2xl mb-2 lg:mb-3' %>
-        <% end %>
-        <div class="flex flex-col">
-          <div>
-            <%= link_to plan.name, plan_path(plan), class:' text-gray-800 hover:bg-custom_color1 link link-hover text-lg lg:text-xl font-bold ' %>
-          </div>
-          <div>
-            <a href="#" class=" justify-end text-gray-800 link link-hover hover:bg-custom_color1 font-semibold"><%= plan.user.name %></a>
-          </div>
+<div class="card w-10/12 h-full bg-base-100 shadow-xl rounded-lg ">
+<figure class="bg-gray-100 h-48">
+  <% if plan.image.attached? %>
+    <%= link_to image_tag(plan.image, class:'h-full w-full object-cover'), plan_path(plan), class:'block h-full w-full' %>
+  <% else %>
+    <%= link_to image_tag('camera-1130731_1920.jpg', class:'h-full w-full object-cover'), plan_path(plan), class:'block h-full w-full' %>
+  <% end %>
+</figure>
+  <div class="card-body justify-start">
+    <h2 class="card-title"><%= link_to plan.name, plan_path(plan), class:'rounded-lg bg-custom_color1 link link-hover text-xl py-2 px-2 ' %></h2>
+    <div class="h-full">
+      <% plan.countries.each do |country| %>
+        <div class="inline-block whitespace-nowrap py-2 px-2 hover:bg-custom_color2 rounded-lg">
+          <%= link_to country.name, plans_path(country_name: country.name), class: "block" %>
         </div>
-      </div>
+      <% end %>
+    </div>
+    <div class="card-actions justify-end">
+      <%= link_to plan.user.name, profile_path(plan.user), class:" rounded-lg bg-custom_color3 link link-hover py-2 px-2 " %>
+    </div>
+  </div>
+</div>
 <!-- product - end -->

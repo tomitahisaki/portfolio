@@ -45,7 +45,7 @@ class User < ApplicationRecord
   
   def avatar_file
     if !avatar.blob.content_type.in?(%('image/jpeg image/png'))
-      errors.add(:avatar, 'は JPEG 形式または PNG 形式のみ選択してください')
+      errors.add(:avatar, 'はJPEGまたはPNG形式のみ選択してください')
     end
   end
 end

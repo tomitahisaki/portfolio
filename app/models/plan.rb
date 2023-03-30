@@ -26,4 +26,19 @@ class Plan < ApplicationRecord
   validates_associated :countries
 
   validates :name, presence: true
+
+  validate :image_file
+  validate :image_size
+
+  def image_file
+    if image.present? && !image.blob.content_type.in?(%('image/jpeg image/png'))
+      errors.add(:image, 'は JPEG 形式または PNG 形式のみ選択してください')
+    end
+  end
+
+  def image_size
+    if image.present? && image.blob.byte_size > 10.megabytes
+      errors.add(:image, 'は 10MB 以下のファイルを選択してください')
+    end
+  end
 end

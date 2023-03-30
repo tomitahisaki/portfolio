@@ -2,7 +2,12 @@ class PlansController < ApplicationController
   before_action :set_plan, only: %i[edit update destroy]
 
   def index
-    @plans = Plan.all
+    if params[:country_name]
+      @country = Country.find_by(name: params[:country_name])
+      @plans = @country.plans
+    else
+      @plans = Plan.all
+    end
   end
 
   def show
@@ -23,7 +28,7 @@ class PlansController < ApplicationController
   def create
     @plan = current_user.plans.new(plan_params)
 
-    if plan_params[:countries_attributes].present?
+    if @plan.valid? && plan_params[:countries_attributes].present?
       countries = plan_params[:countries_attributes].values.map do |country_params|
         Country.find_or_create_by(name: country_params[:name]) do |country|
           country.assign_attributes(country_params.except(:_destroy))
