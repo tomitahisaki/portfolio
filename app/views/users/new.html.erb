@@ -5,6 +5,7 @@
     <div class=' w-1/2 px-12 py-8 opacity-80 bg-custom_color2 rounded-lg'>
       <h1 class='text-black text-3xl font-bold border-b-2 py-2 mb-4 text-center'><%= t('.title') %></h1>
       <%= form_with model: @user, local: true do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
         <div class='form-control mb-5 '>
           <%= f.label :name, class:'block text-black font-semibold text-lg  mb-2' %>
           <%= f.text_field :name, placeholder: '名前', class:' appearance-none border rounded w-full py-2 px-3 text-black leading-tight focus:outline-none ' %>

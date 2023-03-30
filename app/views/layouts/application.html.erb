@@ -25,12 +25,11 @@
 
   <body>
     <% if logged_in? %>
-      <%= render 'shared/header' %> 
+      <%= render 'shared/header' %>
     <% else %>
       <%= render 'shared/before_login_header' %>
     <% end %>
     <%= yield %>
-    <%= render 'shared/flash_message' %>
-    <%= render 'shared/footer' %> 
+    <%= render 'shared/footer' %>
   </body>
 </html>

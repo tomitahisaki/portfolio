@@ -43,11 +43,11 @@ ja:
       success: 'ログアウトしました'
   plans:
     index:
-      title: '旅行計画 一覧'
+      title: '計画一覧'
       title_country: " %{country_name}を含む旅行計画 一覧"
       no_result: 'プランがありません'
     new:
-      title: 'プラン作成'
+      title: '計画作成'
       countries: '旅行先'
     show:
       title: 'プラン詳細'
