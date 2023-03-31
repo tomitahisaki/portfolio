@@ -29,18 +29,11 @@ class PlansController < ApplicationController
     @plan = current_user.plans.new(plan_params)
 
     if @plan.valid? && plan_params[:countries_attributes].present?
-      countries = plan_params[:countries_attributes].values.map do |country_params|
-        Country.find_or_create_by(name: country_params[:name]) do |country|
-          country.assign_attributes(country_params.except(:_destroy))
-        end
-      end
-  
-      countries.each do |country|
-        set_info = Information.where(country_name: country.name)
-        set_info = Information.where('country_name LIKE ?', "%#{country.name}%") if set_info.empty?
-        set_info.update(country_id: country.id) if set_info.present? && set_info.pluck(:country_id) == [nil]
-      end
-      
+      #countryモデルに重複しないように登録する
+      countries = Plan.find_or_create_countries(plan_params[:countries_attributes])
+      #informationにcountry_idを紐つける処理
+      Information.set_country_id(countries)
+      #countriesにはcountryモデルからfind_or_createしたカラムを@plan.countriesに紐つけている。
       @plan.countries = countries
 
       if @plan.save
@@ -58,27 +51,15 @@ class PlansController < ApplicationController
   end
 
   def update
-    countries_params = plan_params[:countries_attributes].values.select { |country_params| country_params[:_destroy] == 'false' }
-    countries = countries_params.map do |country_params|
-      Country.find_or_create_by(name: country_params[:name]) do |country|
-        country.assign_attributes(country_params.except(:_destroy))
-      end
-    end
+    # countries_params = plan_params[:countries_attributes].select { |country_params| country_params[:_destroy] == 'false' }
+    countries_params = plan_params[:countries_attributes].select { |_, params| params[:_destroy] == 'false' }
+    #countryモデルに重複しないように登録する
+    countries = Plan.find_or_create_countries(countries_params)
+    #informationにcountry_idを紐つける処理
+    Information.set_country_id(countries)
 
-    countries.each do |country|
-      set_info = Information.where(country_name: country.name)
-      set_info = Information.where('country_name LIKE ?', "%#{country.name}%") if set_info.empty?
-      set_info.update(country_id: country.id) if set_info.present? && set_info.pluck(:country_id) == [nil]
-    end
-
-    @plan.countries.delete_all
     @plan.countries = countries
-
-    plan_name = plan_params[:name]
-    @plan.name = plan_name
-
-    plan_image = plan_params[:image]
-    @plan.image = plan_image
+    @plan.update(plan_params.except(:countries_attributes))
 
     if @plan.save
       flash[:success] = t('defaults.message.updated', item: Plan.model_name.human)
