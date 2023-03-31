@@ -1,11 +1,11 @@
 <div id='flash'>
   <% flash.each do |message_type, message| %>
     <% if message_type == 'success' %>
-      <div class=" alert alert-success "><%= message %></div>
+      <div class=" alert alert-success px-20"><%= message %></div>
     <% elsif message_type == 'error' %>
-      <div class="alert alert-error"><%= message %></div>
+      <div class="alert alert-error px-20"><%= message %></div>
     <% else message_type == 'info' %>
-      <div class="alert alert-info"><%= message %></div>
+      <div class="alert alert-info px-20"><%= message %></div>
     <% end %>
   <% end %>
 </div>
@@ -16,5 +16,5 @@
     flash.style.display = 'none';
   }
 
-  setTimeout(hideMessage,4000);
+  setTimeout(hideMessage,3000);
 </script>

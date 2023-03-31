@@ -1,12 +1,10 @@
-<header class='fixed navbar opacity-90 z-20 bg-custom_color2'>
-  <div class='navbar-start'>
+<div class='fixed top-0 left-0 w-full bg-custom_color2 opacity-90 z-20 navbar'>
+  <div class='flex-1'>
     <%= link_to 'ROUND PLANNER', root_path, class:'btn btn-ghost text-white rounded link link-hover font-bold text-4xl opacity-80' %>
   </div>
-  <div class='navbar-center'>
+  <div class='flex-none mr-5'>
     <%= link_to t('plans.new.title'), new_plan_path, class:'btn btn-ghost text-white rounded link link-hover font-semibold text-xl mr-10 opacity-80' %>
     <%= link_to t('plans.index.title'), plans_path, class:'btn btn-ghost text-white rounded link link-hover font-semibold text-xl mr-10 opacity-80' %>
-  </div>
-  <div class='navbar-end mr-5'>
     <div class="dropdown dropdown-end ">
       <label tabindex="0" class="btn btn-ghost text-white rounded link link-hover text-xl opacity-80"><%= current_user.name %></label>
       <ul tabindex="0" class=" dropdown-content p-2 mt-4 whitespace-nowrap rounded-lg bg-custom_color2">
@@ -15,4 +13,7 @@
       </ul>
     </div>
   </div>
-</header>
+</div>
+<div class='fixed top-20 left-1/2 transform -translate-x-1/2 z-20 '>
+  <%= render 'shared/flash_message' %>
+</div>

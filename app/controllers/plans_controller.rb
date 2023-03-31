@@ -44,14 +44,15 @@ class PlansController < ApplicationController
       @plan.countries = countries
 
       if @plan.save
+        flash[:success] = t('defaults.message.created', item: Plan.model_name.human)
         redirect_to plans_path, success: 'success'
       else
         @plan.countries.clear
-        flash.now[:error] = 'failed to build plan'
+        flash.now[:error] = t('defaults.message.not_created', item: Plan.model_name.human)
         render :new
       end
     else
-      flash.now[:error] ='failed to build plan. please add countries'
+      flash.now[:error] =[ t('defaults.message.not_created', item: Plan.model_name.human), t('defaults.message.add_country', item: Country.model_name.human) ].join(', ')
       render :new
     end
   end
@@ -80,17 +81,18 @@ class PlansController < ApplicationController
     @plan.image = plan_image
 
     if @plan.save
-      flash[:success] = 'you succeed to update '
+      flash[:success] = t('defaults.message.updated', item: Plan.model_name.human)
       redirect_to plan_path(@plan)
     else
-      flash.now[:error]
+      flash.now[:error] = t('defaults.message.not_updated', item: Plan.model_name.human)
       render :edit
     end
   end
 
   def destroy
     @plan.destroy!
-    redirect_to plans_path, info: 'you succeed to destroy '
+    flash[:success] = t('defaults.message.deleted', item: Plan.model_name.human)
+    redirect_to plans_path
   end
 
   private

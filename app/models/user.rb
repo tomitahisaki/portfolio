@@ -38,13 +38,13 @@ class User < ApplicationRecord
   private
 
   def avatar_size
-    if avatar.blob.byte_size > 10.megabytes
+    if avatar.present? && avatar.blob.byte_size > 10.megabytes
       errors.add(:avatar, 'は 10MB 以下のファイルを選択してください')
     end
   end
   
   def avatar_file
-    if !avatar.blob.content_type.in?(%('image/jpeg image/png'))
+    if avatar.present? && !avatar.blob.content_type.in?(%('image/jpeg image/png'))
       errors.add(:avatar, 'はJPEGまたはPNG形式のみ選択してください')
     end
   end
