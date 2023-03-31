@@ -5,9 +5,10 @@ class ProfilesController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to profile_path, success:'successfully update profile'
+      flash[:success] = t('defaults.message.updated', item: User.model_name.human)
+      redirect_to profile_path
     else
-      flash.now[:error] = 'fail to update profile'
+      flash.now[:error] = t('defaults.message.not_updated', item: User.model_name.human)
       render :edit
     end
   end

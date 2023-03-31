@@ -16,6 +16,7 @@ ja:
       not_updated: "%{item}を更新できませんでした"
       deleted: "%{item}を削除しました"
       delete_confirm: '削除しますか？'
+      add_country: "%{item}を追加してください"
   static_pages:
     term:
       title: '利用規約'
@@ -29,7 +30,7 @@ ja:
       sign_up: '登録'
       to_login_page: 'ログインページへ'
     create:
-      success: 'ユーザーを登録しました'
+      success: 'ユーザー登録を完了しました'
       fail: 'ユーザー登録に失敗しました'
   user_sessions:
     new:
@@ -41,6 +42,8 @@ ja:
       fail: 'ログインに失敗しました'
     destroy:
       success: 'ログアウトしました'
+    guest_login:
+      success: 'ゲストユーザーとして登録しました'
   plans:
     index:
       title: '計画一覧'

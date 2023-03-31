@@ -7,17 +7,17 @@ class UserSessionsController < ApplicationController
     @user = login(params[:email], params[:password])
 
     if @user
-      flash[:success] = 'successfully login'
+      flash[:success] = t('.success')
       redirect_to new_plan_path
     else
-      flash.now[:error] = 'login failed'
+      flash.now[:error] = t('.fail')
       render :new
     end
   end
 
   def destroy
     logout
-    flash[:info] = 'successfully logout'
+    flash[:info] = t('.success')
     redirect_to root_path
   end
 
@@ -27,10 +27,10 @@ class UserSessionsController < ApplicationController
       redirect to new_plan_path
     else
       random_value = SecureRandom.hex
-      @user = User.create!(name: 'Guest User', email: "test_#{random_value}@example.com", password: random_value.to_s, password_confirmation: random_value.to_s)
+      @user = User.create!(name: 'ゲストユーザー', email: "test_#{random_value}@example.com", password: random_value.to_s, password_confirmation: random_value.to_s)
       auto_login(@user)
-      flash[:success] = 'successfully login as guest'
-      redirect_to root_path
+      flash[:success] = t('.success')
+      redirect_to new_plan_path
     end
   end
 end
