@@ -4,9 +4,9 @@ class PlansController < ApplicationController
   def index
     if params[:country_name]
       @country = Country.find_by(name: params[:country_name])
-      @plans = @country.plans.includes(:user).order(created_at: :desc).page(params[:page]).per(9)
+      @plans = @country.plans.includes(:user).order(created_at: :desc).page(params[:page]).per(6)
     else
-      @plans = Plan.includes(:user).order(created_at: :desc).page(params[:page]).per(9)
+      @plans = Plan.includes(:user).order(created_at: :desc).page(params[:page]).per(6)
     end
   end
 
