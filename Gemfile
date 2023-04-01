@@ -76,7 +76,7 @@ gem 'faker'
 # easy to see model.rb
 gem 'annotate'
 
-# pagenation
+# pagination
 gem 'kaminari'
 
 # OGP
