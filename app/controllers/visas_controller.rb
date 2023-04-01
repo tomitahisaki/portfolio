@@ -11,29 +11,6 @@ class VisasController < ApplicationController
     gon.measure_text_title = @measure_text_title
     gon.country_information = @countries.map(&:information)
     gon.country_measure_text = @countries.map { |country| country.information[measure_text] }
-  
-    # if params[:measure_text3]
-    #   binding.break
-    #   gon.countries = @countries
-    #   @measure_text_title = Information.human_attribute_name(:measure_text3)
-    #   gon.measure_text_title = @measure_text_title
-    #   gon.country_information = @countries.map(&:information)
-    #   gon.country_measure_text = @countries.map {|country| country.information.measure_text3}
-      
-    # elsif params[:measure_text4]
-    #   gon.countries = @countries
-    #   @measure_text_title = Information.human_attribute_name(:measure_text4)
-    #   gon.measure_text_title = @measure_text_title
-    #   gon.country_information = @countries.map(&:information)
-    #   gon.country_measure_text = @countries.map {|country| country.information.measure_text4}
-      
-    # elsif params[:measure_text2]
-    #   gon.countries = @countries
-    #   @measure_text_title = Information.human_attribute_name(:measure_text2)
-    #   gon.measure_text_title = @measure_text_title
-    #   gon.country_information = @countries.map(&:information)
-    #   gon.country_measure_text = @countries.map {|country| country.information.measure_text2}
-    # end
   end
 
   private

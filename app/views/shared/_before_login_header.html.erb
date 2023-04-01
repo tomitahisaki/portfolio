@@ -3,6 +3,7 @@
     <%= link_to 'ROUND PLANNER', root_path, class:'btn btn-ghost text-white rounded link link-hover font-bold text-4xl opacity-80' %>
   </div>
   <div class='flex-none'>
+        <label for="my-modal-4" class="btn btn-ghost text-white rounded link link-hover font-semibold text-xl mr-10 opacity-80"><%= t('static_pages.how_to_use') %></label>
     <%= link_to t('defaults.guest_login'), guest_login_path, class:'btn btn-ghost text-white rounded link link-hover font-semibold text-xl mr-10 opacity-80' %>
     <%= link_to t('defaults.login'), login_path, class:'btn btn-ghost text-white rounded link link-hover font-semibold text-xl mr-10 opacity-80' %>
     <%= link_to t('defaults.register'), new_user_path, class:'btn btn-ghost text-white rounded link link-hover font-semibold text-xl mr-10 opacity-80' %>
@@ -12,3 +13,49 @@
   <%= render 'shared/flash_message' %>
 </div>
 
+<input type="checkbox" id="my-modal-4" class="modal-toggle" />
+<label for="my-modal-4" class="modal cursor-pointer">
+  <label class="modal-box relative w-11/12 max-w-5xl bg-opacity-100 z-50" for="">
+    <h2 class="font-bold text-2xl mb-4">アプリケーションの使い方</h2>
+    <div class="flex flex-col">
+      <div class="flex">
+        <%= image_tag ('plans.jpg'), class: 'w-1/2' %>
+        <ul class="list-disc">
+          <li class="text-lg ml-10 mt-7">計画名を書いて、旅行イメージを入れてみよう</li>
+          <li class="text-lg ml-10 mt-7">国名を入力し、マーカーが追加していこう！</li>
+          <li class="text-lg ml-10 mt-7">作成すると、安全情報を見られるように！</li>
+          <li class="text-lg ml-10 mt-7">計画中の国をtwitterに共有しよう!</li>
+        </ul>
+      </div>
+      <div class="flex">
+        <ul class="list-disc ">
+          <li class="text-lg m-10 mt-10">安全情報を３項目に分けて、見ることができます</li>
+          <ul class="list-disc ml-5">
+            <li class="text-lg m-10 ">査証、出入国審査等の情報</li>
+            <li class="text-lg m-10 ">滞在時の留意事項の情報</li>
+            <li class="text-lg m-10 ">風俗、習慣、健康等の情報</li>
+          </ul>
+          <li class="text-lg m-10 ">更に詳細情報がほしい方は、外務省へのリンクもあります!</li>
+        </ul>
+        <%= image_tag ('information.jpg'), class: 'mt-10 w-1/2 h-full' %>
+      </div>
+        <h2 class="font-bold text-xl mb-4">その他機能の紹介</h2>
+      <div class="flex flex-row">
+        <div>
+          <p class=" ml-10">プロフィール機能:計画中の旅行や国の詳細が見れます</p>
+          <%= image_tag ('profile.jpg'), class: 'mt-3 m-auto w-4/5' %>
+        </div>
+        <div>
+          <p class=" ml-10">一覧機能:国を選択したら、絞り込みもできます</p>
+          <%= image_tag ('all_plans.jpg'), class: 'mt-3 m-auto w-4/5 ' %>
+        </div>
+      </div>
+    </div>
+    <div class="mt-10 text-center  ">
+        <h2 class="font-bold text-2xl mb-4">計画を立ててみよう！！</h2>
+      <div class="mx-auto">
+          <%= link_to t('defaults.register'), new_user_path, class:'btn btn-primary text-white rounded link link-hover font-semibold text-xl mr-10 opacity-80 ' %>
+      </div>
+    </div>
+  </label>
+</label>
