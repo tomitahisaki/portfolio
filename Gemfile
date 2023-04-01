@@ -76,6 +76,9 @@ gem 'faker'
 # easy to see model.rb
 gem 'annotate'
 
+# pagenation
+gem 'kaminari'
+
 # OGP
 gem 'meta-tags'
 gem 'sitemap_generator'
