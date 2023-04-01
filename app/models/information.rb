@@ -34,7 +34,20 @@ class Information < ApplicationRecord
   #informationにcountry_idを紐つける処理
   def self.set_country_id(countries)
     countries.each do |country|
-      country_info = Information.by_country_name(country.name).presence || Information.country_name_like(country.name)
+      country_info = case country.name
+        when "アメリカ合衆国"
+          Information.where(country_cd: 1000)
+        when "アメリカ領サモア"
+          Information.where(country_cd: 1684)
+        when "サモア"
+          Information.where(country_cd: 685)
+        when "ドミニカ"
+          Information.where(country_cd: 767)
+        when "コンゴ"
+          Information.where(country_cd: 242)
+        else
+          Information.by_country_name(country.name).presence || Information.country_name_like(country.name)
+        end
       country_info.update(country_id: country.id) if country_id_not_set?(country_info)
     end
   end
