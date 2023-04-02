@@ -1,65 +1,38 @@
 <%= content_for(:title, t('.title')) %>
 <div class="bg-custom_color3 sm:py-5 lg:py-5">
-  <div class="min-h-screen pt-20 md:px-0 flex justify-center  ">
-    <div class='w-2/5'>
+  <div class="min-h-screen pt-20 md:px-0 flex justify-center">
+    <div class='w-full md:w-2/3 lg:w-1/2 xl:w-2/5 px-4'>
       <%= form_with model: @user, url: profile_path, local: true do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-      <div class="mb-5">
-        <%= f.label :name, User.human_attribute_name(:name), class:" text-lg " %>
-        <%= f.text_field :name, class: "input input-bordered  w-full" %>
-      </div>
-      <div class="mb-5 ">
-        <%= f.label :email, User.human_attribute_name(:email), class:" text-lg" %>
-        <%= f.text_field :email, class:"input input-bordered w-full " %>
-      </div>
-      <div class="mb-5 ">
-        <%= f.label :introduction, User.human_attribute_name(:introduction), class:" text-lg" %>
-        <%= f.text_area :introduction, rows: 5, class:"textarea textarea-bordered w-full " %>
-      </div>
-      <div class="mb-5">
-        <div class="flex flex-row">
-          <div>
-            <%= f.label :avatar, class:" text-lg" %>
-            <%= f.file_field :avatar, id: 'avatar-upload', class:'file-input ' %>
-          </div>
-          <div class="avatar flex flex-col items-center">
-            <div class="w-60 rounded-full" id="avatar-preview-container">
-              <% if @user.avatar.attached? %>
-                <%= image_tag @user.avatar, size: '300x300' %>
-              <% end %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="mb-5">
+          <%= f.label :name, User.human_attribute_name(:name), class:"text-lg block mb-2" %>
+          <%= f.text_field :name, class: "input input-bordered  w-full" %>
+        </div>
+        <div class="mb-5">
+          <%= f.label :email, User.human_attribute_name(:email), class:"text-lg block mb-2" %>
+          <%= f.text_field :email, class:"input input-bordered w-full " %>
+        </div>
+        <div class="mb-5">
+          <%= f.label :introduction, User.human_attribute_name(:introduction), class:"text-lg block mb-2" %>
+          <%= f.text_area :introduction, rows: 5, class:"textarea textarea-bordered w-full" %>
+        </div>
+        <div class="mb-5">
+          <div class="flex flex-col md:flex-row items-center">
+            <%= f.label :avatar, class:"text-lg block mb-2 md:mr-4" %>
+            <div class="avatar flex flex-col items-center md:mr-4">
+              <div class="w-60 rounded-full" id="avatar-preview-container">
+                <% if @user.avatar.attached? %>
+                  <%= image_tag @user.avatar, size: '300x300' %>
+                <% end %>
+              </div>
+              <%= f.file_field :avatar, id: 'avatar-upload', class:'file-input mt-2' %>
             </div>
           </div>
         </div>
-      </div>
-        <%= f.submit t('defaults.edit'), class:'btn btn-primary link link-hover hover:text-white rounded-lg' %>
+        <div class="mb-5 flex justify-center">
+          <%= f.submit t('defaults.edit'), class:'btn btn-primary link link-hover hover:text-white rounded-lg lg:mx-w-max' %>
+        </div>
       <% end %>
     </div>
   </div>
 </div>
-
-<script>
-  let input = document.querySelector('input[type="file"]#avatar-upload');
-  let preview = document.createElement('img');
-
-  preview.setAttribute('id', 'avatar-preview');
-  preview.setAttribute('src', '');
-  preview.setAttribute('alt', 'Avatar Preview');
-
-  input.addEventListener('change', () => {
-    let file = input.files[0];
-
-    // ファイルを読み込む
-    let reader = new FileReader();
-    reader.addEventListener('load', () => {
-      // 画像を表示する
-      preview.setAttribute('src', reader.result);
-    });
-    reader.readAsDataURL(file);
-
-    // プレビュー用の要素を追加する
-    let previewContainer = document.querySelector('#avatar-preview-container');
-    previewContainer.innerHTML = '';
-    previewContainer.appendChild(preview);
-
-  });
-</script>

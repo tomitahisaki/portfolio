@@ -2,10 +2,11 @@
 <div class="bg-custom_color3 sm:py-5 lg:py-5">
   <div class="min-h-screen pt-20">
     <% if params[:country_name].present? %>
-      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold ml-10 mb-10"><%= t('plans.index.title_country', country_name: params[:country_name]) %></h2>
+      <h2 class="text-gray-800 lg:text-3xl text-2xl font-bold ml-10 "><%= t('plans.index.title_country', country_name: params[:country_name]) %></h2>
     <% else %>
-      <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold ml-10 mb-10"><%= t('plans.index.title') %></h2>
+      <h2 class="text-gray-800 lg:text-3xl text-2xl font-bold ml-10 "><%= t('plans.index.title') %></h2>
     <% end %>
+    <p class="ml-10 mb-5">※国を選択し、指定した国を含む旅行の絞り込みができます</p>
     <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-5 gap-y-10 place-items-center ">
       <!-- product - start -->
       <%= render @plans %>

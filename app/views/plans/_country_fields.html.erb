@@ -1,5 +1,5 @@
-<div id='country_fields' class= 'nested-fields flex flex-row w-auto mt-2'>
-  <%= f.text_field :name, placeholder: 'country_name', class:"country_name input input-ghost ", readonly: true %>
+<div id='country_fields' class= 'nested-fields flex flex-row w-full max-w-xs'>
+  <%= f.text_field :name, placeholder: 'country_name', class:"country_name input input-ghost w-full max-w-xs ", readonly: true %>
   <div onclick='deleteMarker()' class= "ml-2"><%= link_to_remove_association "削除", f, class:'btn btn-secondary rounded-lg hover:link ' %>
   </div>
   <div class='hidden'>
