@@ -9,10 +9,10 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       auto_login(@user)
-      flash[:success] = 'successfully sign up and login'
+      flash[:success] = t('.success')
       redirect_to new_user_path
     else
-      flash.now[:error] = 'failed to signup'
+      flash.now[:error] = t('.fail')
       render :new
     end
   end

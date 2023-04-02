@@ -41,4 +41,14 @@ class Plan < ApplicationRecord
       errors.add(:image, 'は 10MB 以下のファイルを選択してください')
     end
   end
+
+  def self.find_or_create_countries(countries_params)
+    countries_params.values.map do |country_params|
+      Country.find_or_create_by(name: country_params[:name]) do |country|
+        country.assign_attributes(country_params.except(:_destroy))
+      end
+    end
+  end
+
+
 end

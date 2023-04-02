@@ -1,11 +1,22 @@
 <%= content_for(:title, t('.title')) %>
 <div class="bg-custom_color3 sm:py-5 lg:py-5">
   <div class="min-h-screen pt-20 md:px-8 mx-auto">
-    <div class='relative  top-0 left-0 w-full h-full z-0'>
+    <div class="flex flex-row justify-evenly mb-2">
+      <div class="text-2xl bg-custom_color1 hover:bg-custom_color2 rounded-lg p-4">
+        <%= link_to I18n.t('activerecord.attributes.information.measure_text2'), visa_path(measure_text2: Information.human_attribute_name(:measure_text2)) %>
+      </div>
+      <div class="text-2xl bg-custom_color1 hover:bg-custom_color2 rounded-lg p-4">
+        <%= link_to I18n.t('activerecord.attributes.information.measure_text3'), visa_path(measure_text3: Information.human_attribute_name(:measure_text3)) %>
+      </div>
+      <div class="text-2xl bg-custom_color1 hover:bg-custom_color2 rounded-lg p-4">
+        <%= link_to I18n.t('activerecord.attributes.information.measure_text4'), visa_path(measure_text4: Information.human_attribute_name(:measure_text4)) %>
+      </div>
+    </div>
+    <div class='relative top-0 left-0 w-full h-full z-10'>
       <div id='map'></div>
-        <div class='absolute top-2 left-2 z-10 justify-start items-center bg-custom_color3 rounded-lg '>
+        <div class='absolute top-2 left-2  justify-start items-center bg-custom_color3 rounded-lg '>
           <div class="m-4" >
-            <h1 class="text-3xl font-semibold"><%= I18n.t('activerecord.attributes.information.measure_text2') %></h1>
+            <h1 class="text-3xl font-semibold"><%= @measure_text_title || Information.human_attribute_name(:measure_text2) %></h1>
             <p>※マーカをクリックして、情報を開けます</p>
           </div>
       </div>
@@ -14,10 +25,10 @@
         <label id='modal_btn' for="my-modal" class="btn hidden">open modal</label>
         <!-- Put this part before </body> tag -->
         <input type="checkbox" id="my-modal" class="modal-toggle" />
-        <label for="my-modal" class="modal cursor-pointer">
-          <div id="my-modal" class="modal-box relative w-full max-w-7xl bg-opacity-90 " for="">
+        <label for="my-modal" class="modal cursor-pointer ">
+          <div id="my-modal" class="modal-box relative w-full max-w-7xl bg-opacity-95 top-10"  for="">
             <label>
-              <h1 class="font-semibold underline">Country Name</h1>
+              <h1 class="font-semibold underline"></h1>
               <p>外務省ページは<a href="URL" target="_blank" class='text-blue-400 hover:text-blue-800 link link-hover'>こちら</a>をクリック</p>
               <h2 class='font-semibold underline'>安全基礎情報</h2>
               <div>Some content here...</div>
@@ -75,8 +86,8 @@
           // モーダル内のテキストを設定する
           document.querySelector("#my-modal h1").textContent = countries_information[i].country_name;
           document.querySelector("#my-modal a").href = countries_information[i].measure_url;
-          document.querySelector("#my-modal h2").textContent = gon.measure_text2;
-          document.querySelector("#my-modal div").innerHTML = simpleFormat(countries_information[i].measure_text2);
+          document.querySelector("#my-modal h2").textContent = gon.measure_text_title;
+          document.querySelector("#my-modal div").innerHTML = simpleFormat(gon.country_measure_text[i]);
 
           document.getElementById("modal_btn").click();
       });

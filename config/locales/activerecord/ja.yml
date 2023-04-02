@@ -8,7 +8,7 @@ ja:
           has_many: "%{record}が存在しているので削除できません"
     models:
       user: 'ユーザー'
-      plan: 'プラン'
+      plan: '計画'
       country: '国'
     attributes:
       user:
