@@ -36,18 +36,22 @@
 
 ## 機能の紹介
 
-| トップページ                                                          | プラン作成                                                          |
+| トップページ                                                          | 計画作成                                                          |
 | ------------------------------------------------------------------ | -------------------------------------------------------------------- |
-| [![Image from Gyazo](https://i.gyazo.com/460d048af34ef22b107fde2c479b5b34.jpg)](https://gyazo.com/460d048af34ef22b107fde2c479b5b34) | [![Image from Gyazo](https://i.gyazo.com/f9e5d7fa6368debb7573c6ddae5a2caa.jpg)](https://gyazo.com/f9e5d7fa6368debb7573c6ddae5a2caa)  |
-| ・トップページ              | ・プランの作成<br> ・行きたい国の登録                           |
+| [![Image from Gyazo](https://i.gyazo.com/c96924e888c1b3c6671931a6c470abce.jpg)](https://gyazo.com/c96924e888c1b3c6671931a6c470abce) | [![Image from Gyazo](https://i.gyazo.com/96c06eed0e0e6cd6ebdac31fcaa82928.jpg)](https://gyazo.com/96c06eed0e0e6cd6ebdac31fcaa82928)  |
+| ・トップページ              | ・計画の作成<br> ・行きたい国の登録,イメージ画像も追加                           |
+| 計画一覧                                                         | 計画詳細                                                          |
+| ------------------------------------------------------------------ | -------------------------------------------------------------------- |
+| [![Image from Gyazo](https://i.gyazo.com/79a4eb25633fdd4cb90bf3bb2495abde.jpg)](https://gyazo.com/79a4eb25633fdd4cb90bf3bb2495abde) | [![Image from Gyazo](https://i.gyazo.com/75685d51565cdcac6252780bf38a0d94.jpg)](https://gyazo.com/75685d51565cdcac6252780bf38a0d94)  |
+| ・ユーザーの計画一覧<br> ・国の絞り込みも可能              | ・計画の詳細<br> ・国一覧のピックアップ(マーカー表示)                           |
 
 | 安全情報詳細                                                                       | プロフィール                                                         |
 | ------------------------------------------------------------------                | -------------------------------------------------------------------- |
-|[![Image from Gyazo](https://i.gyazo.com/6d52f2957b599827ba5dcdc5c5d4b4da.jpg)](https://gyazo.com/6d52f2957b599827ba5dcdc5c5d4b4da) | [![Image from Gyazo](https://i.gyazo.com/2b1a29a8c95532f0cc385af862517c88.jpg)](https://gyazo.com/2b1a29a8c95532f0cc385af862517c88) |
-| ・リストアップ国をマーカー表示<br>・クリックすると情報の表示、外務省へのリンク | ・プロフィールの表示<br>・計画一覧の表示          |
+|[![Image from Gyazo](https://i.gyazo.com/472a00ab38405ef32450b295c18fd129.jpg)](https://gyazo.com/472a00ab38405ef32450b295c18fd129) | [![Image from Gyazo](https://i.gyazo.com/86458c82e81bd77585632554078c45b1.jpg)](https://gyazo.com/86458c82e81bd77585632554078c45b1) |
+| ・情報の表示(査証、滞在、習慣等の3項目)での表示ができます<br>・クリックすると情報の表示、外務省へのリンク | ・プロフィールの表示<br>・計画一覧の表示<br> ・計画中の国をリストアップ          |
 
-## ■実装予定の機能
-### MVPリリース
+## ■実装機能
+### 本リリース(MVPリリースも含む)
 
 - ユーザー登録機能
 
@@ -59,15 +63,25 @@
 
   - 計画作成、一覧、詳細、編集機能
 
-  - 安全情報の閲覧機能
+  - 査証情報、滞在情報、習慣等情報の閲覧機能(フォーマットを変更)
 
 - CRUD機能(旅行中ユーザー、他ユーザー)
 
   - 他ユーザーの計画詳細を閲覧可能
 
-### 本リリース(予定)
+  - 絞り込み機能(国による旅行計画を絞り込めます)
 
-  - topページ画像のスライダー機能
+- プロフィール機能
+
+    - ユーザーの詳細を閲覧、編集
+
+    - 計画中の国をリストアップ
+
+    - 旅行計画を閲覧できる
+
+    - 自分の計画の詳細を閲覧できる(詳細)
+
+- その他機能
 
   - 規約関連のページ作成
 
@@ -81,26 +95,31 @@
 
   - 画像保存
 
-  - メイン機能
+### 今後の追加機能(予定)
 
-    - 安全情報の整理(simple_formatなどでの、段落にする)
+  - topページ画像のスライダー機能
 
-- プロフィール機能
+  - テストコードの作成
 
-  - ユーザーの詳細を閲覧、編集
+  - スケジュール機能
 
-  - 計画中の国をリストアップ
+    - 計画の作成、編集、削除
 
-  - 旅行計画を閲覧できる
+    - スケジュール共有
 
-  - 自分の計画の詳細を閲覧できる(詳細)
+    - 予約情報
 
+  - 予算機能
+
+    - 予算を作成
+
+    - 通貨の切り替え機能(現地の通貨に切り替え)
 
 ### ■画面遷移図
 [figma](https://www.figma.com/file/Bqv2jm6XStVIqhG6oithXs/Round-Planner?t=LDsPw9EsTTORywpQ-6)
 
 ### ■ER図
-[![Image from Gyazo](https://i.gyazo.com/1c5329700081d196b97d55dc4bd664df.png)](https://gyazo.com/1c5329700081d196b97d55dc4bd664df)
+[![Image from Gyazo](https://i.gyazo.com/c34f930d22a6b173efaf158ebf378762.png)](https://gyazo.com/c34f930d22a6b173efaf158ebf378762)
 ### ■スケジュール
   企画〜技術調査：2/4 〆切
 
@@ -140,6 +159,7 @@
 
 - Heroku
 - PostgreSQL
+- AWS(S3)
 
 #### その他
 
