@@ -1,19 +1,48 @@
 <div class='fixed top-0 left-0 w-full bg-custom_color2 opacity-90 z-20 navbar'>
   <div class='flex-1'>
-    <%= link_to 'ROUND PLANNER', root_path, class:'btn btn-ghost text-white rounded link link-hover font-bold text-4xl opacity-80' %>
+    <%= link_to 'ROUND PLANNER', root_path, class:'btn btn-ghost text-white rounded link link-hover font-bold opacity-80 lg:text-4xl text-sm' %>
   </div>
-  <div class='flex-none mr-5'>
-    <%= link_to t('plans.new.title'), new_plan_path, class:'btn btn-ghost text-white rounded link link-hover font-semibold text-xl mr-10 opacity-80' %>
-    <%= link_to t('plans.index.title'), plans_path, class:'btn btn-ghost text-white rounded link link-hover font-semibold text-xl mr-10 opacity-80' %>
-    <div class="dropdown dropdown-end ">
-      <label tabindex="0" class="btn btn-ghost text-white rounded link link-hover text-xl opacity-80"><%= current_user.name %></label>
-      <ul tabindex="0" class=" dropdown-content p-2 mt-4 whitespace-nowrap rounded-lg bg-custom_color2">
-        <li><%= link_to t('profiles.show.title'), profile_path, class:'btn btn-ghost text-white rounded link link-hover text-base opacity-80' %></li>
-        <li><%= button_to t('defaults.logout'), logout_path, method: :delete, class:'btn btn-ghost text-white rounded link link-hover text-base opacity-80' %></li>
-      </ul>
+  <div class="flex-none relative">
+    <div class="dropdown lg:hidden">
+      <div class="dropdown dropdown-end ">
+        <label tabindex="0" class="btn btn-ghost text-white rounded link link-hover text-xl opacity-80">☰</label>
+        <ul tabindex="0" class=" dropdown-content whitespace-nowrap p-2 mt-4 rounded-lg bg-custom_color2 ">
+          <li>
+            <%= link_to t('plans.new.title'), new_plan_path, class:'btn btn-ghost text-white rounded link link-hover lg:text-xl text-sm opacity-80 ' %>
+          </li>
+          <li>
+            <%= link_to t('plans.index.title'), plans_path, class:'btn btn-ghost text-white rounded link link-hover lg:text-xl text-sm opacity-80 ' %>
+          </li>
+          <li>
+            <%= link_to t('profiles.show.title'), profile_path, class:'btn btn-ghost text-white rounded link link-hover lg:text-xl text-sm opacity-80 ' %>
+          </li>
+          <li>
+            <%= button_to t('defaults.logout'), logout_path, method: :delete, class:'btn btn-ghost text-white rounded link link-hover lg:text-xl text-sm opacity-80 ' %>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="hidden lg:block">
+      <div class='flex-none mr-5'>
+        <%= link_to t('plans.new.title'), new_plan_path, class:'btn btn-ghost text-white rounded link link-hover font-semibold mr-10 opacity-80 text-xl' %>
+        <%= link_to t('plans.index.title'), plans_path, class:'btn btn-ghost text-white rounded link link-hover font-semibold text-xl mr-10 opacity-80' %>
+        <div class="dropdown dropdown-end ">
+          <label tabindex="0" class="btn btn-ghost text-white rounded link link-hover text-xl opacity-80"><%= current_user.name %></label>
+            <ul tabindex="0" class=" dropdown-content p-2 mt-4 whitespace-nowrap rounded-lg bg-custom_color2">
+              <li><%= link_to t('profiles.show.title'), profile_path, class:'btn btn-ghost text-white rounded link link-hover text-xl opacity-80' %></li>
+              <li><%= button_to t('defaults.logout'), logout_path, method: :delete, class:'btn btn-ghost text-white rounded link link-hover text-xl opacity-80' %></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </div>
-<div class='fixed top-20 left-1/2 transform -translate-x-1/2 z-20 '>
+<%
+=begin%>
+ <div class='fixed top-20 left-1/2 transform -translate-x-1/2 z-20 '> 
+<%
+=end%>
+<div class='lg:absolute fixed inset-x-0 mx-w-max top-20 z-10 lg:top-auto lg:bottom-10 '>
   <%= render 'shared/flash_message' %>
 </div>
+
