@@ -1,9 +1,9 @@
 <%= content_for(:title, t('.title')) %>
 <div class="bg-custom_color3 sm:py-5 lg:py-5">
-  <div class="min-h-screen pt-20 md:px-8 ">
+  <div class="min-h-screen pt-20 lg:px-8 ">
     <div class='flex flex-col pt-20'>
-      <div class='flex justify-around rounded-lg bg-custom_color1'>
-        <div class='flex '>
+      <div class='flex flex-col lg:flex-row justify-around rounded-lg bg-custom_color1'>
+        <div class='flex lg:flex-row flex-col items-center lg:items-start'>
           <div class="avatar items-center m-5">
             <div class="w-60 rounded-full">
               <% if @user.avatar.attached? %>
@@ -13,38 +13,36 @@
               <% end %>
             </div>
           </div>
-          <div class='flex flex-col mt-10 w-3/5 '>
-            <div class='flex flex-row '>
+          <div class='flex flex-col lg:ml-5 mt-10 lg:mt-10'>
+            <div class='flex flex-col lg:flex-row'>
               <div class='flex flex-col mr-10 '>
-                <p class=' text-lg justify-center mb-5' ><%= I18n.t('activerecord.attributes.user.name') %></p>
-                <p class=' text-lg mb-5 ' ><%= I18n.t('activerecord.attributes.user.email') %></p>
-                <p class=' text-lg whitespace-nowrap ' ><%= I18n.t('activerecord.attributes.user.introduction') %></p>
+                <p class='text-lg justify-center mb-2 lg:mb-5'><%= I18n.t('activerecord.attributes.user.name') %></p>
+                <p class='text-lg mb-2 lg:mb-5'><%= I18n.t('activerecord.attributes.user.email') %></p>
+                <p class='text-lg whitespace-nowrap mb-2 lg:mb-0'><%= I18n.t('activerecord.attributes.user.introduction') %></p>
               </div>
               <div class='flex flex-col '>
-                <div class='text-lg mb-5'><%= @user.name%></div>
-                <div class='text-lg mb-5'><%= @user.email%></div>
+                <div class='text-lg mb-2 lg:mb-5'><%= @user.name%></div>
+                <div class='text-lg mb-2 lg:mb-5'><%= @user.email%></div>
                 <div class='text-lg leading-relaxed whitespace-normal break-words w-full'><%= simple_format(@user.introduction) %></div>
               </div>
             </div>
-            <div class='my-5 '>
+            <div class='mt-5 '>
               <%= link_to t('defaults.edit'), edit_profile_path, class:'btn btn-secondary rounded link link-hover hover:text-white text-lg' %>
             </div>
           </div>
         </div>
-        <div >
-          <div class='flex flex-col  mt-10'>
-            <p class=' text-xl mb-4 '><%= t('profiles.show.countries_list') %> : <%= @countries.count %>ヶ国</p>
-            <div class="grid grid-cols-4 gap-4 ">
-              <% @countries.each do |country| %>
-                <div class="whitespace-nowrap "> <%= country %> </div>
-              <% end %>
-            </div>
+        <div class='flex flex-col  items-center lg:items-start mt-5 lg:mt-5'>
+          <p class='lg:text-xl text-lg mb-2 lg:mb-6'><%= t('profiles.show.countries_list') %> : <%= @countries.count %>ヶ国</p>
+          <div class="grid lg:grid-cols-4 grid-cols-2 gap-4 ">
+            <% @countries.each do |country| %>
+              <div class="whitespace-nowrap "> <%= country %> </div>
+            <% end %>
           </div>
         </div>
       </div>
       <div class='mt-4 bg-custom_color1 rounded-lg'>
-        <h1 class='text-2xl font-semibold mb-5'><%= t('plans.index.title') %></h1>
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-40 gap-y-10 m-10 ">
+        <h1 class='text-2xl font-semibold mb-5 mt-5 ml-5'><%= t('plans.index.title') %></h1>
+        <div class="grid lg:grid-cols-3 grid-cols-1 justify-items-center gap-y-4 lg:gap-y-10 lg:p-10">
           <%= render @plans %>
         </div>
       </div>

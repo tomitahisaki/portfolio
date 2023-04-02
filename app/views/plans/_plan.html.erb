@@ -1,12 +1,12 @@
 <!-- product - start -->
-<div class="card w-10/12 h-full bg-base-100 shadow-xl rounded-lg ">
-<figure class="bg-gray-100 h-48">
-  <% if plan.image.attached? %>
-    <%= link_to image_tag(plan.image, class:'h-full w-full object-cover'), plan_path(plan), class:'block h-full w-full' %>
-  <% else %>
-    <%= link_to image_tag('camera-1130731_1920.jpg', class:'h-full w-full object-cover'), plan_path(plan), class:'block h-full w-full' %>
-  <% end %>
-</figure>
+<div class="card lg:w-10/12 w-2/3 lg:justify-center bg-base-100 shadow-xl rounded-lg ">
+  <figure class="bg-gray-100 lg:h-48 h-30">
+    <% if plan.image.attached? %>
+      <%= link_to image_tag(plan.image, class:'h-full w-full object-cover'), plan_path(plan), class:'block h-full w-full' %>
+    <% else %>
+      <%= link_to image_tag('camera-1130731_1920.jpg', class:'h-full w-full object-cover'), plan_path(plan), class:'block h-full w-full' %>
+    <% end %>
+  </figure>
   <div class="card-body justify-start">
     <h2 class="card-title"><%= link_to plan.name, plan_path(plan), class:'rounded-lg bg-custom_color1 link link-hover text-xl py-2 px-2 ' %></h2>
     <div class="h-full">
