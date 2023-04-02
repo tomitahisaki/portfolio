@@ -76,6 +76,9 @@ gem 'faker'
 # easy to see model.rb
 gem 'annotate'
 
+# pagination
+gem 'kaminari'
+
 # OGP
 gem 'meta-tags'
 gem 'sitemap_generator'
@@ -86,6 +89,9 @@ gem 'whenever', require: false
 gem 'net-imap'
 gem 'net-pop'
 gem 'net-smtp'
+
+# active_storage to AWS
+gem 'aws-sdk-s3', require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

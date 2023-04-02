@@ -6,10 +6,13 @@
     <% else %>
       <h2 class="text-gray-800 text-2xl lg:text-3xl font-bold ml-10 mb-10"><%= t('plans.index.title') %></h2>
     <% end %>
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-5 gap-y-20 place-items-center ">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-5 gap-y-10 place-items-center ">
       <!-- product - start -->
       <%= render @plans %>
       <!-- product - end -->
     </div>
+  </div>
+  <div class="flex justify-center mt-5">
+    <%= paginate @plans %>
   </div>
 </div>
