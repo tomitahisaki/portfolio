@@ -25,7 +25,9 @@
               <% end %>
             </div>
               <%= link_to t('plans.show.to_safety_page'), visa_path(@plan.plan_countries.ids.first), class:' btn btn-primary rounded-lg link link-hover mt-5' %>
-              <%= link_to "共有する", "https://twitter.com/intent/tweet?text=#{@plan.name}の旅行を計画！%0a#{@countries.map{|country| country.name}.join(",")}に行く予定です!%0a%23RoundPlanner%0a&url=#{request.url}", class:' btn btn-primary rounded-lg link link-hover mt-5', target: '_blank' %>
+              <% if current_user.own?(@plan) %>
+                <%= link_to "ツイッターで共有", "https://twitter.com/intent/tweet?text=#{@plan.name}を計画!%0a#{@countries.map{|country| country.name}.join(",")}へ行く予定!%0a%23RoundPlanner %23バックパッカー%0a&url=#{request.url}", class:' btn btn-primary rounded-lg link link-hover mt-5', target: '_blank' %>
+              <% end %>
           </div>
         </div>
       </div>
