@@ -31,15 +31,15 @@ class Plan < ApplicationRecord
   validate :image_size
 
   def image_file
-    if image.present? && !image.blob.content_type.in?(%('image/jpeg image/png'))
-      errors.add(:image, 'は JPEG 形式または PNG 形式のみ選択してください')
-    end
+    return unless image.present? && !image.blob.content_type.in?(%('image/jpeg image/png'))
+
+    errors.add(:image, 'は JPEG 形式または PNG 形式のみ選択してください')
   end
 
   def image_size
-    if image.present? && image.blob.byte_size > 10.megabytes
-      errors.add(:image, 'は 10MB 以下のファイルを選択してください')
-    end
+    return unless image.present? && image.blob.byte_size > 10.megabytes
+
+    errors.add(:image, 'は 10MB 以下のファイルを選択してください')
   end
 
   def self.find_or_create_countries(countries_params)
@@ -49,6 +49,4 @@ class Plan < ApplicationRecord
       end
     end
   end
-
-
 end

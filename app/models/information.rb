@@ -26,33 +26,33 @@
 class Information < ApplicationRecord
   belongs_to :country, optional: true
 
-  #完全一致
-  scope :by_country_name, -> (country_name){ where("country_name = ?", country_name )}
-  #部分一致
-  scope :country_name_like, -> (country_name){ where("country_name LIKE ?", "%#{country_name}%") }
+  # 完全一致
+  scope :by_country_name, ->(country_name) { where(country_name: country_name) }
+  # 部分一致
+  scope :country_name_like, ->(country_name) { where("country_name LIKE ?", "%#{country_name}%") }
 
-  #informationにcountry_idを紐つける処理
+  # informationにcountry_idを紐つける処理
   def self.set_country_id(countries)
     countries.each do |country|
       country_info = case country.name
-        when "アメリカ合衆国"
-          Information.where(country_cd: 1000)
-        when "アメリカ領サモア"
-          Information.where(country_cd: 1684)
-        when "サモア"
-          Information.where(country_cd: 685)
-        when "ドミニカ"
-          Information.where(country_cd: 767)
-        when "コンゴ"
-          Information.where(country_cd: 242)
-        else
-          Information.by_country_name(country.name).presence || Information.country_name_like(country.name)
-        end
+                     when "アメリカ合衆国"
+                       Information.where(country_cd: 1000)
+                     when "アメリカ領サモア"
+                       Information.where(country_cd: 1684)
+                     when "サモア"
+                       Information.where(country_cd: 685)
+                     when "ドミニカ"
+                       Information.where(country_cd: 767)
+                     when "コンゴ"
+                       Information.where(country_cd: 242)
+                     else
+                       Information.by_country_name(country.name).presence || Information.country_name_like(country.name)
+                     end
       country_info.update(country_id: country.id) if country_id_not_set?(country_info)
     end
   end
 
-  #informationからとってきたcountry_infoの存在とcountry_idがあるかを確認
+  # informationからとってきたcountry_infoの存在とcountry_idがあるかを確認
   def self.country_id_not_set?(country_info)
     country_info.present? && country_info.pluck(:country_id) == [nil]
   end

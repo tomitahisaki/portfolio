@@ -29,11 +29,11 @@ class PlansController < ApplicationController
     @plan = current_user.plans.new(plan_params)
 
     if @plan.valid? && plan_params[:countries_attributes].present?
-      #countryモデルに重複しないように登録する
+      # countryモデルに重複しないように登録する
       countries = Plan.find_or_create_countries(plan_params[:countries_attributes])
-      #informationにcountry_idを紐つける処理
+      # informationにcountry_idを紐つける処理
       Information.set_country_id(countries)
-      #countriesにはcountryモデルからfind_or_createしたカラムを@plan.countriesに紐つけている。
+      # countriesにはcountryモデルからfind_or_createしたカラムを@plan.countriesに紐つけている。
       @plan.countries = countries
 
       if @plan.save
@@ -45,7 +45,7 @@ class PlansController < ApplicationController
         render :new
       end
     else
-      flash.now[:error] =[ t('defaults.message.not_created', item: Plan.model_name.human), t('defaults.message.add_country', item: Country.model_name.human) ].join(', ')
+      flash.now[:error] = [t('defaults.message.not_created', item: Plan.model_name.human), t('defaults.message.add_country', item: Country.model_name.human)].join(', ')
       render :new
     end
   end
@@ -53,9 +53,9 @@ class PlansController < ApplicationController
   def update
     # countries_params = plan_params[:countries_attributes].select { |country_params| country_params[:_destroy] == 'false' }
     countries_params = plan_params[:countries_attributes].select { |_, params| params[:_destroy] == 'false' }
-    #countryモデルに重複しないように登録する
+    # countryモデルに重複しないように登録する
     countries = Plan.find_or_create_countries(countries_params)
-    #informationにcountry_idを紐つける処理
+    # informationにcountry_idを紐つける処理
     Information.set_country_id(countries)
 
     @plan.countries = countries
