@@ -14,7 +14,6 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create]
   resources :plans do
     resources :countries
-    resources :plan_countries
   end
   resources :visas, only: %i[show]
   resource :profile, only: %i[show edit update]
