@@ -18,7 +18,7 @@ class ProfilesController < ApplicationController
   def set_user
     @user = User.find(current_user.id)
     @plans = @user.plans.all
-    @countries = @plans.map { |plan| plan.countries.map { |country| country.name } }.flatten.uniq
+    @countries = @plans.map { |plan| plan.countries.map(&:name) }.flatten.uniq
   end
 
   def user_params

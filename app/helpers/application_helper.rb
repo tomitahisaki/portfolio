@@ -1,8 +1,7 @@
 module ApplicationHelper
-  
   def page_title(page_title = '')
     base_title = 'RoundPlanner'
-    page_title.empty? ? base_title : page_title + ' | ' + base_title
+    page_title.empty? ? base_title : "#{page_title} | #{base_title}"
   end
 
   def default_meta_tags
@@ -17,7 +16,7 @@ module ApplicationHelper
       canonical: request.original_url,
       noindex: !Rails.env.production?,
       icon: [
-        {href: image_url('favicon.png'), sizes: '32x32'}
+        { href: image_url('favicon.png'), sizes: '32x32' }
       ],
       og: {
         site_name: :site,
@@ -26,7 +25,7 @@ module ApplicationHelper
         type: 'website',
         url: 'request.original_url',
         image: image_url('ogp.png'),
-        locale: 'ja_JP',
+        locale: 'ja_JP'
       },
       twitter: {
         card: 'summary_large_image',
