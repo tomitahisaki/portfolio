@@ -18,7 +18,7 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
-  has_many :plans
+  has_many :plans, dependent: :destroy
   has_one_attached :avatar
 
   validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }
@@ -38,14 +38,14 @@ class User < ApplicationRecord
   private
 
   def avatar_size
-    if avatar.present? && avatar.blob.byte_size > 10.megabytes
-      errors.add(:avatar, 'は 10MB 以下のファイルを選択してください')
-    end
+    return unless avatar.present? && avatar.blob.byte_size > 10.megabytes
+
+    errors.add(:avatar, 'は 10MB 以下のファイルを選択してください')
   end
-  
+
   def avatar_file
-    if avatar.present? && !avatar.blob.content_type.in?(%('image/jpeg image/png'))
-      errors.add(:avatar, 'はJPEGまたはPNG形式のみ選択してください')
-    end
+    return unless avatar.present? && !avatar.blob.content_type.in?(%('image/jpeg image/png'))
+
+    errors.add(:avatar, 'はJPEGまたはPNG形式のみ選択してください')
   end
 end
