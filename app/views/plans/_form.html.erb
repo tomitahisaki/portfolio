@@ -9,6 +9,7 @@
           <%= f.text_field :name, placeholder: Plan.human_attribute_name(:name), class:"input input-bordered rounded-lg w-full max-w-xs " %>
           <div class="flex flex-col">
             <div class="mt-3">
+              <p>旅行画像を入れよう！(なくても作成できます)</p>
               <%= f.file_field :image, id: 'image-upload', class:'file-input rounded-lg w-full max-w-xs ' %>
             </div>
             <div class="image mt-2">
