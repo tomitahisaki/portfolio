@@ -67,3 +67,6 @@ ja:
   visas:
     show:
       title: 入国審査詳細
+  views:
+    pagination:
+      truncate: "..."  
