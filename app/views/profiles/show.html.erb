@@ -26,8 +26,9 @@
                 <div class='text-lg leading-relaxed whitespace-normal break-words w-full'><%= simple_format(@user.introduction) %></div>
               </div>
             </div>
-            <div class='mt-5 '>
+            <div class='flex mt-5 '>
               <%= link_to t('defaults.edit'), edit_profile_path, class:'btn btn-secondary rounded link link-hover hover:text-white text-lg' %>
+              <label for="my-modal-4" class="btn btn-secondary rounded link link-hover hover:text-white text-lg ml-3">退会</label>
             </div>
           </div>
         </div>
@@ -50,3 +51,15 @@
   </div>
 </div>
 
+<input type="checkbox" id="my-modal-4" class="modal-toggle" />
+<div class="modal">
+  <div class="modal-box relative">
+    <label for="my-modal-4" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+    <div class="flex flex-col justify-center items-center ">
+      <h2 class="text-lg font-semibold mb-5">本当に退会しますか？</h2>
+      <div>
+        <%= button_to t('defaults.destroy'), current_user, method: :delete, class:'btn btn-primary rounded link link-hover hover:text-white text-lg ml-3' %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,6 +7,7 @@ ja:
     edit: '編集'
     show: '詳細'
     delete: '削除'
+    destroy: '退会'
     back: '戻る'
     message:
       require_login: 'ログインしてください'
@@ -33,6 +34,8 @@ ja:
     create:
       success: 'ユーザー登録を完了しました'
       fail: 'ユーザー登録に失敗しました'
+    destroy:
+      success: 'ユーザーを削除しました'
   user_sessions:
     new:
       title: 'ログイン'
