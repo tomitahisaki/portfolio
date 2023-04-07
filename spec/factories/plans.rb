@@ -18,6 +18,7 @@
 #
 FactoryBot.define do
   factory :plan do
-    name { 'MyString' }
+    sequence(:name){ |n| "test_plan_#{n}"} # 連番
+    association :user
   end
 end
