@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'guest_login', to: 'user_sessions#guest_login'
   delete 'logout', to: 'user_sessions#destroy'
 
-  resources :users, only: %i[new create]
+  resources :users, only: %i[new create destroy]
   resources :plans do
     resources :countries
   end
