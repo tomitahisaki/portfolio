@@ -4,7 +4,7 @@
     <% if plan.image.attached? %>
       <%= link_to image_tag(plan.image, class:'h-full w-full object-cover'), plan_path(plan), class:'block h-full w-full' %>
     <% else %>
-      <%= link_to image_tag('default-plan.webp', class:'h-full w-full object-cover'), plan_path(plan), class:'block h-full w-full' %>
+      <%= link_to image_tag('defaults-plan.webp', class:'h-full w-full object-cover'), plan_path(plan), class:'block h-full w-full' %>
     <% end %>
   </figure>
   <div class="card-body justify-start">
