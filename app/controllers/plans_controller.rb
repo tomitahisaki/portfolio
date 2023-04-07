@@ -38,7 +38,7 @@ class PlansController < ApplicationController
 
       if @plan.save
         flash[:success] = t('defaults.message.created', item: Plan.model_name.human)
-        redirect_to plans_path, success: 'success'
+        redirect_to plans_path
       else
         @plan.countries.clear
         flash.now[:error] = t('defaults.message.not_created', item: Plan.model_name.human)
