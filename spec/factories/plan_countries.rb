@@ -3,7 +3,6 @@
 # Table name: plan_countries
 #
 #  id         :bigint           not null, primary key
-#  duration   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  country_id :bigint           not null

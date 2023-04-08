@@ -3,7 +3,6 @@
 # Table name: plan_countries
 #
 #  id         :bigint           not null, primary key
-#  duration   :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  country_id :bigint           not null
@@ -23,6 +22,7 @@
 class PlanCountry < ApplicationRecord
   belongs_to :plan
   belongs_to :country
+  has_one :budget, dependent: :destroy
 
   validates :plan, uniqueness: { scope: :country }
 end
