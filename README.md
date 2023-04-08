@@ -123,7 +123,7 @@
 [figma](https://www.figma.com/file/Bqv2jm6XStVIqhG6oithXs/Round-Planner?t=LDsPw9EsTTORywpQ-6)
 
 ### ■ER図
-[![Image from Gyazo](https://i.gyazo.com/976e078a7ab91cf2d0ab71cbe435b786.png)](https://gyazo.com/976e078a7ab91cf2d0ab71cbe435b786)
+[![Image from Gyazo](https://i.gyazo.com/87fb6e552cfd20b1e0dacf10894c6e57.png)](https://gyazo.com/87fb6e552cfd20b1e0dacf10894c6e57)
 ### ■スケジュール
   企画〜技術調査：2/4 〆切
 
