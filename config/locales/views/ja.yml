@@ -60,6 +60,7 @@ ja:
     show:
       title: 'プラン詳細'
       to_safety_page: '安全情報を見に行く'
+      to_budget_page: '予算を立てる'
     edit:
       title: 'プラン編集'
   profiles:
