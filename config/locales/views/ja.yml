@@ -18,6 +18,7 @@ ja:
       deleted: "%{item}を削除しました"
       delete_confirm: '削除しますか？'
       add_country: "%{item}を追加してください"
+      destroy_confirm: "本当に退会しますか？"
   static_pages:
     how_to_use: '使い方'
     term:

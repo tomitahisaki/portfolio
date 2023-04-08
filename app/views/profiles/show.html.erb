@@ -28,12 +28,12 @@
             </div>
             <div class='flex mt-5 '>
               <%= link_to t('defaults.edit'), edit_profile_path, class:'btn btn-secondary rounded link link-hover hover:text-white text-lg' %>
-              <label for="my-modal-4" class="btn btn-secondary rounded link link-hover hover:text-white text-lg ml-3">退会</label>
+              <label for="my-modal-4" class="btn btn-secondary rounded link link-hover hover:text-white text-lg ml-3"><%= t('defaults.destroy') %></label>
             </div>
           </div>
         </div>
         <div class='flex flex-col  items-center lg:items-start mt-5 lg:mt-5'>
-          <p class='lg:text-xl text-lg mb-2 lg:mb-6'><%= t('profiles.show.countries_list') %> : <%= @countries.count %>ヶ国</p>
+          <p class='lg:text-xl text-lg mb-2 lg:mb-6'><%= countries_list(@countries) %></p>
           <div class="grid lg:grid-cols-4 grid-cols-2 gap-4 ">
             <% @countries.each do |country| %>
               <div class="whitespace-nowrap "> <%= country %> </div>
@@ -56,7 +56,7 @@
   <div class="modal-box relative">
     <label for="my-modal-4" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
     <div class="flex flex-col justify-center items-center ">
-      <h2 class="text-lg font-semibold mb-5">本当に退会しますか？</h2>
+      <h2 class="text-lg font-semibold mb-5"><%= t('defaults.message.destroy_confirm') %></h2>
       <div>
         <%= button_to t('defaults.destroy'), current_user, method: :delete, class:'btn btn-primary rounded link link-hover hover:text-white text-lg ml-3' %>
       </div>
