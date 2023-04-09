@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  get 'budgets/new'
-  get 'budgets/create'
-  get 'budgets/edit'
-  get 'budgets/update'
-  get 'budgets/destroy'
-  get 'visas/show'
   root to: 'static_pages#top'
 
   get 'term', to: 'static_pages#term'
@@ -19,8 +13,8 @@ Rails.application.routes.draw do
   resources :users, only: %i[new create destroy]
   resources :plans do
     resources :countries
-    resources :budgets, only: %i[new create show edit update destroy]
   end
   resources :visas, only: %i[show]
   resource :profile, only: %i[show edit update]
+  resources :budgets
 end

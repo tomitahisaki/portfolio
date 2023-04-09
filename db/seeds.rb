@@ -7,53 +7,27 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 # 外務省スクレイピングデータ作成用
-require 'csv'
+# require 'csv'
 
-CSV.foreach('db/csv/countries_data.csv', headers: true) do |row|
-  # country = Country.find_by(name: "row['country_name']")  #外部キーをつける処理 一旦コメントアウト controlerでも同処理をしている
-  # country = Country.find_by("name LIKE ?", "#{row['country_name']}") if country.empty?  #外部キーをつける処理 一旦コメントアウト controlerでも同処理をしている
-  Information.create(
-    # country_id: country ? country.id : nil,
-    country_cd: row['country_cd'],
-    country_name: row['country_name'],
-    measure_url: row['measure_url'],
-    measure_text2: row['measure_text2'],
-    measure_text3: row['measure_text3'],
-    measure_text4: row['measure_text4'],
-    measure_text5: row['measure_text5'],
-    measure_text6: row['measure_text6'],
-  )
-end
-
-#初期データ作成
-# 2.times do |n|
-#   User.create!(
-#     name: Faker::Name.name, 
-#     email: Faker::Internet.email,
-#     password: 'aaa',
-#     password_confirmation: 'aaa'
-#   )
-
-# end
-
-# 5.times do |n|
-#   Plan.create!(
-#     name: Faker::Name.first_name,
-#     user: User.offset(rand(User.count)).first
+# CSV.foreach('db/csv/countries_data.csv', headers: true) do |row|
+#   # country = Country.find_by(name: "row['country_name']")  #外部キーをつける処理 一旦コメントアウト controlerでも同処理をしている
+#   # country = Country.find_by("name LIKE ?", "#{row['country_name']}") if country.empty?  #外部キーをつける処理 一旦コメントアウト controlerでも同処理をしている
+#   Information.create(
+#     # country_id: country ? country.id : nil,
+#     country_cd: row['country_cd'],
+#     country_name: row['country_name'],
+#     measure_url: row['measure_url'],
+#     measure_text2: row['measure_text2'],
+#     measure_text3: row['measure_text3'],
+#     measure_text4: row['measure_text4'],
+#     measure_text5: row['measure_text5'],
+#     measure_text6: row['measure_text6'],
 #   )
 # end
 
-# 20.times do |n|
-#   Country.create!(
-#     name: Faker::Address.country,
-#     latitude: Faker::Address.latitude,
-#     longitude: Faker::Address.longitude,
-#   )
-# end
-
-# 20.times do |n|
-#   PlanCountry.create!(
-#   plan: Plan.offset(rand(Plan.count)).first,
-#   country: Country.offset(rand(Country.count)).first
-# )
-# end
+# カテゴリーテーブルを作成するためのシードデータ
+Category.create(name: "食事")
+Category.create(name: "交通")
+Category.create(name: "宿泊")
+Category.create(name: "観光")
+Category.create(name: "その他")

@@ -22,7 +22,12 @@
 class PlanCountry < ApplicationRecord
   belongs_to :plan
   belongs_to :country
-  has_one :budget, dependent: :destroy
+  has_many :budgets, dependent: :destroy
 
   validates :plan, uniqueness: { scope: :country }
+
+  scope :by_plan_id, ->(plan_id) { where(plan_id: plan_id) }
+  scope :by_country_id, ->(country_id) { where(country_id: country_id) }
+
+
 end

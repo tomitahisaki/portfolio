@@ -1,2 +1,22 @@
-<h1>Budgets#new</h1>
-<p>Find me in app/views/budgets/new.html.erb</p>
+<%= content_for(:title, t('.title')) %>
+<div class="bg-custom_color3 sm:py-5 lg:py-5">
+  <div class="min-h-screen pt-20 md:px-8 mx-auto">
+    <div class="relative">
+      <%= form_with(model: @budget, url: new_budget_path, local: true) do |form| %>
+        <% @budgets.each do |budget| %>
+          <h3><%= budget.plan_country.country.name %></h3>
+          <% @categories.each do |category| %>
+            <h3><%= category.name %></h3>
+            <% budget_for_category = budget.category_id == category.id ? budget : nil %>
+              <%= form.label :amount %>
+              <%= form.number_field :amount %>
+              <%= form.label :description %>
+              <%= form.text_area :description, rows: 3 %>
+              <%= form.hidden_field :category_id, value: category.id %>
+          <% end %>
+        <% end %>
+        <%= form.submit "Create Budgets", class:"btn" %>
+      <% end %>
+    </div>
+  </div>
+</div>

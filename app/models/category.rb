@@ -8,6 +8,5 @@
 #  updated_at :datetime         not null
 #
 class Category < ApplicationRecord
-  has_many :budget_categories, dependent: :destroy
-  has_many :budgets, through: :budget_categories
+  has_many :budgets, dependent: :destroy
 end
