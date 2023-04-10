@@ -2,20 +2,29 @@
 <div class="bg-custom_color3 sm:py-5 lg:py-5">
   <div class="min-h-screen pt-20 md:px-8 mx-auto">
     <div class="relative">
-      <%= form_with(model: @budget, url: new_budget_path, local: true) do |form| %>
-        <% @budgets.each do |budget| %>
-          <h3><%= budget.plan_country.country.name %></h3>
-          <% @categories.each do |category| %>
-            <h3><%= category.name %></h3>
-            <% budget_for_category = budget.category_id == category.id ? budget : nil %>
-              <%= form.label :amount %>
-              <%= form.number_field :amount %>
-              <%= form.label :description %>
-              <%= form.text_area :description, rows: 3 %>
-              <%= form.hidden_field :category_id, value: category.id %>
+      <%= form_with(model: @budgets_form, url: budgets_path, local: true) do |form| %>
+        <% @plan_countries.each do |plan_country| %>
+          <% 5.times do %>
+            <%= form.fields_for :budgets_attributes, Budget.new(plan_country_id: plan_country.id), index: nil do |budget_form| %>
+              <%= budget_form.hidden_field :plan_country_id, value: plan_country.id %>
+              <div class="field">
+                <%= budget_form.label :amount %>
+                <%= budget_form.text_field :amount %>
+              </div>
+              <div class="field">
+                <%= budget_form.label :description %>
+                <%= budget_form.text_field :description %>
+              </div>
+              <div class="field">
+                <%= budget_form.label :category_id %>
+                <%= budget_form.select :category_id, @categories.collect { |c| [c.name, c.id] } %>
+              </div>
+            <% end %>
           <% end %>
         <% end %>
-        <%= form.submit "Create Budgets", class:"btn" %>
+        <div class="actions">
+          <%= form.submit 'Save' %>
+        </div>
       <% end %>
     </div>
   </div>
