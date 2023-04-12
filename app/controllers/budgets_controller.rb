@@ -7,7 +7,6 @@ class BudgetsController < ApplicationController
 
   def create
     @budgets_form = Form::BudgetsForm.new(budgets_form_params)
-    binding.break
     if @budgets_form.save
       flash[:success] = '予算を登録しました'
       redirect_to budgets_path

@@ -4,7 +4,8 @@
     <div class="relative">
       <%= form_with(model: @budgets_form, url: budgets_path, local: true) do |form| %>
         <% @plan_countries.each do |plan_country| %>
-          <% 5.times do %>
+          <%= plan_country.country.name %>
+          <% 5.times do |i| %>
             <%= form.fields_for :budgets_attributes, Budget.new(plan_country_id: plan_country.id), index: nil do |budget_form| %>
               <%= budget_form.hidden_field :plan_country_id, value: plan_country.id %>
               <div class="field">
@@ -16,8 +17,8 @@
                 <%= budget_form.text_field :description %>
               </div>
               <div class="field">
-                <%= budget_form.label :category_id %>
-                <%= budget_form.select :category_id, @categories.collect { |c| [c.name, c.id] } %>
+                <%= budget_form.label :category_id, value: @categories[i].name %>
+                <%= budget_form.text_field :category_id, value: @categories[i].id %>
               </div>
             <% end %>
           <% end %>
