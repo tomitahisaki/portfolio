@@ -40,6 +40,7 @@
 | ------------------------------------------------------------------ | -------------------------------------------------------------------- |
 | [![Image from Gyazo](https://i.gyazo.com/c96924e888c1b3c6671931a6c470abce.jpg)](https://gyazo.com/c96924e888c1b3c6671931a6c470abce) | [![Image from Gyazo](https://i.gyazo.com/96c06eed0e0e6cd6ebdac31fcaa82928.jpg)](https://gyazo.com/96c06eed0e0e6cd6ebdac31fcaa82928)  |
 | ・トップページ              | ・計画の作成<br> ・行きたい国の登録,イメージ画像も追加                           |
+
 | 計画一覧                                                         | 計画詳細                                                          |
 | ------------------------------------------------------------------ | -------------------------------------------------------------------- |
 | [![Image from Gyazo](https://i.gyazo.com/79a4eb25633fdd4cb90bf3bb2495abde.jpg)](https://gyazo.com/79a4eb25633fdd4cb90bf3bb2495abde) | [![Image from Gyazo](https://i.gyazo.com/75685d51565cdcac6252780bf38a0d94.jpg)](https://gyazo.com/75685d51565cdcac6252780bf38a0d94)  |
